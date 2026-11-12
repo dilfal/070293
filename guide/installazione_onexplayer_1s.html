@@ -691,6 +691,8 @@ ujust setup-boot-windows-steam</code></pre>
             <li><strong>Scala Display al 150% (Wayland):</strong> imposta automaticamente la scala a <code>1.5x</code> (<code>kscreen-doctor output.1.scale.1.5</code>), indispensabile per leggere comodamente testi e icone sullo schermo 2560×1600 da 8,4".</li>
             <li><strong>Tastiera virtuale su schermo (Maliit):</strong> abilita la tastiera touch in KDE Wayland.</li>
             <li><strong>Verifica Correzione Schermo Nero (`intel_norbc`):</strong> controlla che il file <code>10-gamescope-session.conf</code> sia presente e attivo.</li>
+            <li><strong>Modalità Cura Batteria (80%) (`limite_carica_80`):</strong> attiva il monitor con avviso automatico al raggiungimento dell'80% di carica (o il blocco hardware se esposto dal kernel), evitando di lasciare la batteria al 100% ad alta temperatura. Puoi disattivarla prima di un viaggio dalle <em>Avanzate</em> (<code>carica_100</code>).</li>
+            <li><strong>Controllo TDP Intel RAPL (`tdp_20w` consigliato, più `tdp_15w` e `tdp_28w` nelle Avanzate):</strong> imposta il limite energetico del processore Intel i7-1195G7 (20W continui / 25W picco come punto dolce per giocare riducendo di ~10°C le temperature e il rumore delle ventole; 15W per risparmio batteria; 28W per il massimo Turbo), persistente anche dopo riavvio e sospensione.</li>
             <li><strong>Catalogo App in un clic:</strong> puoi selezionare e installare automaticamente da Flathub:
                 <ul>
                     <li><strong>ProtonUp-Qt</strong> (per scaricare GE-Proton per i tuoi giochi <code>.exe</code> locali).</li>
@@ -703,8 +705,9 @@ ujust setup-boot-windows-steam</code></pre>
             <li><strong>Sezione «Avanzate»:</strong> include la correzione sperimentale per il cursore della luminosità in Gaming Mode (<code>PANEL_TYPE=internal</code>), la configurazione automatica di <code>aria2.conf</code>, l'aggiornamento completo del sistema (<code>ujust update</code>) e il blocco di sicurezza della versione (<code>ostree admin pin 0</code>).</li>
         </ul>
 
-        <h3>Passo 7.3 — Come funzionano i tasti, gli aggiornamenti e il Rollback di sicurezza</h3>
+        <h3>Passo 7.3 — Come funzionano TDP, Ventole (Modalità Notte), tasti e Rollback</h3>
         <ul>
+            <li><strong>Ventole e Modalità Silenziosa (Night Mode) sul OneXPlayer 1S:</strong> il driver Linux non permette curve ventole software sulle schede Intel, ma il OneXPlayer 1S ha una <strong>Modalità Silenziosa hardware integrata</strong>: ti basta <strong>tenere premuto per 2 secondi il tasto fisico MUTE sul retro</strong> del dispositivo per ridurre subito i giri della ventola! Combinandolo col nostro <strong>Profilo TDP 20W (o 15W)</strong>, l'handheld resta fresco e silenzioso.</li>
             <li><strong>Menu Rapido (QAM, i tre puntini <code>...</code>) in Gaming Mode:</strong> premi il pulsante <kbd>Turbo</kbd> (in alto a destra) oppure la combinazione sicura <kbd> pulsante Home/Guide</kbd> + <kbd>B</kbd> (da tastiera: <kbd>Ctrl</kbd> + <kbd>2</kbd>).</li>
             <li><strong>Aggiornare Bazzite:</strong> sulle immagini per handheld gli aggiornamenti non partono mai da soli mentre giochi. Quando vuoi aggiornare tutto (sistema, driver e app Flatpak), apri Konsole e lancia <code>ujust update</code> (oppure usa la voce nella sezione <em>Avanzate</em> del nostro strumento).</li>
             <li><strong>Bloccare una versione che funziona bene (Salvapente):</strong> quando vedi che tutto gira alla perfezione, esegui <code>sudo ostree admin pin 0</code> (o spunta <em>"Blocca la versione di sistema attuale"</em> nel nostro programma). Se un futuro aggiornamento dovesse dare problemi, all'accensione ti basterà premere <kbd>ESC</kbd> per aprire GRUB, scegliere la versione precedente e dare <code>rpm-ostree rollback</code>!</li>

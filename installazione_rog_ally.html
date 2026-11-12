@@ -601,7 +601,7 @@
             <li><strong>Tema Scuro (Breeze Dark):</strong> imposta il tema scuro nativo di KDE Plasma 6.</li>
             <li><strong>Scala Display al 125% (Wayland):</strong> imposta la scala a <code>1.25x</code> (<code>kscreen-doctor output.1.scale.1.25</code>), la proporzione ideale per lo schermo 7" 1080p della ROG Ally.</li>
             <li><strong>Tastiera virtuale su schermo (Maliit):</strong> abilita la tastiera touch in KDE Wayland.</li>
-            <li><strong>Limite di carica della batteria all'80% (`limite_carica_80`):</strong> imposta subito la soglia massima di carica all'80% e crea un servizio <code>systemd</code> automatico che la mantiene attiva anche dopo ogni riavvio, proteggendo la batteria dall'usura quando giochi collegato alla corrente.</li>
+            <li><strong>Modalità Cura Batteria all'80% (`limite_carica_80`):</strong> imposta subito la soglia massima di carica hardware all'80% e crea sia un servizio <code>systemd</code> (attivo all'avvio e al risveglio dallo standby) sia una regola <code>udev</code> (attiva quando colleghi il caricabatterie USB-C), risolvendo definitivamente il bug di Bazzite (#3855) per cui il limite tornava a 100%. Quando devi partire per un viaggio e vuoi caricare al 100%, puoi sbloccarla in un clic dalla sezione <em>Avanzate</em> (<code>carica_100</code>).</li>
             <li><strong>App e Strumenti in un clic:</strong> installa <strong>ProtonUp-Qt</strong> (per GE-Proton), <strong>Heroic Games Launcher</strong> (Epic/GOG/Amazon), <strong>Lutris</strong>, <strong>Decky Loader</strong>, <strong>VLC</strong>, <strong>aria2</strong> e <strong>Mullvad VPN</strong>.</li>
         </ul>
 
