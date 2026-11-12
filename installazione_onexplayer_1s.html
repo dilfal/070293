@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guida Passo-Passo: Installare Bazzite KDE su OneXPlayer 1S | Bazzite Handheld Setup</title>
+    <style>
+        :root {
+            --bg: #0f141c;
+            --surface: #171d27;
+            --surface-hover: #1f2735;
+            --border: #293241;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-orange: #d29922;
+            --accent-red: #f85149;
+            --code-bg: #0d1117;
+            --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.65;
+            padding: 20px 16px 60px 16px;
+        }
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+        }
+        .top-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .top-nav a {
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            transition: all 0.2s;
+        }
+        .top-nav a:hover {
+            border-color: var(--accent);
+            background: var(--surface-hover);
+        }
+        .top-nav a.active {
+            background: #1f3a5f;
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        header {
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 24px;
+        }
+        .badge {
+            display: inline-block;
+            background: #1f3a5f;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .meta {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .nav-summary {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 32px;
+        }
+        .nav-summary h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .nav-summary ul {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+        .nav-summary a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .nav-summary a:hover { text-decoration: underline; }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 26px;
+            margin-bottom: 32px;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #ffffff;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin: 24px 0 10px 0;
+            color: #79c0ff;
+        }
+        p { margin-bottom: 14px; font-size: 15px; }
+        ul, ol { margin-left: 22px; margin-bottom: 16px; }
+        li { margin-bottom: 8px; font-size: 15px; }
+        kbd {
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-bottom-width: 2px;
+            border-radius: 5px;
+            padding: 2px 6px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #e6edf3;
+        }
+        code {
+            background: #21262d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #79c0ff;
+        }
+        .alert {
+            background: rgba(88, 166, 255, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            border-radius: 6px;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        .alert-warning {
+            background: rgba(210, 153, 34, 0.15);
+            border-left: 4px solid var(--accent-orange);
+        }
+        .alert-danger {
+            background: rgba(248, 81, 73, 0.15);
+            border-left: 4px solid var(--accent-red);
+        }
+        .alert-green {
+            background: rgba(63, 185, 80, 0.15);
+            border-left: 4px solid var(--accent-green);
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #161b22;
+            border: 1px solid var(--border);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            padding: 8px 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+        .btn-copy {
+            background: #232a36;
+            color: #c9d1d9;
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover {
+            background: #2ea043;
+            color: white;
+            border-color: #2ea043;
+        }
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 0 0 8px 8px;
+            padding: 14px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #79c0ff;
+            line-height: 1.45;
+        }
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: inherit;
+        }
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: left;
+        }
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        th { background: #1b222d; color: #fff; font-weight: 600; }
+        .next-guide-banner {
+            display: block;
+            background: linear-gradient(135deg, #1b2e4b 0%, #171d27 100%);
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            padding: 24px;
+            text-decoration: none;
+            color: var(--text);
+            margin-top: 32px;
+            transition: transform 0.2s;
+        }
+        .next-guide-banner:hover {
+            transform: translateY(-2px);
+        }
+        .next-guide-banner h3 {
+            margin: 0 0 6px 0;
+            color: #fff;
+            font-size: 19px;
+        }
+        .next-guide-banner p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        footer {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 48px;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <nav class="top-nav">
+        <a href="index.html">&#8592; Tutte le Guide</a>
+        <a href="installazione_onexplayer_1s.html" class="active">Parte 1: Installazione Bazzite KDE (Rufus &amp; BIOS)</a>
+        <a href="ottimizzazione_onexplayer_1s.html">Parte 2: Ottimizzazione Giochi .exe Locali &#8594;</a>
+    </nav>
+
+    <header>
+        <span class="badge">OneXPlayer 1S (8.4" IPS 2560×1600 · Intel i7-1195G7 · Iris Xe)</span>
+        <h1>Guida Passo-Passo: Installare Bazzite KDE Plasma 6</h1>
+        <div class="meta">Dalla preparazione di Windows e della chiavetta USB con Rufus fino alla configurazione completa · Aggiornato al 12 novembre 2026</div>
+    </header>
+
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Modello</th>
+                    <th>CPU / GPU</th>
+                    <th>RAM / Disco</th>
+                    <th>Immagine Bazzite KDE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>OneXPlayer 1S (8.4" 2560×1600)</td>
+                    <td>Intel Core i7-1195G7 / Iris Xe</td>
+                    <td>16 GB / 1 TB NVMe</td>
+                    <td><code>bazzite-deck</code> (KDE Plasma 6)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="alert alert-warning">
+        <strong>Cosa sapere prima di iniziare (Verificato sul dispositivo):</strong>
+        <ul style="margin-top: 8px; margin-bottom: 0;">
+            <li>Il OneXPlayer 1S monta un processore Intel Tiger Lake con grafica <strong>Iris Xe</strong> e uno schermo nativo montato in verticale (portrait).</li>
+            <li>Al primo avvio dopo l'installazione, la <em>Steam Gaming Mode</em> parte con lo <strong>schermo nero</strong> (si sente l'audio di Steam, ma il display resta spento). <strong>Niente paura:</strong> al <strong>Passo 6.2 e 6.3</strong> trovi la correzione definitiva (<code>INTEL_DEBUG=norbc</code>), che richiede 30 secondi con una tastiera USB collegata e risolve il problema per sempre.</li>
+            <li>Scegliendo l'immagine <strong><code>bazzite-deck</code> (KDE Plasma 6)</strong>, il passaggio alla Modalità Desktop dal menu di Steam funziona nativamente senza bisogno delle correzioni manuali che servivano su GNOME.</li>
+        </ul>
+    </div>
+
+    <div class="nav-summary">
+        <h3>Indice dei passaggi</h3>
+        <ul>
+            <li><a href="#fase1">Fase 1 — Verifica i requisiti e prepara il materiale fisico</a></li>
+            <li><a href="#fase2">Fase 2 — Prepara Windows (Backup, BitLocker, Avvio Rapido, Partizioni)</a></li>
+            <li><a href="#fase3">Fase 3 — Scarica Bazzite KDE e crea la chiavetta USB con Rufus</a></li>
+            <li><a href="#fase4">Fase 4 — BIOS e avvio dalla chiavetta USB sul OneXPlayer 1S</a></li>
+            <li><a href="#fase5">Fase 5 — Installazione passo-passo di Bazzite KDE sull'SSD</a></li>
+            <li><a href="#fase6">Fase 6 — Primo avvio, Secure Boot (MOK) e correzione dello schermo nero</a></li>
+            <li><a href="#fase7">Fase 7 — Configurazione automatica con Bazzite Handheld Setup e aggiornamenti</a></li>
+        </ul>
+    </div>
+
+    <!-- FASE 1 -->
+    <section id="fase1" class="card">
+        <h2>Fase 1 — Verifica i requisiti e prepara il materiale fisico</h2>
+
+        <h3>Passo 1.1 — Procurati il materiale necessario sul tavolo</h3>
+        <p>Prima di iniziare assicurati di avere a portata di mano:</p>
+        <ol>
+            <li><strong>Una chiavetta USB da almeno 16 GB</strong> (meglio USB 3.0 o superiore). <em>Attenzione: tutto il suo contenuto verrà cancellato.</em></li>
+            <li><strong>Una tastiera USB fisica (Indispensabile):</strong> serve per entrare nel BIOS, per digitare la password del Secure Boot e soprattutto per inserire il comando di sblocco dello schermo al primo avvio (Passo 6.2).</li>
+            <li><strong>Un mouse USB (Consigliato):</strong> comodo durante l'installazione e la prima configurazione desktop.</li>
+            <li><strong>Un Hub USB-C (o adattatore multiporta):</strong> per collegare contemporaneamente chiavetta USB, tastiera e alimentatore al OneXPlayer 1S (Nota: il OneXPlayer 1S ha anche una porta USB-A 3.0 standard sul bordo superiore oltre alle due porte USB-C!).</li>
+            <li><strong>Il caricabatterie originale collegato:</strong> non eseguire mai l'installazione del sistema operativo a batteria scarica.</li>
+        </ol>
+
+        <h3>Passo 1.2 — Requisiti hardware del OneXPlayer 1S</h3>
+        <ul>
+            <li><strong>Firmware UEFI:</strong> supportato (il boot Legacy/CSM deve restare disattivato).</li>
+            <li><strong>CPU e RAM:</strong> i7-1195G7 e 16 GB di RAM superano ampiamente i requisiti di Bazzite.</li>
+            <li><strong>GPU e Vulkan:</strong> la Intel Iris Xe su Bazzite espone <strong>Vulkan 1.4</strong> (superiore al minimo richiesto di Vulkan 1.3).</li>
+            <li><strong>Disco SSD:</strong> deve essere in formato <strong>GPT</strong> (così esce di fabbrica con Windows 11) con almeno 60–120 GB liberi (o l'intero SSD da 1 TB se sostituisci Windows).</li>
+        </ul>
+    </section>
+
+    <!-- FASE 2 -->
+    <section id="fase2" class="card">
+        <h2>Fase 2 — Prepara Windows (Backup, BitLocker, Avvio Rapido)</h2>
+        <p>Esegui questi passaggi mentre sei ancora dentro Windows sul OneXPlayer 1S (anche se hai deciso di cancellare completamente Windows e tenere solo Bazzite).</p>
+
+        <h3>Passo 2.1 — Fai il backup dei tuoi dati e salvataggi</h3>
+        <ol>
+            <li>Copia su un disco esterno o nel cloud tutti i file personali che hai nelle cartelle <em>Documenti</em>, <em>Desktop</em>, <em>Immagini</em> e <em>Download</em>.</li>
+            <li>Se hai giochi non su Steam (o senza Steam Cloud), salva le cartelle dei salvataggi (spesso si trovano in <code>C:\Utenti\TuoNome\Documenti\My Games</code> o in <code>C:\Utenti\TuoNome\AppData</code>).</li>
+            <li><em>Nota sui driver Windows:</em> su Bazzite tutti i driver Linux sono già integrati. Se un giorno vorrai reinstallare Windows da zero, DROIX mantiene un archivio completo con i driver originali del OneXPlayer 1S.</li>
+        </ol>
+
+        <h3>Passo 2.2 — Disattiva BitLocker / Crittografia dispositivo (Obbligatorio)</h3>
+        <p>Se BitLocker resta attivo, l'installer di Bazzite non potrà ridimensionare il disco e in dual boot Windows ti chiederà una chiave di 48 cifre.</p>
+        <ol>
+            <li>In Windows 11, clicca sul menu <strong>Start</strong> e apri <strong>Impostazioni</strong> (icona dell'ingranaggio).</li>
+            <li>Nel menu a sinistra clicca su <strong>Privacy e sicurezza</strong> → <strong>Crittografia dispositivo</strong>.</li>
+            <li>Se l'interruttore è su <strong>Attivato</strong>, spostalo su <strong>Disattivato</strong> e conferma cliccando su <strong>Disattiva</strong>.</li>
+            <li><em>Alternativa (Windows 11 Pro):</em> premi il tasto <kbd>Win</kbd>, scrivi <code>Gestione BitLocker</code>, aprilo e clicca su <strong>Disattiva BitLocker</strong> accanto al disco <code>C:</code>.</li>
+            <li><strong>Attendi che la decrittazione arrivi al 100%</strong> prima di proseguire (può richiedere da 2 a 15 minuti).</li>
+        </ol>
+
+        <h3>Passo 2.3 — Disattiva l'Avvio Rapido (Fast Startup) di Windows (Obbligatorio)</h3>
+        <div class="alert alert-danger">
+            <strong>Perché è fondamentale:</strong> Con l'Avvio Rapido attivo, quando spegni Windows il sistema non si spegne davvero ma va in ibernazione ibrida, lasciando "bloccati" la scheda Wi-Fi e il controller dell'SSD NVMe. Una volta avviato Bazzite, il Wi-Fi potrebbe non funzionare!
+        </div>
+        <ol>
+            <li>Premi insieme i tasti <kbd>Win</kbd> + <kbd>R</kbd> sulla tastiera, scrivi <code>powercfg.cpl</code> e premi <kbd>Invio</kbd> (si aprirà la finestra <em>Opzioni risparmio energia</em> del Pannello di controllo).</li>
+            <li>Nella colonna di sinistra, clicca su <strong>Specifica comportamento pulsanti di alimentazione</strong>.</li>
+            <li>In alto, clicca sulla scritta blu con lo scudo: <strong>Modifica le impostazioni attualmente non disponibili</strong>.</li>
+            <li>In basso, sotto <em>Impostazioni di arresto</em>, <strong>togli la spunta</strong> dalla casella <strong>Attiva avvio rapido (scelta consigliata)</strong>.</li>
+            <li>Clicca in fondo sul pulsante <strong>Salva cambiamenti</strong>.</li>
+        </ol>
+
+        <h3>Passo 2.4 — (Solo se vuoi il Dual Boot Windows + Bazzite) Riduci la partizione di Windows</h3>
+        <p><em>Se vuoi cancellare Windows e dedicare tutto l'SSD da 1 TB a Bazzite, salta direttamente alla Fase 3.</em></p>
+        <ol>
+            <li>Fai clic con il <strong>tasto destro</strong> sul pulsante <strong>Start</strong> di Windows e scegli <strong>Gestione disco</strong>.</li>
+            <li>Individua la partizione grande <strong><code>(C:)</code></strong>, fai <strong>clic destro</strong> su di essa e seleziona <strong>Riduci volume...</strong>.</li>
+            <li>Nella casella <em>Specificare la quantità di spazio da ridurre in MB</em>, inserisci lo spazio che vuoi dare a Bazzite in Megabyte (es. <code>250000</code> per circa 250 GB, oppure <code>500000</code> per circa 500 GB; il minimo consigliato è <code>120000</code>).</li>
+            <li>Clicca su <strong>Riduci</strong>. Vedrai comparire a destra un blocco nero con scritto <strong>Non allocata</strong>.</li>
+            <li><strong>Lascia quello spazio "Non allocato" così com'è:</strong> non creare una nuova partizione e non formattarlo (ci penserà Bazzite!).</li>
+        </ol>
+    </section>
+
+    <!-- FASE 3 -->
+    <section id="fase3" class="card">
+        <h2>Fase 3 — Scarica Bazzite KDE e crea la chiavetta USB con Rufus</h2>
+
+        <h3>Passo 3.1 — Scarica la ISO corretta di Bazzite KDE (`bazzite-deck`)</h3>
+        <ol>
+            <li>Apri il browser e vai sul sito ufficiale <a href="https://bazzite.gg/" target="_blank" rel="noopener" style="color: var(--accent);">https://bazzite.gg/</a>, poi clicca su <strong>Download Bazzite</strong>.</li>
+            <li>Compila i menu a tendina del configuratore esattamente così:
+                <ul>
+                    <li><strong>1. What hardware are you using?</strong> → Seleziona <strong>Handhelds / Other Handhelds (o OneXPlayer)</strong>.</li>
+                    <li><strong>2. Which desktop environment do you prefer?</strong> → Seleziona <strong>KDE (like SteamOS)</strong>.</li>
+                    <li><strong>3. Do you want Steam Gaming Mode?</strong> → Seleziona <strong>Yes</strong>.</li>
+                </ul>
+            </li>
+            <li>Sotto comparirà il riquadro con scritto: <strong>We provide a custom image for your hardware: <code>bazzite-deck</code></strong>.</li>
+            <li>Clicca sul pulsante principale <strong>Download bazzite-deck-stable-live-amd64.iso</strong> (è l'installer grafico moderno; <em>non</em> scaricare la "Legacy ISO" sottostante). Il file pesa circa 7–9 GB.</li>
+        </ol>
+
+        <h3>Passo 3.2 — (Consigliato) Verifica che il file ISO non sia corrotto (SHA256)</h3>
+        <p>Accanto al pulsante di download su <code>bazzite.gg</code> puoi cliccare sull'icona del checksum per leggere il codice SHA256 ufficiale. Per verificare che il file scaricato sul tuo PC sia integro al 100%, apri <strong>PowerShell</strong> nella cartella <em>Download</em> e incolla questo comando:</p>
+        <div class="code-header">
+            <span>Windows PowerShell - Verifica SHA256 della ISO</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>Get-FileHash "$HOME\Downloads\bazzite-deck*.iso" -Algorithm SHA256</code></pre>
+        <p>Controlla che la stringa <code>Hash</code> restituita corrisponda a quella indicata sul sito di Bazzite.</p>
+
+        <h3>Passo 3.3 — Crea la chiavetta USB avviabile con Rufus (Passo dopo passo)</h3>
+        <ol>
+            <li>Vai sul sito ufficiale di Rufus (<a href="https://rufus.ie/it/" target="_blank" rel="noopener" style="color: var(--accent);">https://rufus.ie/it/</a>) e scarica l'ultima versione (es. <code>rufus-4.x.exe</code>).</li>
+            <li>Inserisci la tua <strong>chiavetta USB da almeno 16 GB</strong> nel PC e avvia Rufus (conferma con <strong>Sì</strong> al controllo utente di Windows).</li>
+            <li>Imposta le voci della finestra di Rufus nell'ordine seguente:
+                <ul>
+                    <li><strong>Dispositivo (Device):</strong> assicurati che sia selezionata la tua chiavetta USB (controlla la lettera di unità e la dimensione in GB per non selezionare per errore un hard disk esterno!).</li>
+                    <li><strong>Selezione boot (Boot selection):</strong> lascia <em>"Disco o immagine ISO"</em>, clicca a destra sul pulsante <strong>SELEZIONA (SELECT)</strong> e scegli il file <code>bazzite-deck-stable-live-amd64.iso</code> che hai scaricato nella cartella <em>Download</em>.</li>
+                    <li><strong>Schema partizione (Partition scheme)</strong> e <strong>Sistema destinazione (Target system):</strong> se le caselle sono attive, imposta <strong>GPT</strong> e <strong>UEFI (non CSM)</strong>.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="alert">
+            <strong>Le caselle "Schema partizione" e "File system" in Rufus sono grigie/bloccate? È normalissimo!</strong><br>
+            Nelle versioni recenti di Rufus (4.15+), non appena carichi la ISO Live di Bazzite, Rufus disabilita quelle caselle (anche se dentro vedi scritto <em>MBR</em> o <em>BIOS o UEFI</em>). Significa che Rufus ha rilevato una ISO Linux con struttura UEFI predefinita e la scriverà così com'è sulla chiavetta. Non devi modificare nulla.
+        </div>
+
+        <ol start="4">
+            <li>Lascia invariati <em>Etichetta volume</em>, <em>File system</em> e <em>Dimensione cluster</em>, e clicca in basso sul pulsante <strong>AVVIA (START)</strong>.</li>
+            <li><strong>Se compare la finestra "Rilevata immagine ISOHybrid":</strong> lascia selezionata la prima opzione <strong>Scrivere in modalità immagine ISO (Raccomandato)</strong> (<em>Write in ISO Image mode</em>) e clicca su <strong>OK</strong>.<br>
+            <em>(Nota: se per qualche motivo la chiavetta non dovesse avviarsi al Passo 4.3, riapri Rufus e qui scegli la seconda opzione: <strong>Scrivere in modalità immagine DD</strong>).</em></li>
+            <li>Se Rufus ti chiede di scaricare nuovi file di <em>Grub</em> o <em>Syslinux</em> da Internet, clicca su <strong>Sì (Yes)</strong>.</li>
+            <li>Compare l'avviso finale che tutti i dati sulla chiavetta USB verranno distrutti: clicca su <strong>OK</strong>.</li>
+            <li>Attendi qualche minuto finché la barra verde non arriva al 100% con la scritta <strong>PRONTO (READY)</strong>, poi clicca su <strong>CHIUDI (CLOSE)</strong>.</li>
+        </ol>
+
+        <div class="alert alert-danger">
+            <strong>ATTENZIONE A FINE SCRITTURA:</strong> Quando Rufus ha finito, Windows potrebbe aprire una finestrella con scritto <em>"È necessario formattare il disco nell'unità E: prima di poterlo usare"</em>. <strong>Clicca assolutamente su ANNULLA!</strong> Windows mostra quel messaggio perché non riconosce la partizione Linux appena creata; se cliccassi su "Formatta", cancelleresti la chiavetta di Bazzite!
+        </div>
+    </section>
+
+    <!-- FASE 4 -->
+    <section id="fase4" class="card">
+        <h2>Fase 4 — BIOS e avvio dalla chiavetta USB sul OneXPlayer 1S</h2>
+
+        <h3>Passo 4.1 — Collega chiavetta USB, tastiera e caricabatterie</h3>
+        <ol>
+            <li>Spegni completamente il OneXPlayer 1S da Windows (<em>Start → Arresta il sistema</em>) e attendi che la spia di alimentazione si spenga del tutto.</li>
+            <li>Collega la <strong>chiavetta USB di Bazzite</strong> e la <strong>tastiera USB fisica</strong> al OneXPlayer 1S (usando la porta USB-A superiore e/o un Hub USB-C collegato a una delle porte USB-C).</li>
+        </ol>
+
+        <h3>Passo 4.2 — Entra nel BIOS e verifica le impostazioni</h3>
+        <ol>
+            <li>Premi il tasto di <strong>Accensione</strong> (sul retro) e <strong>subito</strong> premi ripetutamente il tasto <kbd>ESC</kbd> (oppure <kbd>CANC / DEL</kbd>) sulla tastiera USB finché non si apre la schermata del BIOS.<br>
+            <em>(Alternativa senza tastiera: tieni premuti contemporaneamente il <strong>pulsante arancione sinistro [Tastiera]</strong> + <kbd>Volume +</kbd> mentre accendi).</em></li>
+            <li>Muovendoti con le frecce della tastiera USB, controlla queste tre voci:
+                <ul>
+                    <li><strong>CSM Support / Legacy Boot:</strong> nella scheda <em>Boot</em> (o <em>CSM Configuration</em>), verifica che sia impostato su <strong>Disabled</strong> (Bazzite richiede UEFI puro).</li>
+                    <li><strong>Secure Boot:</strong> nella scheda <em>Security → Secure Boot</em>, puoi lasciarlo su <strong>Enabled</strong> (al primo avvio registrerai la chiave di Bazzite in 10 secondi, come spiegato al Passo 6.1) oppure impostarlo su <strong>Disabled</strong> se non ti interessa il Secure Boot.</li>
+                    <li><strong>Intel VMD / RST:</strong> nella scheda <em>Advanced</em>, se è presente una voce <em>VMD Configuration</em> ed è attiva, tienila a mente: se al Passo 5.3 l'installer di Bazzite non dovesse vedere l'SSD da 1 TB, ti basterà tornare qui e metterla su <strong>Disabled</strong> (attenzione: se fai il dual boot, disattivare VMD potrebbe non far partire Windows).</li>
+                </ul>
+            </li>
+            <li>Premi il tasto <kbd>F4</kbd> sulla tastiera (o vai nella scheda <strong>Save &amp; Exit</strong> → <strong>Save Changes and Reset</strong>) e conferma con <strong>Yes</strong>.</li>
+        </ol>
+
+        <h3>Passo 4.3 — Apri il Menu di Avvio (Boot Menu) e avvia la chiavetta USB</h3>
+        <ol>
+            <li>Non appena il OneXPlayer 1S si riavvia (quando appare il logo <em>ONE XPLAYER</em>), premi ripetutamente il tasto <kbd>F7</kbd> sulla tastiera USB.<br>
+            <em>(Alternativa coi tasti dell'handheld: appena compare il logo, tieni premuti insieme il <strong>pulsante arancione sinistro [DESKTOP]</strong> + <kbd>Volume +</kbd>).</em></li>
+            <li>Comparirà il riquadro blu/grigio <strong>Please select boot device</strong>:
+                <ul>
+                    <li><strong>NON scegliere</strong> <code>UEFI OS (One-netbook PCI-E 1TB SSD)</code> (quello è il disco interno).</li>
+                    <li>Con le frecce (o il D-Pad) scendi sulla voce della tua <strong>Chiavetta USB</strong> (es. <code>UEFI: SanDisk / Kingston ... Partition 1</code>) e premi <kbd>Invio</kbd> (o il tasto <kbd>START</kbd>).</li>
+                </ul>
+            </li>
+            <li>Apparirà il menu nero di avvio di Bazzite: lascia selezionata la prima voce <strong>Install Bazzite</strong> (oppure <em>Start Bazzite-Deck Live</em>) e premi <kbd>Invio</kbd>. Attendi circa 1–2 minuti che il sistema Live carichi l'interfaccia grafica.</li>
+        </ol>
+    </section>
+
+    <!-- FASE 5 -->
+    <section id="fase5" class="card">
+        <h2>Fase 5 — Installazione passo-passo di Bazzite KDE sull'SSD</h2>
+
+        <div class="alert alert-green">
+            <strong>Trucco Salva-Tempo prima di iniziare (Consigliatissimo):</strong><br>
+            Appena si carica il desktop della chiavetta Live USB di Bazzite, clicca sull'<strong>icona del Wi-Fi</strong> nell'angolo della barra e <strong>collegati subito alla tua rete Wi-Fi di casa</strong>! In questo modo Bazzite copierà automaticamente la connessione Wi-Fi dentro l'SSD e potrai sbloccare lo schermo nero e pre-configurare tutto con <strong>un solo comando da 27 caratteri</strong>!
+        </div>
+
+        <h3>Passo 5.1 — Scegli la lingua italiana</h3>
+        <ol>
+            <li>Quando si apre la finestra del programma di installazione (se non si apre da sola, tocca o clicca due volte sull'icona <strong>Install to Hard Drive</strong> sul desktop), scorri l'elenco di sinistra o scrivi <code>Italiano</code> nella barra di ricerca.</li>
+            <li>Seleziona <strong>Italiano</strong> a sinistra e <strong>Italiano (Italia)</strong> a destra, poi clicca in basso a destra sul pulsante blu <strong>Continua</strong>.</li>
+        </ol>
+
+        <h3>Passo 5.2 — Verifica Tastiera e Fuso Orario</h3>
+        <ol>
+            <li>Nella schermata principale (<em>Riepilogo dell'installazione</em>), controlla che sotto <strong>Tastiera</strong> ci sia scritto <em>Italiano</em> e sotto <strong>Data e ora</strong> ci sia scritto <em>Europa/Roma</em>.</li>
+            <li>Se una delle due voci è diversa, cliccaci sopra, seleziona l'Italia e clicca in alto a sinistra sul pulsante blu <strong>Fatto (Done)</strong>.</li>
+        </ol>
+
+        <h3>Passo 5.3 — Scegli il disco SSD e il partizionamento</h3>
+        <ol>
+            <li>Clicca su <strong>Destinazione di installazione (Installation Destination)</strong> (ha un triangolino giallo di avviso).</li>
+            <li>Sotto <em>Dischi standard locali</em>, clicca sull'icona dell'SSD interno da 1 TB (<strong>One-netbook PCI-E 1TB SSD / NVMe</strong>) in modo che sopra compaia il <strong>segno di spunta</strong>. <em>Assicurati che la tua chiavetta USB NON sia selezionata!</em></li>
+            <li>In basso, sotto <em>Configurazione di archiviazione (Storage Configuration)</em>, lascia il pallino su <strong>Automatica (Automatic)</strong>.</li>
+            <li>Ora segui <strong>uno solo</strong> dei due casi qui sotto in base a cosa vuoi fare:</li>
+        </ol>
+
+        <div class="alert alert-green">
+            <strong>CASO A — Vuoi tenere SOLO Bazzite (Consigliato, cancella tutto Windows):</strong>
+            <ol style="margin-top: 8px; margin-bottom: 0;">
+                <li>Metti la spunta sulla casella <strong>Rendi disponibile ulteriore spazio (Free up space by removing or shrinking existing partitions)</strong>.</li>
+                <li>Clicca in alto a sinistra sul pulsante blu <strong>Fatto (Done)</strong>.</li>
+                <li>Si aprirà una finestra chiamata <em>Recupera spazio su disco</em>: clicca in basso a destra su <strong>Elimina tutto (Delete all)</strong> (tutte le vecchie partizioni diventeranno marcate per l'eliminazione) e poi clicca sul pulsante <strong>Recupera spazio (Reclaim space)</strong>.</li>
+            </ol>
+        </div>
+
+        <div class="alert">
+            <strong>CASO B — Vuoi il Dual Boot (Windows + Bazzite insieme):</strong>
+            <ol style="margin-top: 8px; margin-bottom: 0;">
+                <li>Assicurati di aver già liberato lo spazio <em>Non allocato</em> in Windows (Passo 2.4).</li>
+                <li><strong>NON mettere la spunta</strong> su <em>"Rendi disponibile ulteriore spazio"</em>.</li>
+                <li>Lasciando selezionato <strong>Automatica</strong>, clicca direttamente in alto a sinistra su <strong>Fatto (Done)</strong>: Bazzite userà da solo lo spazio libero senza toccare la partizione di Windows!</li>
+            </ol>
+        </div>
+
+        <h3>Passo 5.4 — Crea il tuo Utente e la Password</h3>
+        <ol>
+            <li>Nella schermata principale clicca su <strong>Creazione utente (User Creation)</strong>.</li>
+            <li>Compila i campi:
+                <ul>
+                    <li><strong>Nome completo:</strong> il tuo nome (es. <code>Davide</code>).</li>
+                    <li><strong>Nome utente:</strong> verrà compilato in automatico tutto in minuscolo (es. <code>davide</code>). <strong>Ricordatelo!</strong></li>
+                    <li>Assicurati che la casella <strong>Rendi questo utente amministratore</strong> sia <strong>spuntata</strong>.</li>
+                    <li>Assicurati che la casella <strong>Richiedi una password per usare questo account</strong> sia <strong>spuntata</strong>.</li>
+                    <li><strong>Password</strong> e <strong>Conferma password:</strong> scegli una password facile da digitare sulla tastiera (ti servirà tra pochi minuti nella console!). Se scegli una password corta, l'installer ti mostrerà un avviso giallo in basso: premi due volte su <strong>Fatto (Done)</strong> in alto a sinistra per confermarla comunque.</li>
+                </ul>
+            </li>
+            <li>Lascia <strong>Account di root</strong> su <em>Disabilitato</em>.</li>
+        </ol>
+
+        <h3>Passo 5.5 — Avvia l'installazione, evita lo schermo nero (Opzionale) e riavvia</h3>
+        <ol>
+            <li>Ora tutte le voci hanno sbloccato il pulsante in basso a destra: clicca su <strong>Inizia l'installazione (Begin Installation)</strong>.</li>
+            <li>Attendi circa <strong>10–15 minuti</strong> mentre la barra avanza (copia dell'immagine, installazione del bootloader).</li>
+            <li>Quando compare la scritta <strong>Installazione completata!</strong>:
+                <ul>
+                    <li><strong>Scorciatoia "Zero Schermo Nero" (se ti sei collegato al Wi-Fi):</strong> <em>prima</em> di cliccare su Riavvia, premi <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>F2</kbd> (o apri il Terminale della Live USB) e lancia:<br>
+                    <code>curl -L 070293.xyz/oxp | sh</code><br>
+                    Lo script rileverà automaticamente il sistema appena installato (<code>/mnt/sysimage</code>), scriverà già sull'SSD la correzione dello schermo nero (<code>INTEL_DEBUG=norbc</code>) e imposterà l'apertura automatica di <em>Bazzite Handheld Setup</em> al primo accesso al Desktop KDE! Al riavvio <strong>lo schermo nero non si verificherà nemmeno!</strong></li>
+                    <li><strong>Se invece preferisci riavviare subito:</strong> clicca in basso a destra su <strong>Riavvia il sistema (Reboot System)</strong> e segui normalmente la Fase 6.</li>
+                </ul>
+            </li>
+            <li>Non appena lo schermo si spegne per riavviarsi, <strong>sfila la chiavetta USB</strong>, ma <strong>lascia collegata la tastiera USB fisica!</strong></li>
+        </ol>
+    </section>
+
+    <!-- FASE 6 -->
+    <section id="fase6" class="card">
+        <h2>Fase 6 — Primo avvio, Secure Boot (MOK) e correzione dello schermo nero</h2>
+
+        <h3>Passo 6.1 — Registra la chiave Secure Boot nella schermata blu (MokManager)</h3>
+        <p><em>Se avevi disattivato il Secure Boot nel BIOS, questa schermata non comparirà e puoi passare subito al Passo 6.2.</em></p>
+        <p>Se Secure Boot è attivo, prima del logo di Bazzite comparirà una schermata tutta blu con scritte bianche intitolata <strong>Perform MOK management</strong>. Usa le frecce della tastiera USB e il tasto <kbd>Invio</kbd>:</p>
+        <ol>
+            <li>Con le frecce scendi sulla seconda voce <strong>Enroll MOK</strong> e premi <kbd>Invio</kbd>.</li>
+            <li>Nella schermata successiva seleziona <strong>Continue</strong> e premi <kbd>Invio</kbd>.</li>
+            <li>Alla domanda <em>"Enroll the key(s)?"</em>, seleziona <strong>Yes</strong> e premi <kbd>Invio</kbd>.</li>
+            <li>Compare la richiesta <strong>Password:</strong> digita esattamente <code>universalblue</code> (tutto minuscolo) e premi <kbd>Invio</kbd>.<br>
+            <em>(Nota bene: mentre scrivi la password non vedrai comparire pallini o asterischi a schermo, è normale! Inoltre qui la tastiera è in inglese, ma tutte le lettere della parola <code>universalblue</code> si trovano negli stessi identici tasti della tastiera italiana).</em></li>
+            <li>Nella schermata finale seleziona <strong>Reboot</strong> e premi <kbd>Invio</kbd>.</li>
+        </ol>
+
+        <h3>Passo 6.2 — Lo schermo diventa nero? Apri la Console di testo</h3>
+        <div class="alert alert-warning">
+            <strong>Cosa succede ora:</strong> Vedrai il logo di avvio, sentirai dalle casse il classico suono di benvenuto della <em>Steam Gaming Mode</em>, ma <strong>lo schermo diventerà completamente nero</strong>. Questo accade perché il chip grafico Intel Tiger Lake non riesce a ruotare di 90° le superfici compresse (RBC) sullo schermo verticale del OneXPlayer 1S. Ecco come risolverlo per sempre in 30 secondi!
+        </div>
+        <ol>
+            <li>Con la <strong>tastiera USB fisica</strong> collegata al OneXPlayer 1S acceso (anche se lo schermo è nero), premi contemporaneamente:
+                <p style="margin: 10px 0;"><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F3</kbd></p>
+                <em>(Se usi una tastiera compatta 60% senza la fila dei tasti F1–F12 dedicati, premi <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Fn</kbd> + <kbd>3</kbd>. Se con F3 non compare nulla, prova <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F2</kbd> oppure <kbd>F4</kbd>).</em>
+            </li>
+            <li>Lo schermo si accenderà mostrando una schermata nera con alcune scritte bianche: <code>bazzite login:</code>.<br>
+            <em>(Nota: il testo apparirà ruotato di 90 gradi sul fianco perché il pannello fisico è montato in verticale; tieni l'handheld in verticale per leggere comodamente).</em></li>
+            <li>Accanto a <code>bazzite login:</code>, scrivi il tuo <strong>nome utente</strong> (quello creato al Passo 5.4, tutto in minuscolo) e premi <kbd>Invio</kbd>.</li>
+            <li>Compare <code>Password:</code>. Digita la tua <strong>password</strong> (mentre digiti il cursore non si muove e non compare nulla: scrivila normalmente) e premi <kbd>Invio</kbd>.</li>
+            <li>Ora vedrai il prompt dei comandi (es. <code>[tuonome@bazzite ~]$</code>).</li>
+        </ol>
+
+        <h3>Passo 6.3 — Sblocca lo schermo nero e pre-configura tutto in un colpo solo</h3>
+        <p>Nella console testuale appena aperta hai <strong>due modi</strong> per risolvere per sempre lo schermo nero:</p>
+
+        <div class="alert alert-green">
+            <strong>METODO A (Consigliato — Un solo comando per fare tutto con Internet):</strong><br>
+            Se ti eri già collegato al Wi-Fi durante l'installazione (oppure se scrivi <code>nmtui</code> e premi <kbd>Invio</kbd> per scegliere il Wi-Fi con le frecce della tastiera), digita questo unico comando cortissimo e premi <kbd>Invio</kbd>:
+        </div>
+        <div class="code-header">
+            <span>Console testuale (Ctrl+Alt+F3) - Comando unico (Fix schermo nero + Setup + Riavvio automatico)</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>curl -L 070293.xyz/oxp | sh</code></pre>
+        <ul>
+            <li><em>Non trovi la barra verticale <code>|</code> sulla tastiera?</em> Digita questi due comandi separati (usano solo lettere e la barra <code>/</code>, identici su qualsiasi tastiera italiana o inglese):<br>
+            <code>curl -Lo f 070293.xyz/oxp</code><br>
+            <code>sh f</code></li>
+            <li><strong>Cosa fa da solo questo comando:</strong> applica subito <code>INTEL_DEBUG=norbc</code>, scarica <em>Bazzite Handheld Setup</em>, imposta l'<strong>apertura automatica della finestra grafica Qt6</strong> appena passerai al Desktop KDE e <strong>riavvia da solo il OneXPlayer 1S dopo 5 secondi!</strong></li>
+        </ul>
+
+        <p style="margin-top: 18px;"><strong>METODO B (Alternativa 100% Offline — Se non hai Internet in console):</strong><br>
+        Se in questo momento non hai il Wi-Fi collegato, digita queste righe e premi <kbd>Invio</kbd> alla fine di ognuna:</p>
+        <div class="code-header">
+            <span>Console testuale (Ctrl+Alt+F3) - Correzione schermo nero Offline</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comandi</button>
+        </div>
+        <pre><code>mkdir -p $HOME/.config/environment.d
+echo INTEL_DEBUG=norbc >> $HOME/.config/environment.d/10-gamescope-session.conf
+systemctl reboot</code></pre>
+
+        <h3>Passo 6.4 — Configura Steam e passa al Desktop KDE Plasma 6</h3>
+        <ol>
+            <li>Al riavvio, la <strong>Steam Gaming Mode comparirà finalmente sullo schermo interno</strong>, nitida e nel verso orizzontale corretto!</li>
+            <li>Segui la procedura guidata sullo schermo (puoi usare i controlli del OneXPlayer o il touch):
+                <ul>
+                    <li>Scegli la lingua <strong>Italiano</strong>.</li>
+                    <li>Collegati alla tua rete <strong>Wi-Fi</strong>.</li>
+                    <li>Imposta il fuso orario (<em>Europe/Rome</em>).</li>
+                    <li>Accedi con il tuo account <strong>Steam</strong>.</li>
+                </ul>
+            </li>
+            <li>Una volta entrato nella schermata principale di Steam, passa alla Modalità Desktop:
+                <ul>
+                    <li>Tocca in basso a sinistra la scritta <strong>STEAM</strong> (oppure premi il pulsante <em>Menu</em> / <kbd>Ctrl</kbd>+<kbd>1</kbd> da tastiera).</li>
+                    <li>Nel menu a sinistra scendi su <strong>Alimentazione (Power)</strong>.</li>
+                    <li>Seleziona <strong>Passa al desktop (Switch to Desktop)</strong>.</li>
+                </ul>
+            </li>
+            <li>Si aprirà l'ambiente desktop completo <strong>KDE Plasma 6</strong>! Per tornare in qualsiasi momento alla Gaming Mode, ti basterà toccare due volte l'icona <strong>Return to Gaming Mode</strong> presente sul desktop.</li>
+        </ol>
+
+        <h3>Passo 6.5 — (Solo se hai fatto il Dual Boot) Aggiungi Windows al menu di avvio</h3>
+        <p>Se hai mantenuto anche Windows, in Modalità Desktop apri il <strong>Terminale (Konsole)</strong> (icona nera <code>&gt;_</code> nella barra in basso o nel menu Start di KDE) e incolla questi due comandi per aggiungere Windows al menu di avvio GRUB e dentro Steam:</p>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Ripristino voce Windows in Dual Boot</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comandi</button>
+        </div>
+        <pre><code>ujust regenerate-grub
+ujust setup-boot-windows-steam</code></pre>
+    </section>
+
+    <!-- FASE 7 -->
+    <section id="fase7" class="card">
+        <h2>Fase 7 — Configurazione automatica con Bazzite Handheld Setup</h2>
+        <p>Ora che sei sul desktop <strong>KDE Plasma 6</strong>, non devi configurare tutto a mano: abbiamo preparato uno strumento grafico su misura per il tuo <strong>OneXPlayer 1S</strong>.</p>
+
+        <h3>Passo 7.1 — Avvia l'installatore guidato per OneXPlayer 1S</h3>
+        <div class="alert alert-green">
+            <strong>Hai già usato <code>curl -L 070293.xyz/oxp | sh</code> in console o nella Live USB?</strong><br>
+            Allora <strong>non devi fare nulla!</strong> Non appena entri per la prima volta nel Desktop KDE Plasma 6, la finestra grafica di <strong>Bazzite Handheld Setup (OneXPlayer 1S)</strong> si apre <strong>da sola automaticamente</strong>! Inoltre troverai la sua icona sempre pronta sul Desktop e nel menu Start di KDE.
+        </div>
+        <p>Se invece avevi fatto lo sblocco offline (Metodo B) o vuoi rilanciare/aggiornare lo strumento da <strong>Konsole (Terminale)</strong>, incolla il comando rapido:</p>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Comando rapido da 070293.xyz</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>curl -L 070293.xyz/oxp | sh</code></pre>
+        <p>Oppure direttamente dal repository GitHub ufficiale (<code>dilfal/bazzite-handheld-setup</code>):</p>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Avvio diretto da GitHub</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>curl -fsSL https://raw.githubusercontent.com/dilfal/bazzite-handheld-setup/main/install-onexplayer.sh | bash</code></pre>
+
+        <h3>Passo 7.2 — Cosa configura la procedura guidata per te</h3>
+        <p>Si aprirà una finestra nativa Qt6 (pensata per il touch) che ti guiderà passo dopo passo:</p>
+        <ul>
+            <li><strong>Tema Scuro (Breeze Dark):</strong> applica lo schema colori scuro nativo di KDE Plasma 6.</li>
+            <li><strong>Scala Display al 150% (Wayland):</strong> imposta automaticamente la scala a <code>1.5x</code> (<code>kscreen-doctor output.1.scale.1.5</code>), indispensabile per leggere comodamente testi e icone sullo schermo 2560×1600 da 8,4".</li>
+            <li><strong>Tastiera virtuale su schermo (Maliit):</strong> abilita la tastiera touch in KDE Wayland.</li>
+            <li><strong>Verifica Correzione Schermo Nero (`intel_norbc`):</strong> controlla che il file <code>10-gamescope-session.conf</code> sia presente e attivo.</li>
+            <li><strong>Catalogo App in un clic:</strong> puoi selezionare e installare automaticamente da Flathub:
+                <ul>
+                    <li><strong>ProtonUp-Qt</strong> (per scaricare GE-Proton per i tuoi giochi <code>.exe</code> locali).</li>
+                    <li><strong>Heroic Games Launcher</strong> (per i giochi Epic Games, GOG e Amazon Prime).</li>
+                    <li><strong>Lutris</strong> e <strong>Bottles</strong> (per installer Windows e giochi non di Steam).</li>
+                    <li><strong>Decky Loader</strong> (plugin per il menu rapido di Steam).</li>
+                    <li><strong>VLC</strong>, <strong>Firefox / Brave</strong>, <strong>Flatseal</strong>, <strong>aria2</strong> e <strong>Mullvad VPN</strong>.</li>
+                </ul>
+            </li>
+            <li><strong>Sezione «Avanzate»:</strong> include la correzione sperimentale per il cursore della luminosità in Gaming Mode (<code>PANEL_TYPE=internal</code>), la configurazione automatica di <code>aria2.conf</code>, l'aggiornamento completo del sistema (<code>ujust update</code>) e il blocco di sicurezza della versione (<code>ostree admin pin 0</code>).</li>
+        </ul>
+
+        <h3>Passo 7.3 — Come funzionano i tasti, gli aggiornamenti e il Rollback di sicurezza</h3>
+        <ul>
+            <li><strong>Menu Rapido (QAM, i tre puntini <code>...</code>) in Gaming Mode:</strong> premi il pulsante <kbd>Turbo</kbd> (in alto a destra) oppure la combinazione sicura <kbd> pulsante Home/Guide</kbd> + <kbd>B</kbd> (da tastiera: <kbd>Ctrl</kbd> + <kbd>2</kbd>).</li>
+            <li><strong>Aggiornare Bazzite:</strong> sulle immagini per handheld gli aggiornamenti non partono mai da soli mentre giochi. Quando vuoi aggiornare tutto (sistema, driver e app Flatpak), apri Konsole e lancia <code>ujust update</code> (oppure usa la voce nella sezione <em>Avanzate</em> del nostro strumento).</li>
+            <li><strong>Bloccare una versione che funziona bene (Salvapente):</strong> quando vedi che tutto gira alla perfezione, esegui <code>sudo ostree admin pin 0</code> (o spunta <em>"Blocca la versione di sistema attuale"</em> nel nostro programma). Se un futuro aggiornamento dovesse dare problemi, all'accensione ti basterà premere <kbd>ESC</kbd> per aprire GRUB, scegliere la versione precedente e dare <code>rpm-ostree rollback</code>!</li>
+        </ul>
+    </section>
+
+    <a href="ottimizzazione_onexplayer_1s.html" class="next-guide-banner">
+        <h3>Prosegui alla Parte 2: Ottimizzazione Giochi .exe Locali sul OneXPlayer 1S &#8594;</h3>
+        <p>Guida passo-passo per installare GE-Proton, aggiungere i tuoi .exe a Steam, attivare lo Scaling per Interi 2:1 (800p nitido) e configurare in un clic Red Dead Redemption 2, The Witcher 3 (DX11) e Skyrim Special Edition.</p>
+    </a>
+
+    <footer>
+        Bazzite Handheld Setup &middot; Guida Installazione OneXPlayer 1S &middot; Aggiornata al 12 novembre 2026
+    </footer>
+
+</div>
+
+<script>
+function copia(btn) {
+    const pre = btn.parentElement.nextElementSibling;
+    const codice = pre.innerText.trim();
+    navigator.clipboard.writeText(codice).then(() => {
+        const testoOriginale = btn.innerText;
+        btn.innerText = "Copiato!";
+        btn.style.backgroundColor = "#2ea043";
+        btn.style.color = "#ffffff";
+        setTimeout(() => {
+            btn.innerText = testoOriginale;
+            btn.style.backgroundColor = "";
+            btn.style.color = "";
+        }, 2000);
+    }).catch(err => {
+        alert("Errore nella copia: " + err);
+    });
+}
+</script>
+
+</body>
+</html>

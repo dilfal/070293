@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guide Passo-Passo: Installazione Bazzite KDE e Ottimizzazione Giochi | Bazzite Handheld Setup</title>
+    <style>
+        :root {
+            --bg: #0f141c;
+            --surface: #171d27;
+            --surface-hover: #1f2735;
+            --border: #293241;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-purple: #d2a8ff;
+            --accent-green: #3fb950;
+            --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding: 40px 16px;
+        }
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+        p.subtitle {
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+        .device-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 32px;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-oxp { background: #1f3a5f; color: #58a6ff; }
+        .badge-ally { background: #2b1f48; color: #d2a8ff; }
+        .device-section h2 {
+            font-size: 23px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .device-section > p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .sub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .guide-card {
+            background: #121720;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+        .guide-card:hover {
+            background: var(--surface-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .guide-card.ally-card:hover {
+            border-color: var(--accent-purple);
+        }
+        .step-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .ally-card .step-label {
+            color: var(--accent-purple);
+        }
+        .guide-card h3 {
+            font-size: 17px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .guide-card p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        .tags-list {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: #21262d;
+            border: 1px solid var(--border);
+            font-size: 11.5px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            color: #c9d1d9;
+        }
+        .quick-cmd {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .quick-cmd code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 14px;
+            color: #79c0ff;
+        }
+        .btn-copy {
+            background: #21262d;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 5px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-copy:hover {
+            background: #30363d;
+            color: #fff;
+        }
+        footer {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Guide Passo-Passo: Bazzite KDE &amp; Giochi .exe</h1>
+        <p class="subtitle">Bazzite KDE Plasma 6 &middot; Installazione da zero con Rufus e Ottimizzazione Giochi &middot; Aggiornato al 12 novembre 2026</p>
+    </header>
+
+    <!-- ONEXPLAYER 1S -->
+    <div class="device-section">
+        <span class="badge badge-oxp">OneXPlayer 1S</span>
+        <h2>OneXPlayer 1S (8.4" IPS 2560×1600 · Intel i7-1195G7 · Iris Xe)</h2>
+        <p>Immagine raccomandata: <code>bazzite-deck</code> (KDE Plasma 6) &middot; Funziona sul Desktop KDE, in console <code>Ctrl+Alt+F3</code> (sblocca lo schermo nero e riavvia da solo) e dalla Live USB:</p>
+        <div class="quick-cmd">
+            <code>curl -L 070293.xyz/oxp | sh</code>
+            <button class="btn-copy" onclick="copiaTesto(this, 'curl -L 070293.xyz/oxp | sh')">Copia comando</button>
+        </div>
+
+        <div class="sub-grid">
+            <a href="installazione_onexplayer_1s.html" class="guide-card">
+                <div>
+                    <div class="step-label">Parte 1 &middot; Da Zero a Bazzite KDE</div>
+                    <h3>Installare Bazzite KDE (Rufus, BIOS e Setup)</h3>
+                    <p>Guida passo-passo: preparazione di Windows (BitLocker, Avvio Rapido), creazione chiavetta USB con Rufus, avvio dal Boot Menu, correzione schermo nero (<code>INTEL_DEBUG=norbc</code>) e configurazione automatica.</p>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Chiavetta USB Rufus</span>
+                    <span class="tag">BIOS &amp; Boot Menu</span>
+                    <span class="tag">Fix Schermo Nero</span>
+                </div>
+            </a>
+
+            <a href="ottimizzazione_onexplayer_1s.html" class="guide-card">
+                <div>
+                    <div class="step-label">Parte 2 &middot; Giochi .exe Locali</div>
+                    <h3>Ottimizzazione Giochi .exe Locali</h3>
+                    <p>Guida passo-passo: installazione di GE-Proton con ProtonUp-Qt, aggiunta degli .exe a Steam, trucco dello Scaling per Interi 2:1 (800p nitido) e script di configurazione in un clic.</p>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Red Dead Redemption 2</span>
+                    <span class="tag">The Witcher 3 (DX11)</span>
+                    <span class="tag">Skyrim Special Edition</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ASUS ROG ALLY -->
+    <div class="device-section">
+        <span class="badge badge-ally">ASUS ROG Ally</span>
+        <h2>ASUS ROG Ally (7" 1080p 120Hz VRR · AMD Ryzen Z1 Extreme · Radeon 780M)</h2>
+        <p>Immagine raccomandata: <code>bazzite-ally</code> (KDE Plasma 6) &middot; Avvio diretto da Terminale:</p>
+        <div class="quick-cmd">
+            <code>curl -L 070293.xyz/ally | sh</code>
+            <button class="btn-copy" onclick="copiaTesto(this, 'curl -L 070293.xyz/ally | sh')">Copia comando</button>
+        </div>
+
+        <div class="sub-grid">
+            <a href="installazione_rog_ally.html" class="guide-card ally-card">
+                <div>
+                    <div class="step-label">Parte 1 &middot; Da Zero a Bazzite KDE</div>
+                    <h3>Installare Bazzite KDE (Rufus, BIOS e Setup)</h3>
+                    <p>Guida passo-passo: disattivazione BitLocker e Fast Startup, creazione chiavetta USB con Rufus, impostazione VRAM 4G/6G nel BIOS ROG, Boot Override, attivazione VRR 120Hz e limite carica 80%.</p>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Chiavetta USB Rufus</span>
+                    <span class="tag">BIOS VRAM &amp; Boot Override</span>
+                    <span class="tag">120Hz VRR &amp; Batteria 80%</span>
+                </div>
+            </a>
+
+            <a href="ottimizzazione_rog_ally.html" class="guide-card ally-card">
+                <div>
+                    <div class="step-label">Parte 2 &middot; Giochi .exe Locali</div>
+                    <h3>Ottimizzazione Giochi .exe Locali</h3>
+                    <p>Guida passo-passo: installazione di GE-Proton, aggiunta degli .exe a Steam, sfruttamento del display 120Hz FreeSync VRR + risoluzione 900p e script di configurazione in un clic.</p>
+                </div>
+                <div class="tags-list">
+                    <span class="tag">Red Dead Redemption 2</span>
+                    <span class="tag">The Witcher 3 Remastered</span>
+                    <span class="tag">Skyrim SE (120Hz Havok)</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        Bazzite Handheld Setup &middot; <a href="https://070293.xyz" style="color: var(--accent); text-decoration: none;">070293.xyz</a> &middot; <a href="https://github.com/dilfal/bazzite-handheld-setup" style="color: var(--accent); text-decoration: none;">GitHub (dilfal/bazzite-handheld-setup)</a> &middot; Aggiornate al 12 novembre 2026
+    </footer>
+</div>
+
+<script>
+function copiaTesto(btn, testo) {
+    navigator.clipboard.writeText(testo).then(() => {
+        const orig = btn.innerText;
+        btn.innerText = "Copiato!";
+        btn.style.backgroundColor = "#2ea043";
+        btn.style.color = "#ffffff";
+        setTimeout(() => {
+            btn.innerText = orig;
+            btn.style.backgroundColor = "";
+            btn.style.color = "";
+        }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>

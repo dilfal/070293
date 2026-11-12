@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guida Passo-Passo Ottimizzazione Giochi .exe: ASUS ROG Ally | Bazzite KDE</title>
+    <style>
+        :root {
+            --bg: #0f141c;
+            --surface: #171d27;
+            --surface-hover: #1f2735;
+            --border: #293241;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-purple: #d2a8ff;
+            --accent-green: #3fb950;
+            --accent-orange: #d29922;
+            --code-bg: #0d1117;
+            --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.65;
+            padding: 20px 16px 60px 16px;
+        }
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+        }
+        .top-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .top-nav a {
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            transition: all 0.2s;
+        }
+        .top-nav a:hover {
+            border-color: var(--accent-purple);
+            background: var(--surface-hover);
+        }
+        .top-nav a.active {
+            background: #2b1f48;
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+        header {
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 24px;
+        }
+        .badge {
+            display: inline-block;
+            background: #2b1f48;
+            color: var(--accent-purple);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .meta {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .nav-summary {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 32px;
+        }
+        .nav-summary h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .nav-summary ul {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+        .nav-summary a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .nav-summary a:hover { text-decoration: underline; }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 26px;
+            margin-bottom: 32px;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #ffffff;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin: 22px 0 10px 0;
+            color: #d2a8ff;
+        }
+        p { margin-bottom: 14px; font-size: 15px; }
+        ul, ol { margin-left: 22px; margin-bottom: 16px; }
+        li { margin-bottom: 8px; font-size: 15px; }
+        kbd {
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-bottom-width: 2px;
+            border-radius: 5px;
+            padding: 2px 6px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #e6edf3;
+        }
+        code {
+            background: #21262d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #79c0ff;
+        }
+        .alert {
+            background: rgba(88, 166, 255, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            border-radius: 6px;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        .alert-warning {
+            background: rgba(210, 153, 34, 0.15);
+            border-left: 4px solid var(--accent-orange);
+        }
+        .alert-green {
+            background: rgba(63, 185, 80, 0.15);
+            border-left: 4px solid var(--accent-green);
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #161b22;
+            border: 1px solid var(--border);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            padding: 8px 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+        .btn-copy {
+            background: #232a36;
+            color: #c9d1d9;
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover {
+            background: #2ea043;
+            color: white;
+            border-color: #2ea043;
+        }
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 0 0 8px 8px;
+            padding: 14px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #79c0ff;
+            line-height: 1.45;
+        }
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: inherit;
+        }
+        footer {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 48px;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <nav class="top-nav">
+        <a href="index.html">&#8592; Tutte le Guide</a>
+        <a href="installazione_rog_ally.html">&#8592; Parte 1: Installazione Bazzite KDE (Rufus &amp; BIOS)</a>
+        <a href="ottimizzazione_rog_ally.html" class="active">Parte 2: Ottimizzazione Giochi .exe Locali</a>
+    </nav>
+
+    <header>
+        <span class="badge">ASUS ROG Ally (7" 1080p 120Hz VRR · AMD Ryzen Z1 Extreme · Radeon 780M)</span>
+        <h1>Guida Passo-Passo: Ottimizzazione Giochi .exe Locali</h1>
+        <div class="meta">Bazzite KDE Plasma 6 · Configurazione passo dopo passo e comandi automatici in un clic · Aggiornato al 12 novembre 2026</div>
+    </header>
+
+    <div class="nav-summary">
+        <h3>Indice dei passaggi</h3>
+        <ul>
+            <li><a href="#intro">1. Il segreto della ROG Ally: Schermo 120Hz FreeSync VRR e il "Sweet Spot" a 900p</a></li>
+            <li><a href="#come-avviare">2. Passo-Passo: Installare GE-Proton e aggiungere qualsiasi .exe locale su Steam</a></li>
+            <li><a href="#rdr2">3. Passo-Passo: Red Dead Redemption 2 (900p + Texture Ultra, 45-60 FPS con VRR)</a></li>
+            <li><a href="#witcher3">4. Passo-Passo: The Witcher 3 Remastered (DX12 a 50+ FPS o DX11 a 70+ FPS)</a></li>
+            <li><a href="#skyrim">5. Passo-Passo: The Elder Scrolls V: Skyrim Special Edition (1080p Ultra a 60-100 FPS)</a></li>
+            <li><a href="#problemi">6. Risoluzione dei problemi comuni (Controlli, VRAM, Audio e Dipendenze)</a></li>
+        </ul>
+    </div>
+
+    <!-- SEZIONE 1: VRR E 900P -->
+    <section id="intro" class="card">
+        <h2>1. Il segreto della ROG Ally: 120Hz VRR e la risoluzione a 900p</h2>
+        <p>L'ASUS ROG Ally (Z1 Extreme) dispone di due punti di forza eccezionali: l'architettura grafica <strong>AMD Radeon 780M (RDNA 3)</strong> e lo schermo da 7" <strong>1080p a 120 Hz con FreeSync Premium / VRR (Variable Refresh Rate)</strong>.</p>
+        
+        <div class="alert alert-green">
+            <strong>Perché il VRR a 120Hz cambia completamente il modo di giocare:</strong><br>
+            Su uno schermo tradizionale a 60Hz senza VRR, se il gioco scende anche solo a 52 FPS si notano scatti (stuttering).<br>
+            Sulla ROG Ally con il <strong>VRR attivo</strong>, lo schermo adatta la sua frequenza in tempo reale al gioco: qualsiasi framerate compreso tra <strong>42 e 80+ FPS risulta incredibilmente fluido</strong>, senza alcun bisogno di bloccare artificialmente i giochi a 30 o 40 FPS!
+        </div>
+
+        <h3>Passo 1.1 — Come attivare VRR, filtro Sharp e TDP nel Menu Rapido (Passo dopo passo)</h3>
+        <ol>
+            <li>Avvia il gioco dalla <em>Steam Gaming Mode</em>.</li>
+            <li>Premi una volta il tasto fisico <strong>Armoury Crate</strong> (in alto a destra dello schermo, sotto il tasto Menu/Start) per aprire il <strong>Menu di Accesso Rapido (i tre puntini <code>...</code>)</strong>.</li>
+            <li>Scendi sull'icona del <strong>Fulmine (Prestazioni)</strong> e premi <kbd>A</kbd>.</li>
+            <li>Attiva l'interruttore <strong>Usa profilo per gioco (Use per-game profile)</strong>.</li>
+            <li>Imposta queste voci:
+                <ul>
+                    <li><strong>Abilita VRR (Frequenza di aggiornamento variabile):</strong> <strong>ATTIVO (ON)</strong>.</li>
+                    <li><strong>Limite frequenza fotogrammi:</strong> lascialo su <strong>Disattivato (o 120 FPS)</strong> così che il VRR lavori liberamente senza ritardi di input!</li>
+                    <li><strong>Filtro di scalatura (Scaling Filter):</strong> scegli <strong>Nitido (Sharp / FSR)</strong> con nitidezza a <code>2</code> o <code>3</code> quando usi 900p (come in RDR2).</li>
+                    <li><strong>Limite TDP:</strong> imposta <strong>15W</strong> per Skyrim o per risparmiare batteria; imposta <strong>20W–25W</strong> per Red Dead Redemption 2 e The Witcher 3.</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+
+    <!-- SEZIONE 2: AGGIUNTA EXE PASSO-PASSO -->
+    <section id="come-avviare" class="card">
+        <h2>2. Passo-Passo: Preparare GE-Proton e aggiungere i tuoi .exe su Steam</h2>
+        <p>Segui questi quattro passaggi nell'ordine esatto per qualsiasi gioco Windows (<code>.exe</code>) locale.</p>
+
+        <h3>Passo 2.1 — Dove salvare le cartelle dei tuoi giochi .exe</h3>
+        <ol>
+            <li>Passa in <strong>Modalità Desktop</strong> (premi il tasto <em>Command Center</em> in alto a sinistra → <em>Alimentazione → Passa al desktop</em>).</li>
+            <li>Apri il gestore file <strong>Dolphin</strong> (l'icona della cartella blu nella barra in basso).</li>
+            <li>Nella tua cartella <strong>Home</strong>, crea una cartella chiamata <code>Giochi</code> e copia al suo interno le cartelle dei tuoi giochi (es. <code>~/Giochi/Red Dead Redemption 2</code>, <code>~/Giochi/The Witcher 3</code>, <code>~/Giochi/Skyrim Special Edition</code>).</li>
+        </ol>
+        <div class="alert alert-warning">
+            <strong>IMPORTANTE: Non avviare i giochi da chiavette o dischi esterni formattati in NTFS/exFAT!</strong><br>
+            Proton richiede un file system Linux nativo (come l'SSD interno Btrfs della tua ROG Ally o una scheda microSD formattata da Gaming Mode). Copia sempre i giochi sull'SSD interno prima di aggiungerli a Steam.
+        </div>
+
+        <h3>Passo 2.2 — Installa GE-Proton con ProtonUp-Qt (Una sola volta)</h3>
+        <ol>
+            <li>In Modalità Desktop apri il menu delle applicazioni in basso a sinistra e avvia <strong>ProtonUp-Qt</strong>.<br>
+            <em>(Se non l'hai ancora installato con <code>install-rog-ally.sh</code>, apri Konsole e incolla: <code>flatpak install --user -y flathub net.davidotek.pupgui2</code>).</em></li>
+            <li>Verifica che in alto accanto a <em>"Installa per:"</em> sia selezionato <strong>Steam</strong>.</li>
+            <li>Tocca in basso il pulsante <strong>Aggiungi versione (Add version)</strong>.</li>
+            <li>Scegli <strong>GE-Proton</strong>, lascia selezionata l'ultima versione disponibile e tocca <strong>Installa (Install)</strong>.</li>
+            <li>Al termine (100%), chiudi ProtonUp-Qt e <strong>riavvia completamente Steam</strong> (clic destro sull'icona di Steam in basso a destra vicino all'orologio → <em>Esci da Steam</em>, poi riaprilo).</li>
+        </ol>
+
+        <h3>Passo 2.3 — Aggiungi il file .exe a Steam e attiva GE-Proton</h3>
+        <ol>
+            <li>Apri <strong>Steam</strong> in Modalità Desktop.</li>
+            <li>In basso a sinistra clicca su <strong>+ Aggiungi un gioco</strong> → <strong>Aggiungi un gioco non di Steam...</strong>.</li>
+            <li>Nella finestra che compare, clicca in basso su <strong>Sfoglia... (Browse...)</strong>.</li>
+            <li><strong>Cambia il filtro dei file:</strong> in basso nella finestra di esplorazione, assicurati che accanto a <em>Tipo di file (File type)</em> sia selezionato <strong>Tutti i file (*.*)</strong>.</li>
+            <li>Entra in <code>~/Giochi/</code>, apri la cartella del gioco, seleziona l'eseguibile <code>.exe</code> (vedi sotto quale scegliere per ogni titolo!), clicca <strong>Apri</strong> e poi <strong>Aggiungi i programmi selezionati</strong>.</li>
+            <li>Nella <strong>Libreria</strong> di Steam fai <strong>clic destro sul gioco appena aggiunto</strong> → <strong>Proprietà...</strong>.</li>
+            <li>Nel menu a sinistra clicca su <strong>Compatibilità (Compatibility)</strong>:
+                <ul>
+                    <li>Metti la spunta su <strong>Forza l'uso di uno strumento di compatibilità di Steam Play specifico</strong>.</li>
+                    <li>Dal menu a tendina scegli <strong>GE-Proton</strong> (o <strong>Proton Experimental</strong>).</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>Passo 2.4 — Fai il "Primo Avvio" di inizializzazione (Obbligatorio!)</h3>
+        <ol>
+            <li>Premi il pulsante verde <strong>GIOCA (PLAY)</strong> su Steam.</li>
+            <li>Attendi circa 15–20 secondi che Proton crei la cartella virtuale di Windows del gioco (in <code>~/.local/share/Steam/steamapps/compatdata/</code>) e che appaia la schermata iniziale.</li>
+            <li><strong>Chiudi subito il gioco</strong> (o premi <strong>FERMA</strong> su Steam). Ora puoi incollare i comandi di configurazione automatica qui sotto!</li>
+        </ol>
+    </section>
+
+    <!-- SEZIONE 3: RDR2 -->
+    <section id="rdr2" class="card">
+        <h2>3. Passo-Passo: Red Dead Redemption 2</h2>
+        <p>Sulla GPU AMD Radeon 780M della ROG Ally, impostando la risoluzione "sweet spot" a <strong>1600×900 (900p)</strong> con <strong>Texture Ultra</strong>, TAA Alto e Async Compute attivo in Vulkan, Red Dead Redemption 2 gira a <strong>45–60 FPS fluidissimi con VRR</strong>!</p>
+
+        <h3>Passo 3.1 — Quale eseguibile (.exe) aggiungere su Steam</h3>
+        <p>Quando aggiungi il gioco su Steam (Passo 2.3), seleziona <strong><code>RDR2.exe</code></strong> (oppure <code>Launcher.exe</code> se richiesto dalla tua versione).</p>
+
+        <h3>Passo 3.2 — Imposta le Opzioni di Avvio su Steam (GPL Shader Cache)</h3>
+        <ol>
+            <li>Fai clic destro su <em>Red Dead Redemption 2</em> nella libreria di Steam → <strong>Proprietà...</strong> → <strong>Generali</strong>.</li>
+            <li>Nella casella <strong>Opzioni di avvio (Launch Options)</strong> incolla questo comando:</li>
+        </ol>
+        <div class="code-header">
+            <span>Opzioni di avvio Steam (Red Dead Redemption 2 su AMD Radeon 780M)</span>
+            <button class="btn-copy" onclick="copia(this)">Copia</button>
+        </div>
+        <pre><code>RADV_PERFTEST=gpl %command%</code></pre>
+
+        <h3>Passo 3.3 — Inietta automaticamente la configurazione grafica ottimale</h3>
+        <ol>
+            <li>Assicurati di aver avviato e chiuso il gioco almeno una volta (Passo 2.4).</li>
+            <li>Apri il <strong>Terminale (Konsole)</strong> in Modalità Desktop.</li>
+            <li>Clicca su <strong>Copia comando</strong> qui sotto, incollalo dentro Konsole (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> o clic destro → <em>Incolla</em>) e premi <kbd>Invio</kbd>:</li>
+        </ol>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Iniezione automatica system.xml per RDR2 (ROG Ally)</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>bash -c '
+set -e
+P=$(find "$HOME/.local/share/Steam/steamapps/compatdata" -type d -path "*/users/steamuser/Documents" 2>/dev/null | while read d; do [ -d "$d/Rockstar Games/Red Dead Redemption 2" ] && echo "$d/Rockstar Games/Red Dead Redemption 2/Settings" && break; done)
+if [ -z "$P" ]; then
+    ULTIMO=$(ls -td "$HOME/.local/share/Steam/steamapps/compatdata"/[0-9]* 2>/dev/null | head -n 1)
+    [ -n "$ULTIMO" ] || { echo "Nessun prefisso Proton trovato. Avvia il gioco una volta prima di eseguire lo script!"; exit 1; }
+    P="$ULTIMO/pfx/drive_c/users/steamuser/Documents/Rockstar Games/Red Dead Redemption 2/Settings"
+fi
+mkdir -p "$P"
+cat > "$P/system.xml" &lt;&lt; '\''XML'\''
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;graphics&gt;
+  &lt;tessellation&gt;kSettingLevel_High&lt;/tessellation&gt;
+  &lt;shadowQuality&gt;kSettingLevel_High&lt;/shadowQuality&gt;
+  &lt;farShadowQuality&gt;kSettingLevel_Medium&lt;/farShadowQuality&gt;
+  &lt;reflectionQuality&gt;kSettingLevel_Medium&lt;/reflectionQuality&gt;
+  &lt;mirrorQuality&gt;kSettingLevel_High&lt;/mirrorQuality&gt;
+  &lt;waterQuality&gt;kSettingLevel_Medium&lt;/waterQuality&gt;
+  &lt;volumetricsQuality&gt;kSettingLevel_Medium&lt;/volumetricsQuality&gt;
+  &lt;textureQuality&gt;kSettingLevel_Ultra&lt;/textureQuality&gt;
+  &lt;particleQuality&gt;kSettingLevel_Medium&lt;/particleQuality&gt;
+  &lt;softShadows&gt;kSettingLevel_High&lt;/softShadows&gt;
+  &lt;grassQuality&gt;kSettingLevel_Medium&lt;/grassQuality&gt;
+  &lt;treeQuality&gt;kSettingLevel_High&lt;/treeQuality&gt;
+  &lt;postfxQuality&gt;kSettingLevel_High&lt;/postfxQuality&gt;
+  &lt;ambientOcclusion&gt;kSettingLevel_High&lt;/ambientOcclusion&gt;
+  &lt;anisotropicFiltering&gt;kSettingLevel_16&lt;/anisotropicFiltering&gt;
+  &lt;taa&gt;kSettingLevel_High&lt;/taa&gt;
+  &lt;fxaaEnabled value="false" /&gt;
+  &lt;msaaEnabled value="false" /&gt;
+  &lt;windowed value="0" /&gt;
+  &lt;borderless value="0" /&gt;
+  &lt;resolutionWidth value="1600" /&gt;
+  &lt;resolutionHeight value="900" /&gt;
+  &lt;refreshRateIndex value="0" /&gt;
+  &lt;API&gt;kSettingAPI_Vulkan&lt;/API&gt;
+  &lt;asyncComputeEnabled value="true" /&gt;
+&lt;/graphics&gt;
+XML
+echo "OK! Configurazione RDR2 per ROG Ally applicata in: $P/system.xml"
+'</code></pre>
+    </section>
+
+    <!-- SEZIONE 4: THE WITCHER 3 -->
+    <section id="witcher3" class="card">
+        <h2>4. Passo-Passo: The Witcher 3 Remastered (Next-Gen v4.04+)</h2>
+        <p>Grazie alla potenza del Ryzen Z1 Extreme, nella cartella di <em>The Witcher 3</em> puoi scegliere liberamente quale dei due eseguibili aggiungere su Steam:</p>
+        <ul>
+            <li><strong>Opzione A — Massima Fluidità e Batteria (Consigliata):</strong> seleziona <strong><code>bin/x64/witcher3.exe</code> (DirectX 11)</strong>. A <strong>1080p nativo con dettagli Alti/Ultra</strong> gira a <strong>60–80 FPS</strong> anche a soli 15W–18W di TDP!</li>
+            <li><strong>Opzione B — Grafica Next-Gen con FSR 2:</strong> seleziona <strong><code>bin/x64_dx12/witcher3.exe</code> (DirectX 12)</strong>. Con FSR 2 impostato su <em>Qualità</em> (senza Ray Tracing) gira a <strong>45–55 FPS</strong> a 20W–25W di TDP.</li>
+        </ul>
+
+        <h3>Passo 4.1 — Inietta automaticamente la configurazione 1080p Alti (`user.settings`)</h3>
+        <p>Dopo aver avviato e chiuso il gioco una prima volta (Passo 2.4), apri <strong>Konsole</strong>, copia e incolla questo comando per impostare 1920×1080, FPS sbloccati per il VRR, VSync disattivato (ci pensa il FreeSync!), Texture Ultra e dettagli Alti:</p>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Iniezione automatica user.settings per The Witcher 3 (ROG Ally)</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>bash -c '
+set -e
+P=$(find "$HOME/.local/share/Steam/steamapps/compatdata" -type d -path "*/users/steamuser/Documents" 2>/dev/null | while read d; do [ -d "$d/The Witcher 3" ] && echo "$d/The Witcher 3" && break; done)
+if [ -z "$P" ]; then
+    ULTIMO=$(ls -td "$HOME/.local/share/Steam/steamapps/compatdata"/[0-9]* 2>/dev/null | head -n 1)
+    [ -n "$ULTIMO" ] || { echo "Avvia il gioco una volta prima di eseguire lo script!"; exit 1; }
+    P="$ULTIMO/pfx/drive_c/users/steamuser/Documents/The Witcher 3"
+fi
+mkdir -p "$P"
+cat > "$P/user.settings" &lt;&lt; '\''CONF'\''
+[Rendering]
+HairWorks=0
+Resolution="1920x1080"
+FullScreenMode=2
+VSync=0
+FPSLimit=0
+AntiAliasing=1
+TextureQuality=3
+ShadowQuality=2
+TerrainQuality=2
+WaterQuality=2
+GrassDensity=2
+FoliageVisibilityRange=2
+CascadeShadowFadeTreshold=2
+[Gameplay]
+DisableCompanionMovement=true
+CONF
+echo "OK! Configurazione The Witcher 3 per ROG Ally applicata in: $P/user.settings"
+'</code></pre>
+    </section>
+
+    <!-- SEZIONE 5: SKYRIM -->
+    <section id="skyrim" class="card">
+        <h2>5. Passo-Passo: The Elder Scrolls V: Skyrim Special Edition</h2>
+        <p>Sulla ROG Ally, Skyrim Special Edition a <strong>1080p nativo con preset Ultra</strong> supera facilmente i 60 FPS arrivando a <strong>70–100 FPS</strong>! Lo script qui sotto sblocca anche il motore fisico Havok a 120Hz (<code>fMaxTime=0.008333</code>) così che gli oggetti non volino per la stanza sopra i 60 FPS.</p>
+
+        <h3>Passo 5.1 — Quale eseguibile (.exe) aggiungere su Steam</h3>
+        <ol>
+            <li>Nella cartella del gioco seleziona <strong><code>SkyrimSELauncher.exe</code></strong> (oppure <strong><code>SkyrimSE.exe</code></strong>), attiva <strong>GE-Proton</strong>, avvialo una prima volta e chiudilo.</li>
+        </ol>
+
+        <h3>Passo 5.2 — Inietta automaticamente la configurazione 1080p Ultra + Fix Fisica 120Hz</h3>
+        <p>Apri <strong>Konsole (Terminale)</strong>, clicca su <strong>Copia comando</strong> qui sotto, incollalo in Konsole e premi <kbd>Invio</kbd>:</p>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Iniezione automatica SkyrimPrefs.ini Ultra 120Hz (ROG Ally)</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>bash -c '
+set -e
+P=$(find "$HOME/.local/share/Steam/steamapps/compatdata" -type d -path "*/users/steamuser/Documents/My Games" 2>/dev/null | while read d; do [ -d "$d/Skyrim Special Edition" ] && echo "$d/Skyrim Special Edition" && break; done)
+if [ -z "$P" ]; then
+    ULTIMO=$(ls -td "$HOME/.local/share/Steam/steamapps/compatdata"/[0-9]* 2>/dev/null | head -n 1)
+    [ -n "$ULTIMO" ] || { echo "Avvia il gioco una volta prima di eseguire lo script!"; exit 1; }
+    P="$ULTIMO/pfx/drive_c/users/steamuser/Documents/My Games/Skyrim Special Edition"
+fi
+mkdir -p "$P"
+cat > "$P/SkyrimPrefs.ini" &lt;&lt; '\''INI'\''
+[Display]
+iSize W=1920
+iSize H=1080
+bFull Screen=1
+bBorderless=0
+bDrawLandShadows=1
+bTreesReceiveShadows=1
+iShadowMapResolution=2048
+iShadowMaskQuarter=4
+iMaxAnisotropy=16
+bFXAAEnabled=0
+bUseTAA=1
+fMeshLODLevel1FadeDist=10000.0000
+fMeshLODLevel2FadeDist=8000.0000
+fLeafAnimDampenDistEnd=4600.0000
+fLeafAnimDampenDistStart=3600.0000
+[Imagespace]
+bDoDepthOfField=1
+[HAVOK]
+fMaxTime=0.008333
+INI
+echo "OK! Configurazione Skyrim SE Ultra 120Hz per ROG Ally applicata in: $P/SkyrimPrefs.ini"
+'</code></pre>
+    </section>
+
+    <!-- SEZIONE 6: RISOLUZIONE PROBLEMI -->
+    <section id="problemi" class="card">
+        <h2>6. Risoluzione dei problemi comuni sulla ROG Ally</h2>
+
+        <h3>1. Il controller non viene visto in un gioco non di Steam</h3>
+        <ul>
+            <li>Assicurati di non essere rimasto in "Modalità Mouse/Desktop" del controller (tieni premuto per 2 secondi il tasto <strong>Armoury Crate</strong> per tornare in modalità Gamepad).</li>
+            <li>Nella pagina del gioco su Steam, tocca l'<strong>icona del Controller</strong> a destra del tasto <em>GIOCA</em> → scegli <strong>Abilita Steam Input</strong> e imposta il layout <strong>Gamepad</strong>.</li>
+        </ul>
+
+        <h3>2. Un gioco pesante si chiude per memoria esaurita</h3>
+        <ul>
+            <li>Controlla di aver impostato la VRAM (<strong>UMA Frame Buffer Size</strong>) nel BIOS della ROG Ally su <strong>4G</strong> o <strong>6G</strong> invece di <em>Auto</em> (come spiegato nel Passo 3.2 della Parte 1).</li>
+        </ul>
+
+        <h3>3. Un gioco richiede Visual C++ (`VCRUNTIME140.dll`)</h3>
+        <ul>
+            <li>In Modalità Desktop apri <strong>Protontricks</strong>, seleziona il tuo gioco <em>Non-Steam</em>, scegli <em>Select the default wineprefix → Install a Windows DLL or component</em> e installa <strong><code>vcrun2022</code></strong>.</li>
+        </ul>
+    </section>
+
+    <footer>
+        Bazzite Handheld Setup &middot; Guida ASUS ROG Ally &middot; Aggiornata al 12 novembre 2026
+    </footer>
+
+</div>
+
+<script>
+function copia(btn) {
+    const pre = btn.parentElement.nextElementSibling;
+    const codice = pre.innerText.trim();
+    navigator.clipboard.writeText(codice).then(() => {
+        const testoOriginale = btn.innerText;
+        btn.innerText = "Copiato!";
+        btn.style.backgroundColor = "#2ea043";
+        btn.style.color = "#ffffff";
+        setTimeout(() => {
+            btn.innerText = testoOriginale;
+            btn.style.backgroundColor = "";
+            btn.style.color = "";
+        }, 2000);
+    }).catch(err => {
+        alert("Errore nella copia: " + err);
+    });
+}
+</script>
+
+</body>
+</html>

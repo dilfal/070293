@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guida Passo-Passo Ottimizzazione Giochi .exe: OneXPlayer 1S | Bazzite KDE</title>
+    <style>
+        :root {
+            --bg: #0f141c;
+            --surface: #171d27;
+            --surface-hover: #1f2735;
+            --border: #293241;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-orange: #d29922;
+            --accent-red: #f85149;
+            --code-bg: #0d1117;
+            --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            line-height: 1.65;
+            padding: 20px 16px 60px 16px;
+        }
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+        }
+        .top-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .top-nav a {
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text);
+            transition: all 0.2s;
+        }
+        .top-nav a:hover {
+            border-color: var(--accent);
+            background: var(--surface-hover);
+        }
+        .top-nav a.active {
+            background: #1f3a5f;
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        header {
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 24px;
+        }
+        .badge {
+            display: inline-block;
+            background: #1f3a5f;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .meta {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .nav-summary {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 32px;
+        }
+        .nav-summary h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .nav-summary ul {
+            list-style: none;
+            display: grid;
+            gap: 8px;
+        }
+        .nav-summary a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .nav-summary a:hover { text-decoration: underline; }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 26px;
+            margin-bottom: 32px;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #ffffff;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin: 22px 0 10px 0;
+            color: #79c0ff;
+        }
+        p { margin-bottom: 14px; font-size: 15px; }
+        ul, ol { margin-left: 22px; margin-bottom: 16px; }
+        li { margin-bottom: 8px; font-size: 15px; }
+        kbd {
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-bottom-width: 2px;
+            border-radius: 5px;
+            padding: 2px 6px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #e6edf3;
+        }
+        code {
+            background: #21262d;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #79c0ff;
+        }
+        .alert {
+            background: rgba(88, 166, 255, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 14px 16px;
+            border-radius: 6px;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        .alert-warning {
+            background: rgba(210, 153, 34, 0.15);
+            border-left: 4px solid var(--accent-orange);
+        }
+        .alert-green {
+            background: rgba(63, 185, 80, 0.15);
+            border-left: 4px solid var(--accent-green);
+        }
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #161b22;
+            border: 1px solid var(--border);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            padding: 8px 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+        .btn-copy {
+            background: #232a36;
+            color: #c9d1d9;
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover {
+            background: #2ea043;
+            color: white;
+            border-color: #2ea043;
+        }
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: 0 0 8px 8px;
+            padding: 14px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #79c0ff;
+            line-height: 1.45;
+        }
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: inherit;
+        }
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: left;
+        }
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        th { background: #1b222d; color: #fff; font-weight: 600; }
+        .tag-ok { color: var(--accent-green); font-weight: 600; }
+        .tag-warn { color: var(--accent-orange); font-weight: 600; }
+        footer {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 48px;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <nav class="top-nav">
+        <a href="index.html">&#8592; Tutte le Guide</a>
+        <a href="installazione_onexplayer_1s.html">&#8592; Parte 1: Installazione Bazzite KDE (Rufus &amp; BIOS)</a>
+        <a href="ottimizzazione_onexplayer_1s.html" class="active">Parte 2: Ottimizzazione Giochi .exe Locali</a>
+    </nav>
+
+    <header>
+        <span class="badge">OneXPlayer 1S (8.4" IPS 2560×1600 · Intel i7-1195G7 · Iris Xe)</span>
+        <h1>Guida Passo-Passo: Ottimizzazione Giochi .exe Locali</h1>
+        <div class="meta">Bazzite KDE Plasma 6 · Configurazione passo dopo passo e comandi automatici in un clic · Aggiornato al 12 novembre 2026</div>
+    </header>
+
+    <div class="nav-summary">
+        <h3>Indice dei passaggi</h3>
+        <ul>
+            <li><a href="#intro">1. Il segreto del OneXPlayer 1S: Scaling per Interi 2:1 (1280×800 nitido)</a></li>
+            <li><a href="#come-avviare">2. Passo-Passo: Installare GE-Proton e aggiungere qualsiasi .exe locale su Steam</a></li>
+            <li><a href="#rdr2">3. Passo-Passo: Red Dead Redemption 2 (Vulkan, Texture Ultra, 30-35 FPS)</a></li>
+            <li><a href="#witcher3">4. Passo-Passo: The Witcher 3 Remastered (Eseguibile DX11, 40-50 FPS)</a></li>
+            <li><a href="#skyrim">5. Passo-Passo: The Elder Scrolls V: Skyrim Special Edition (55-60 FPS)</a></li>
+            <li><a href="#problemi">6. Risoluzione dei problemi comuni (Controlli, Prefissi Proton, Crash Iris Xe)</a></li>
+        </ul>
+    </div>
+
+    <!-- SEZIONE 1: SCALING -->
+    <section id="intro" class="card">
+        <h2>1. Il segreto del OneXPlayer 1S: Scaling per Interi 2:1 (800p)</h2>
+        <p>Lo schermo IPS da 8,4" del OneXPlayer 1S ha una risoluzione nativa altissima: <strong>2560×1600 pixel (formato 16:10)</strong>. Se provi a far girare un gioco 3D moderno a 2560×1600 nativo sulla scheda grafica integrata Intel Iris Xe, il gioco dovrà calcolare più di 4 milioni di pixel per fotogramma e andrà a scatti (10–15 FPS).</p>
+        
+        <div class="alert alert-green">
+            <strong>La soluzione matematica perfetta (Integer Scaling 2:1):</strong><br>
+            La risoluzione <strong>1280×800 (800p)</strong> è la <strong>metà esatta</strong> di 2560×1600 sia in larghezza (2560 ÷ 2 = 1280) sia in altezza (1600 ÷ 2 = 800).<br>
+            Attivando il filtro di scalatura <strong>"Per interi" (Integer)</strong> in Bazzite, ogni singolo pixel del gioco viene disegnato da un quadratino perfetto di <strong>2×2 pixel fisici</strong> sullo schermo: <strong>zero sfocatura</strong>, testi nitidissimi e <strong>prestazioni più che raddoppiate</strong>!
+        </div>
+
+        <h3>Passo 1.1 — Come attivare lo Scaling per Interi in Gaming Mode (Passo dopo passo)</h3>
+        <ol>
+            <li>Avvia il gioco dalla <em>Steam Gaming Mode</em>.</li>
+            <li>Premi il pulsante <kbd>Turbo</kbd> (in alto a destra) oppure premi contemporaneamente <kbd>Tasto Home/Guide</kbd> + <kbd>B</kbd> (da tastiera: <kbd>Ctrl</kbd>+<kbd>2</kbd>) per aprire il <strong>Menu di Accesso Rapido (i tre puntini <code>...</code>)</strong> a destra dello schermo.</li>
+            <li>Scendi con il D-Pad sull'icona del <strong>Fulmine (Prestazioni)</strong> e premi <kbd>A</kbd>.</li>
+            <li>Attiva l'interruttore <strong>Usa profilo per gioco (Use per-game profile)</strong>: così Bazzite ricorderà queste impostazioni per quel singolo gioco!</li>
+            <li>Scorri in basso fino alla voce <strong>Filtro di scalatura (Scaling Filter)</strong> e sposta il cursore su <strong>Per interi (Integer)</strong>.</li>
+            <li>Imposta il <strong>Limite di frequenza dei fotogrammi (Frame Limit)</strong> su:
+                <ul>
+                    <li><strong>30 FPS (60 Hz)</strong> per <em>Red Dead Redemption 2</em> (costante come una roccia).</li>
+                    <li><strong>40 FPS o 45 FPS</strong> per <em>The Witcher 3 Remastered</em>.</li>
+                    <li><strong>60 FPS</strong> per <em>Skyrim Special Edition</em>.</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+
+    <!-- SEZIONE 2: AGGIUNTA EXE PASSO-PASSO -->
+    <section id="come-avviare" class="card">
+        <h2>2. Passo-Passo: Preparare GE-Proton e aggiungere i tuoi .exe su Steam</h2>
+        <p>Segui questi quattro passaggi nell'ordine esatto per qualsiasi gioco Windows (<code>.exe</code>) che hai sul tuo OneXPlayer 1S.</p>
+
+        <h3>Passo 2.1 — Dove copiare le cartelle dei tuoi giochi .exe sull'handheld</h3>
+        <ol>
+            <li>Passa in <strong>Modalità Desktop</strong> (<em>Menu Steam → Alimentazione → Passa al desktop</em>).</li>
+            <li>Apri il gestore file <strong>Dolphin</strong> (l'icona della cartella blu nella barra in basso).</li>
+            <li>Nella tua cartella <strong>Home</strong>, fai clic destro in uno spazio vuoto → <strong>Crea nuovo → Cartella...</strong> e chiamala <code>Giochi</code>.</li>
+            <li>Copia dentro <code>~/Giochi/</code> le cartelle dei tuoi giochi (es. <code>Red Dead Redemption 2</code>, <code>The Witcher 3</code>, <code>Skyrim Special Edition</code>).</li>
+        </ol>
+        <div class="alert alert-warning">
+            <strong>IMPORTANTE: Non avviare i giochi direttamente da una chiavetta o da un disco esterno NTFS/exFAT!</strong><br>
+            Proton su Linux non può gestire correttamente i permessi su partizioni Windows esterne (NTFS/exFAT) e il gioco si chiuderà all'avvio. Copia sempre prima la cartella del gioco sull'<strong>SSD interno da 1 TB</strong>!
+        </div>
+
+        <h3>Passo 2.2 — Installa GE-Proton con ProtonUp-Qt (Una sola volta)</h3>
+        <p><strong>GE-Proton</strong> include codec video ed extra fondamentali per far girare i giochi <code>.exe</code> non di Steam senza schermi neri nei filmati:</p>
+        <ol>
+            <li>In Modalità Desktop, clicca sul menu delle applicazioni in basso a sinistra e apri <strong>ProtonUp-Qt</strong>.<br>
+            <em>(Se non l'hai ancora installato con <code>install-onexplayer.sh</code>, apri Konsole e incolla: <code>flatpak install --user -y flathub net.davidotek.pupgui2</code>).</em></li>
+            <li>Verifica che in alto a destra accanto a <em>"Installa per:"</em> sia selezionato <strong>Steam</strong>.</li>
+            <li>Clicca in basso sul pulsante <strong>Aggiungi versione (Add version)</strong>.</li>
+            <li>Lascia selezionato <strong>GE-Proton</strong> e l'ultima versione disponibile in cima all'elenco, poi clicca su <strong>Installa (Install)</strong>.</li>
+            <li>Attendi che la barra arrivi al 100%, chiudi ProtonUp-Qt e <strong>riavvia Steam</strong> (in basso a destra vicino all'orologio fai clic destro sull'icona di Steam → <em>Esci da Steam</em>, poi riaprilo) così che veda la nuova versione!</li>
+        </ol>
+
+        <h3>Passo 2.3 — Aggiungi il file .exe a Steam e attiva GE-Proton</h3>
+        <ol>
+            <li>Apri <strong>Steam</strong> in Modalità Desktop.</li>
+            <li>In basso a sinistra clicca su <strong>+ Aggiungi un gioco</strong> → <strong>Aggiungi un gioco non di Steam...</strong>.</li>
+            <li>Nella finestra che compare, clicca in basso sul pulsante <strong>Sfoglia... (Browse...)</strong>.</li>
+            <li><strong>Attenzione al filtro dei file:</strong> in basso nella finestra di selezione file, assicurati che accanto a <em>Tipo di file (File type)</em> sia selezionato <strong>Tutti i file (*.*)</strong>.</li>
+            <li>Entra nella cartella <code>Giochi</code>, apri la cartella del tuo gioco, seleziona il file <code>.exe</code> giusto (indicato nei capitoli qui sotto per ciascun gioco!) e clicca su <strong>Apri (Open)</strong>.</li>
+            <li>Clicca in basso sul pulsante <strong>Aggiungi i programmi selezionati</strong>.</li>
+            <li>Ora trova il gioco nell'elenco a sinistra della tua <strong>Libreria</strong> di Steam, fai <strong>clic destro sul nome del gioco</strong> e scegli <strong>Proprietà... (Properties...)</strong>.</li>
+            <li>Nel menu a sinistra della finestra Proprietà clicca su <strong>Compatibilità (Compatibility)</strong>:
+                <ul>
+                    <li>Metti la spunta su <strong>Forza l'uso di uno strumento di compatibilità di Steam Play specifico</strong>.</li>
+                    <li>Dal menu a tendina che compare sotto, scegli <strong>GE-Proton</strong> (oppure <strong>Proton Experimental</strong>).</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>Passo 2.4 — Fai il "Primo Avvio" di inizializzazione (Obbligatorio!)</h3>
+        <div class="alert">
+            <strong>Perché serve questo passaggio prima di iniettare le configurazioni:</strong><br>
+            Finché non premi <strong>GIOCA</strong> almeno una volta, Steam non crea la cartella virtuale di Windows (il cosiddetto <em>prefisso Proton</em> in <code>~/.local/share/Steam/steamapps/compatdata/</code>) dove il gioco salva i suoi file di impostazioni!
+        </div>
+        <ol>
+            <li>Premi il pulsante verde <strong>GIOCA (PLAY)</strong> nella pagina del gioco su Steam.</li>
+            <li>Attendi circa 15–30 secondi mentre Proton prepara l'ambiente Windows e mostra il logo iniziale o il menu del gioco.</li>
+            <li><strong>Chiudi subito il gioco</strong> (dal menu del gioco o premendo il pulsante blu <strong>FERMA</strong> su Steam).</li>
+            <li>Perfetto! Ora la cartella delle impostazioni è pronta e puoi incollare i comandi automatici qui sotto.</li>
+        </ol>
+    </section>
+
+    <!-- SEZIONE 3: RDR2 -->
+    <section id="rdr2" class="card">
+        <h2>3. Passo-Passo: Red Dead Redemption 2</h2>
+        <p>Su Intel Iris Xe, Red Dead Redemption 2 deve usare l'API <strong>Vulkan</strong> a <strong>1280×800</strong> con <code>asyncCompute</code> disattivato per evitare blocchi. Con questa configurazione gira a <strong>30–35 FPS stabili</strong> con <strong>Texture Ultra</strong>!</p>
+
+        <h3>Passo 3.1 — Quale eseguibile (.exe) aggiungere su Steam</h3>
+        <p>Quando aggiungi il gioco su Steam (Passo 2.3), nella cartella principale di Red Dead Redemption 2 seleziona <strong><code>RDR2.exe</code></strong> (oppure <code>Launcher.exe</code> se la tua versione richiede il wrapper di avvio).</p>
+
+        <h3>Passo 3.2 — Imposta le Opzioni di Avvio su Steam</h3>
+        <ol>
+            <li>Fai clic destro su <em>Red Dead Redemption 2</em> nella libreria di Steam → <strong>Proprietà...</strong>.</li>
+            <li>Nella scheda <strong>Generali (General)</strong>, scendi fino alla casella <strong>Opzioni di avvio (Launch Options)</strong>.</li>
+            <li>Clicca sul pulsante <strong>Copia</strong> qui sotto e incolla il testo nella casella:</li>
+        </ol>
+        <div class="code-header">
+            <span>Opzioni di avvio Steam (Red Dead Redemption 2)</span>
+            <button class="btn-copy" onclick="copia(this)">Copia</button>
+        </div>
+        <pre><code>INTEL_DEBUG=norbc %command%</code></pre>
+
+        <h3>Passo 3.3 — Inietta automaticamente la configurazione grafica ottimale</h3>
+        <ol>
+            <li>Assicurati di aver avviato e chiuso il gioco almeno una volta (Passo 2.4).</li>
+            <li>In Modalità Desktop apri il <strong>Terminale (Konsole)</strong>.</li>
+            <li>Clicca su <strong>Copia comando</strong> qui sotto, poi fai <strong>clic destro dentro la finestra di Konsole → Incolla</strong> (oppure premi <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>) e premi <kbd>Invio</kbd>:</li>
+        </ol>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Iniezione automatica system.xml per RDR2</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>bash -c '
+set -e
+P=$(find "$HOME/.local/share/Steam/steamapps/compatdata" -type d -path "*/users/steamuser/Documents" 2>/dev/null | while read d; do [ -d "$d/Rockstar Games/Red Dead Redemption 2" ] && echo "$d/Rockstar Games/Red Dead Redemption 2/Settings" && break; done)
+if [ -z "$P" ]; then
+    ULTIMO=$(ls -td "$HOME/.local/share/Steam/steamapps/compatdata"/[0-9]* 2>/dev/null | head -n 1)
+    [ -n "$ULTIMO" ] || { echo "Nessun prefisso Proton trovato. Avvia il gioco una volta prima di eseguire lo script!"; exit 1; }
+    P="$ULTIMO/pfx/drive_c/users/steamuser/Documents/Rockstar Games/Red Dead Redemption 2/Settings"
+fi
+mkdir -p "$P"
+cat > "$P/system.xml" &lt;&lt; '\''XML'\''
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;graphics&gt;
+  &lt;tessellation&gt;kSettingLevel_Medium&lt;/tessellation&gt;
+  &lt;shadowQuality&gt;kSettingLevel_Low&lt;/shadowQuality&gt;
+  &lt;farShadowQuality&gt;kSettingLevel_Low&lt;/farShadowQuality&gt;
+  &lt;reflectionQuality&gt;kSettingLevel_Low&lt;/reflectionQuality&gt;
+  &lt;mirrorQuality&gt;kSettingLevel_Low&lt;/mirrorQuality&gt;
+  &lt;waterQuality&gt;kSettingLevel_Low&lt;/waterQuality&gt;
+  &lt;volumetricsQuality&gt;kSettingLevel_Low&lt;/volumetricsQuality&gt;
+  &lt;textureQuality&gt;kSettingLevel_Ultra&lt;/textureQuality&gt;
+  &lt;particleQuality&gt;kSettingLevel_Medium&lt;/particleQuality&gt;
+  &lt;softShadows&gt;kSettingLevel_Low&lt;/softShadows&gt;
+  &lt;grassQuality&gt;kSettingLevel_Low&lt;/grassQuality&gt;
+  &lt;treeQuality&gt;kSettingLevel_Medium&lt;/treeQuality&gt;
+  &lt;postfxQuality&gt;kSettingLevel_Medium&lt;/postfxQuality&gt;
+  &lt;ambientOcclusion&gt;kSettingLevel_Medium&lt;/ambientOcclusion&gt;
+  &lt;anisotropicFiltering&gt;kSettingLevel_4&lt;/anisotropicFiltering&gt;
+  &lt;taa&gt;kSettingLevel_Medium&lt;/taa&gt;
+  &lt;fxaaEnabled value="false" /&gt;
+  &lt;msaaEnabled value="false" /&gt;
+  &lt;windowed value="0" /&gt;
+  &lt;borderless value="0" /&gt;
+  &lt;resolutionWidth value="1280" /&gt;
+  &lt;resolutionHeight value="800" /&gt;
+  &lt;refreshRateIndex value="0" /&gt;
+  &lt;API&gt;kSettingAPI_Vulkan&lt;/API&gt;
+  &lt;asyncComputeEnabled value="false" /&gt;
+&lt;/graphics&gt;
+XML
+echo "OK! Configurazione RDR2 iniettata con successo in: $P/system.xml"
+'</code></pre>
+        <p>Vedrai comparire la scritta <code>OK! Configurazione RDR2 iniettata con successo...</code>. Torna in Gaming Mode, avvia RDR2 e nel Menu Rapido imposta <strong>Filtro di scalatura: Per interi</strong> e <strong>Limite FPS: 30</strong>.</p>
+    </section>
+
+    <!-- SEZIONE 4: THE WITCHER 3 -->
+    <section id="witcher3" class="card">
+        <h2>4. Passo-Passo: The Witcher 3 Remastered (Next-Gen v4.04+)</h2>
+        <div class="alert alert-warning">
+            <strong>ATTENZIONE — Quale file .exe scegliere (Raddoppia gli FPS!):</strong><br>
+            Dentro la cartella di <em>The Witcher 3 Remastered</em> esistono <strong>due</strong> sottocartelle diverse con l'eseguibile del gioco:
+            <ul style="margin-top: 8px; margin-bottom: 0;">
+                <li><span class="tag-warn">NON USARE:</span> <code>bin/x64_dx12/witcher3.exe</code> (DirectX 12). Sulla scheda Intel Iris Xe ha un overhead pesantissimo e gira a soli <strong>15–20 FPS</strong>!</li>
+                <li><span class="tag-ok">USA QUESTO:</span> <strong><code>bin/x64/witcher3.exe</code></strong> (DirectX 11). Gira tramite DXVK con la stessa qualità visiva ma al <strong>doppio della velocità: 40–50 FPS fluidissimi</strong>!</li>
+            </ul>
+        </div>
+
+        <h3>Passo 4.1 — Seleziona l'eseguibile DirectX 11 su Steam</h3>
+        <ol>
+            <li>Quando aggiungi il gioco su Steam (Passo 2.3), entra nella cartella di The Witcher 3 → apri la sottocartella <strong><code>bin</code></strong> → apri <strong><code>x64</code></strong> (senza <code>_dx12</code>!) e seleziona <strong><code>witcher3.exe</code></strong>.</li>
+            <li>Forza l'uso di <strong>GE-Proton</strong> nella scheda <em>Compatibilità</em>, avvia il gioco una prima volta fino al menu e chiudilo.</li>
+        </ol>
+
+        <h3>Passo 4.2 — Inietta automaticamente la configurazione ottimizzata (`user.settings`)</h3>
+        <p>Apri <strong>Konsole (Terminale)</strong>, clicca su <strong>Copia comando</strong> qui sotto, incollalo in Konsole e premi <kbd>Invio</kbd>. Imposterà automaticamente 1280×800, NVIDIA HairWorks disattivato, texture alte e ombre ottimizzate:</p>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Iniezione automatica user.settings per The Witcher 3</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>bash -c '
+set -e
+P=$(find "$HOME/.local/share/Steam/steamapps/compatdata" -type d -path "*/users/steamuser/Documents" 2>/dev/null | while read d; do [ -d "$d/The Witcher 3" ] && echo "$d/The Witcher 3" && break; done)
+if [ -z "$P" ]; then
+    ULTIMO=$(ls -td "$HOME/.local/share/Steam/steamapps/compatdata"/[0-9]* 2>/dev/null | head -n 1)
+    [ -n "$ULTIMO" ] || { echo "Avvia il gioco una volta prima di eseguire lo script!"; exit 1; }
+    P="$ULTIMO/pfx/drive_c/users/steamuser/Documents/The Witcher 3"
+fi
+mkdir -p "$P"
+cat > "$P/user.settings" &lt;&lt; '\''CONF'\''
+[Rendering]
+HairWorks=0
+HairWorksQuality=0
+HairWorksGlobalDensityLimit=0
+Resolution="1280x800"
+FullScreenMode=2
+VSync=1
+FPSLimit=60
+AntiAliasing=1
+TextureQuality=2
+ShadowQuality=1
+TerrainQuality=1
+WaterQuality=1
+GrassDensity=1
+FoliageVisibilityRange=1
+CascadeShadowFadeTreshold=1
+[Gameplay]
+DisableCompanionMovement=true
+CONF
+echo "OK! Configurazione The Witcher 3 applicata in: $P/user.settings"
+'</code></pre>
+        <p>Una volta in Gaming Mode, avvia il gioco e nel Menu Rapido di Steam imposta <strong>Filtro di scalatura: Per interi</strong> e <strong>Limite FPS: 40 (o 45)</strong>.</p>
+    </section>
+
+    <!-- SEZIONE 5: SKYRIM -->
+    <section id="skyrim" class="card">
+        <h2>5. Passo-Passo: The Elder Scrolls V: Skyrim Special Edition</h2>
+        <p>Skyrim Special Edition / Anniversary Edition (64-bit DX11) è perfetto per l'Intel Iris Xe: a 1280×800 con Scaling per Interi gira a <strong>55–60 FPS rocciosi</strong>.</p>
+
+        <h3>Passo 5.1 — Quale eseguibile (.exe) aggiungere su Steam</h3>
+        <ol>
+            <li>Nella cartella del gioco, seleziona <strong><code>SkyrimSELauncher.exe</code></strong> (oppure <strong><code>SkyrimSE.exe</code></strong> se usi SKSE).</li>
+            <li>Attiva <strong>GE-Proton</strong> nella scheda <em>Compatibilità</em>, avvia il gioco una prima volta fino alla schermata iniziale per far creare la cartella <code>My Games/Skyrim Special Edition</code> e chiudilo.</li>
+        </ol>
+
+        <h3>Passo 5.2 — Inietta automaticamente la configurazione (`SkyrimPrefs.ini`)</h3>
+        <p>Apri <strong>Konsole (Terminale)</strong>, clicca su <strong>Copia comando</strong> qui sotto, incollalo in Konsole e premi <kbd>Invio</kbd>. Configurerà Skyrim SE a 1280×800 a schermo intero, filtro anisotropico 8x, TAA attivo e ombre bilanciate:</p>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Iniezione automatica SkyrimPrefs.ini per Skyrim SE</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>bash -c '
+set -e
+P=$(find "$HOME/.local/share/Steam/steamapps/compatdata" -type d -path "*/users/steamuser/Documents/My Games" 2>/dev/null | while read d; do [ -d "$d/Skyrim Special Edition" ] && echo "$d/Skyrim Special Edition" && break; done)
+if [ -z "$P" ]; then
+    ULTIMO=$(ls -td "$HOME/.local/share/Steam/steamapps/compatdata"/[0-9]* 2>/dev/null | head -n 1)
+    [ -n "$ULTIMO" ] || { echo "Avvia il gioco una volta prima di eseguire lo script!"; exit 1; }
+    P="$ULTIMO/pfx/drive_c/users/steamuser/Documents/My Games/Skyrim Special Edition"
+fi
+mkdir -p "$P"
+cat > "$P/SkyrimPrefs.ini" &lt;&lt; '\''INI'\''
+[Display]
+iSize W=1280
+iSize H=800
+bFull Screen=1
+bBorderless=0
+bDrawLandShadows=0
+bTreesReceiveShadows=0
+iShadowMapResolution=1024
+iShadowMaskQuarter=4
+iMaxAnisotropy=8
+bFXAAEnabled=0
+bUseTAA=1
+fMeshLODLevel1FadeDist=4000.0000
+fMeshLODLevel2FadeDist=3000.0000
+fLeafAnimDampenDistEnd=4600.0000
+fLeafAnimDampenDistStart=3600.0000
+[Imagespace]
+bDoDepthOfField=1
+INI
+echo "OK! Configurazione Skyrim SE applicata in: $P/SkyrimPrefs.ini"
+'</code></pre>
+        <p><em>Nota:</em> se hai aggiunto <code>SkyrimSELauncher.exe</code>, quando appare il piccolo launcher iniziale clicca direttamente su <strong>PLAY</strong> senza aprire il menu <em>Options</em> del launcher (altrimenti il launcher sovrascriverebbe la risoluzione 16:10 di `SkyrimPrefs.ini`!). Per saltare il launcher, nelle proprietà Steam del gioco puoi cambiare il percorso da <code>SkyrimSELauncher.exe</code> a <code>SkyrimSE.exe</code>.</p>
+    </section>
+
+    <!-- SEZIONE 6: RISOLUZIONE PROBLEMI -->
+    <section id="problemi" class="card">
+        <h2>6. Risoluzione dei problemi comuni</h2>
+
+        <h3>1. Il controller del OneXPlayer 1S non risponde dentro un gioco non di Steam</h3>
+        <ul>
+            <li>In Gaming Mode, apri la pagina del gioco su Steam e tocca l'<strong>icona del Controller (Gamepad)</strong> a destra del pulsante verde <em>GIOCA</em>.</li>
+            <li>Se è disattivato, scegli <strong>Abilita Steam Input</strong> e assicurati che il template selezionato sia <strong>Gamepad (Manette con controlli della visuale)</strong>.</li>
+            <li><em>In Skyrim SE:</em> se il gioco mostra i tasti della tastiera, premi <kbd>ESC</kbd> (o apri il menu Impostazioni → Gioco) e metti la spunta su <strong>Controller: Attivo</strong>.</li>
+        </ul>
+
+        <h3>2. Un gioco si chiude da solo sulla Iris Xe con errore Vulkan (`VK_ERROR_DEVICE_LOST`)</h3>
+        <ul>
+            <li>Nelle <strong>Proprietà → Generali → Opzioni di avvio</strong> del gioco su Steam, incolla questa variabile che rallenta leggermente la coda dei comandi Vulkan evitando il timeout del driver Intel:</li>
+        </ul>
+        <div class="code-header">
+            <span>Opzioni di avvio Steam - Anti-crash Iris Xe</span>
+            <button class="btn-copy" onclick="copia(this)">Copia</button>
+        </div>
+        <pre><code>INTEL_DEBUG=norbc,stall %command%</code></pre>
+
+        <h3>3. Un gioco mostra che manca Visual C++ (`VCRUNTIME140.dll`) o DirectX</h3>
+        <ul>
+            <li>In Modalità Desktop apri <strong>Protontricks</strong> (installabile dal nostro programma o da Bazaar), seleziona il tuo gioco <em>Non-Steam</em> dall'elenco, scegli <em>Select the default wineprefix → Install a Windows DLL or component</em>, metti la spunta su <strong><code>vcrun2022</code></strong> e clicca <strong>OK</strong>.</li>
+        </ul>
+    </section>
+
+    <footer>
+        Bazzite Handheld Setup &middot; Guida OneXPlayer 1S &middot; Aggiornata al 12 novembre 2026
+    </footer>
+
+</div>
+
+<script>
+function copia(btn) {
+    const pre = btn.parentElement.nextElementSibling;
+    const codice = pre.innerText.trim();
+    navigator.clipboard.writeText(codice).then(() => {
+        const testoOriginale = btn.innerText;
+        btn.innerText = "Copiato!";
+        btn.style.backgroundColor = "#2ea043";
+        btn.style.color = "#ffffff";
+        setTimeout(() => {
+            btn.innerText = testoOriginale;
+            btn.style.backgroundColor = "";
+            btn.style.color = "";
+        }, 2000);
+    }).catch(err => {
+        alert("Errore nella copia: " + err);
+    });
+}
+</script>
+
+</body>
+</html>
