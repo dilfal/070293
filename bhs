@@ -69,9 +69,11 @@ esac
 VOCE="bazzite-handheld-setup${PROFILO_FISSO:+-$PROFILO_FISSO}"
 NOME_MENU="Bazzite Handheld Setup${NOME_FISSO:+ ($NOME_FISSO)}"
 
-SCRIPT_ORIG="$0"
-[ -n "${BASH_SOURCE:-}" ] && SCRIPT_ORIG="${BASH_SOURCE}"
-QUI="$(cd "$(dirname "$SCRIPT_ORIG")" 2>/dev/null && pwd || true)"
+SCRIPT_ORIG="${BASH_SOURCE:-$0}"
+QUI=""
+if [ -f "$SCRIPT_ORIG" ]; then
+  QUI="$(cd "$(dirname "$SCRIPT_ORIG")" 2>/dev/null && pwd || true)"
+fi
 
 scarica_sorgente_in() {
   DEST_SRC="$1"
