@@ -223,6 +223,10 @@ else
   mv "$TMP/src" "$DEST.nuovo"
   [ ! -d "$DEST" ] || mv "$DEST" "$DEST.vecchio"
   mv "$DEST.nuovo" "$DEST"
+  # L'ambiente Qt (PySide6, centinaia di MB) non fa parte dell'archivio: lo si conserva tra un aggiornamento e l'altro.
+  if [ -d "$DEST.vecchio/.venv" ] && [ ! -e "$DEST/.venv" ]; then
+    mv "$DEST.vecchio/.venv" "$DEST/.venv" || true
+  fi
   rm -rf "$DEST.vecchio"
 fi
 
