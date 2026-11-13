@@ -8,7 +8,7 @@
 #   # oppure senza barra verticale '|':  curl -Lo f 070293.xyz/ally && sh f
 #
 # Indirizzo completo su GitHub:
-#   curl -fsSL https://raw.githubusercontent.com/dilfal/bazzite-handheld-setup/main/install-rog-ally.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/dilfal/handheld-setup/main/install-rog-ally.sh | bash
 #   ... | bash -s -- --dry-run        # solo simulazione
 #   ... | bash -s -- --diagnosi       # solo rapporto di sistema, senza interfaccia
 #   ... | bash -s -- --elenco              # mostra i tweak e il loro stato
@@ -32,7 +32,7 @@
 set -eu
 (set -o pipefail) 2>/dev/null && set -o pipefail
 
-REPO="${BHS_REPO:-dilfal/bazzite-handheld-setup}"
+REPO="${BHS_REPO:-dilfal/handheld-setup}"
 REF="${BHS_REF:-main}"
 URL="${BHS_URL:-https://github.com/$REPO/archive/$REF.tar.gz}"
 DEST="${XDG_DATA_HOME:-$HOME/.local/share}/bazzite-handheld-setup"
