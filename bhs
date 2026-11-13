@@ -14,6 +14,11 @@
 #   ... | bash -s -- --dry-run        # solo simulazione
 #   ... | bash -s -- --diagnosi       # solo rapporto di sistema, senza interfaccia
 #   ... | bash -s -- --applica intel_norbc   # da console (Ctrl+Alt+F3) se lo schermo è nero
+#   ... | bash -s -- --guida rdr2            # stampa la guida di un gioco (rdr2, witcher3, skyrim), senza interfaccia
+#   ... | bash -s -- --imposta-gioco rdr2    # scrive le impostazioni grafiche nel file del gioco (con --dry-run solo le mostra)
+#   ... | bash -s -- --ripristina-gioco rdr2 # rimette il file di impostazioni com'era prima
+#   (le opzioni --diagnosi, --elenco, --applica, --guida, --imposta-gioco e --ripristina-gioco non aprono la finestra
+#   e non avviano la modalità console automatica; --guide, invece, apre la finestra sulle guide ai giochi)
 #
 # Comportamento intelligente:
 # - Sul Desktop KDE Plasma: scarica l'app in ~/.local/share, crea la voce nel menu e sul Desktop e apre la finestra Qt6.
@@ -187,6 +192,7 @@ CON_INTERFACCIA=1
 MODALITA_CONSOLE_AUTO=0
 case " $* " in
   *" --diagnosi "*|*" --elenco "*|*" --applica "*) CON_INTERFACCIA=0 ;;
+  *" --guida "*|*" --guida="*|*" --imposta-gioco "*|*" --imposta-gioco="*|*" --ripristina-gioco "*|*" --ripristina-gioco="*) CON_INTERFACCIA=0 ;;
 esac
 if [ "$CON_INTERFACCIA" = 1 ]; then
   if [ -z "${WAYLAND_DISPLAY:-}${DISPLAY:-}" ]; then
@@ -250,6 +256,14 @@ if [ "${BHS_SKIP_VENV:-0}" != "1" ] && { [ "$CON_INTERFACCIA" = 1 ] || [ "$MODAL
 fi
 
 # 5. Icona nel menu, sul Desktop e (se in console) Autostart per il primo accesso a KDE Plasma
+# Le opzioni senza interfaccia non creano né aggiornano il .venv, ma riscrivono l'icona: se l'ambiente Qt c'è già
+# (anche appena spostato da $DEST.vecchio) l'icona deve continuare a usarlo, non tornare a python3 senza PySide6.
+# Lo si usa solo se importa davvero PySide6, come fa il ramo con interfaccia.
+PYTHON_ICONA="$PYTHON_BIN"
+if [ "$CON_INTERFACCIA" = 0 ] && [ "$PYTHON_BIN" = "python3" ] && [ -x "$DEST/.venv/bin/python3" ] \
+   && "$DEST/.venv/bin/python3" -c "import PySide6" 2>/dev/null; then
+  PYTHON_ICONA="$DEST/.venv/bin/python3"
+fi
 APPS="${XDG_DATA_HOME:-$HOME/.local/share}/applications"
 mkdir -p "$APPS"
 cat > "$APPS/$VOCE.desktop" <<EOF
@@ -257,7 +271,7 @@ cat > "$APPS/$VOCE.desktop" <<EOF
 Type=Application
 Name=$NOME_MENU
 Comment=Configurazione guidata per handheld (KDE Plasma)
-Exec=env PYTHONPATH=$DEST $PYTHON_BIN -m bhs${PROFILO_FISSO:+ --profilo $PROFILO_FISSO}
+Exec=env PYTHONPATH=$DEST $PYTHON_ICONA -m bhs${PROFILO_FISSO:+ --profilo $PROFILO_FISSO}
 Icon=applications-games-symbolic
 Categories=Settings;System;
 Terminal=false

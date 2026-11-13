@@ -214,6 +214,32 @@
             padding: 0;
             color: inherit;
         }
+        .table-responsive {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: left;
+        }
+        th, td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        th { background: #1b222d; color: #fff; font-weight: 600; }
+        .dove {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 1px 9px;
+            border-radius: 20px;
+            background: #1f3a5f;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            vertical-align: middle;
+        }
         footer {
             text-align: center;
             font-size: 13px;
@@ -237,44 +263,43 @@
     <header>
         <span class="badge">ASUS ROG Ally (7" 1080p 120Hz VRR · AMD Ryzen Z1 Extreme · Radeon 780M)</span>
         <h1>Guida Passo-Passo: Ottimizzazione Giochi .exe Locali</h1>
-        <div class="meta">Bazzite KDE Plasma 6 · Configurazione passo dopo passo e comandi automatici in un clic · Aggiornato al 12 novembre 2026</div>
+        <div class="meta">Bazzite KDE Plasma 6 · Configurazione passo dopo passo · Aggiornato al 13 novembre 2026</div>
     </header>
 
     <div class="nav-summary">
         <h3>Indice dei passaggi</h3>
         <ul>
-            <li><a href="#intro">1. Il segreto della ROG Ally: Schermo 120Hz FreeSync VRR e il "Sweet Spot" a 900p</a></li>
-            <li><a href="#come-avviare">2. Passo-Passo: Installare GE-Proton e aggiungere qualsiasi .exe locale su Steam</a></li>
-            <li><a href="#rdr2">3. Passo-Passo: Red Dead Redemption 2 (900p + Texture Ultra, 45-60 FPS con VRR)</a></li>
-            <li><a href="#witcher3">4. Passo-Passo: The Witcher 3 Remastered (DX12 a 50+ FPS o DX11 a 70+ FPS)</a></li>
-            <li><a href="#skyrim">5. Passo-Passo: The Elder Scrolls V: Skyrim Special Edition (1080p Ultra a 60-100 FPS)</a></li>
-            <li><a href="#problemi">6. Risoluzione dei problemi comuni (Controlli, VRAM, Audio e Dipendenze)</a></li>
+            <li><a href="#intro">1. ROG Ally: schermo a 120 Hz con VRR e 1080p</a></li>
+            <li><a href="#come-avviare">2. Passo-Passo: Preparare GE-Proton e aggiungere i tuoi .exe su Steam</a></li>
+            <li><a href="#rdr2">3. Passo-Passo: Red Dead Redemption 2</a></li>
+            <li><a href="#witcher3">4. Passo-Passo: The Witcher 3</a></li>
+            <li><a href="#skyrim">5. Passo-Passo: Skyrim Special Edition</a></li>
+            <li><a href="#problemi">6. Risoluzione dei problemi comuni sulla ROG Ally</a></li>
         </ul>
     </div>
 
-    <!-- SEZIONE 1: VRR E 900P -->
+    <!-- SEZIONE 1: VRR E 1080P -->
     <section id="intro" class="card">
-        <h2>1. Il segreto della ROG Ally: 120Hz VRR e la risoluzione a 900p</h2>
-        <p>L'ASUS ROG Ally (Z1 Extreme) dispone di due punti di forza eccezionali: l'architettura grafica <strong>AMD Radeon 780M (RDNA 3)</strong> e lo schermo da 7" <strong>1080p a 120 Hz con FreeSync Premium / VRR (Variable Refresh Rate)</strong>.</p>
-        
+        <h2>1. ROG Ally: schermo a 120 Hz con VRR e 1080p</h2>
+        <p>L'ASUS ROG Ally (Z1 Extreme) dispone di due punti di forza: l'architettura grafica <strong>AMD Radeon 780M (RDNA 3)</strong> e lo schermo da 7" <strong>1080p a 120 Hz con FreeSync Premium / VRR (Variable Refresh Rate)</strong>.</p>
+
         <div class="alert alert-green">
-            <strong>Perché il VRR a 120Hz cambia completamente il modo di giocare:</strong><br>
-            Su uno schermo tradizionale a 60Hz senza VRR, se il gioco scende anche solo a 52 FPS si notano scatti (stuttering).<br>
-            Sulla ROG Ally con il <strong>VRR attivo</strong>, lo schermo adatta la sua frequenza in tempo reale al gioco: qualsiasi framerate compreso tra <strong>42 e 80+ FPS risulta incredibilmente fluido</strong>, senza alcun bisogno di bloccare artificialmente i giochi a 30 o 40 FPS!
+            <strong>Perché conviene tenere il VRR sempre attivo:</strong><br>
+            Con il <strong>VRR attivo</strong> lo schermo adatta la sua frequenza in tempo reale ai fotogrammi che il gioco produce, così i piccoli cali non diventano scatti.<br>
+            In <strong>Red Dead Redemption 2</strong> si gioca a <strong>1080p</strong> con <strong>FSR 2 su Qualità</strong> (da impostare nel gioco) e <strong>senza limite di fotogrammi</strong>: con il VRR va bene così.
         </div>
 
-        <h3>Passo 1.1 — Come attivare VRR, filtro Sharp e TDP nel Menu Rapido (Passo dopo passo)</h3>
+        <h3>Passo 1.1 — Come attivare VRR, limite dei fotogrammi e TDP nel Menu Rapido (Passo dopo passo)</h3>
         <ol>
-            <li>Avvia il gioco dalla <em>Steam Gaming Mode</em>.</li>
-            <li>Premi una volta il tasto fisico <strong>Armoury Crate</strong> (in alto a destra dello schermo, sotto il tasto Menu/Start) per aprire il <strong>Menu di Accesso Rapido (i tre puntini <code>...</code>)</strong>.</li>
-            <li>Scendi sull'icona del <strong>Fulmine (Prestazioni)</strong> e premi <kbd>A</kbd>.</li>
+            <li>Avvia il gioco dalla <em>Gaming Mode</em>.</li>
+            <li>Premi una volta il tasto fisico <strong>Armoury Crate</strong> per aprire il <strong>Menu di Accesso Rapido (i tre puntini <code>...</code>)</strong>.</li>
+            <li>Scendi sull'icona della <strong>Batteria (Prestazioni)</strong> e premi <kbd>A</kbd>.</li>
             <li>Attiva l'interruttore <strong>Usa profilo per gioco (Use per-game profile)</strong>.</li>
             <li>Imposta queste voci:
                 <ul>
-                    <li><strong>Abilita VRR (Frequenza di aggiornamento variabile):</strong> <strong>ATTIVO (ON)</strong>.</li>
-                    <li><strong>Limite frequenza fotogrammi:</strong> lascialo su <strong>Disattivato (o 120 FPS)</strong> così che il VRR lavori liberamente senza ritardi di input!</li>
-                    <li><strong>Filtro di scalatura (Scaling Filter):</strong> scegli <strong>Nitido (Sharp / FSR)</strong> con nitidezza a <code>2</code> o <code>3</code> quando usi 900p (come in RDR2).</li>
-                    <li><strong>Limite TDP:</strong> imposta <strong>15W</strong> per Skyrim o per risparmiare batteria; imposta <strong>20W–25W</strong> per Red Dead Redemption 2 e The Witcher 3.</li>
+                    <li><strong>Frequenza di aggiornamento variabile (VRR):</strong> <strong>Attiva</strong>.</li>
+                    <li><strong>Limite fotogrammi (Framerate Limit):</strong> <strong>nessun limite</strong> per <em>Red Dead Redemption 2</em>; <strong>60</strong> per <em>The Witcher 3</em>; <strong>60</strong> per <em>Skyrim Special Edition</em> (qui è obbligatorio: sopra i 60 la fisica del gioco si rompe).</li>
+                    <li><strong>Limite TDP (TDP Limit)</strong> (oppure, se non c'è, la sezione <strong>Handheld Daemon</strong>): <strong>25 W</strong> per <em>Red Dead Redemption 2</em>; <strong>25 W</strong> per <em>The Witcher 3</em>; <strong>15 W</strong> per <em>Skyrim Special Edition</em>.</li>
                 </ul>
             </li>
         </ol>
@@ -283,7 +308,15 @@
     <!-- SEZIONE 2: AGGIUNTA EXE PASSO-PASSO -->
     <section id="come-avviare" class="card">
         <h2>2. Passo-Passo: Preparare GE-Proton e aggiungere i tuoi .exe su Steam</h2>
-        <p>Segui questi quattro passaggi nell'ordine esatto per qualsiasi gioco Windows (<code>.exe</code>) locale.</p>
+        <div class="alert">
+            <strong>Da dove viene il gioco</strong>
+            <ul>
+                <li><strong>Comprato su Steam:</strong> installalo da Steam (Libreria → Installa) e salta i passi che seguono (copia, aggiunta a Steam, scelta di Proton). Una copia di Steam copiata a mano di solito non parte.</li>
+                <li><strong>Copia senza protezioni (per esempio GOG):</strong> segui i passi nell'ordine.</li>
+                <li><strong>Red Dead Redemption 2 comprato da Rockstar o Epic:</strong> ha bisogno del Rockstar Games Launcher; installalo con Heroic o Lutris (questa guida non lo copre). Quando il gioco parte, riprendi dal passo «Scrivi le impostazioni grafiche» della <a href="#rdr2">sezione 3</a> e, se il file non viene trovato, indicalo con «Scegli il file a mano».</li>
+            </ul>
+        </div>
+        <p>Segui questi tre passaggi nell'ordine per qualsiasi gioco Windows (<code>.exe</code>) locale.</p>
 
         <h3>Passo 2.1 — Dove salvare le cartelle dei tuoi giochi .exe</h3>
         <ol>
@@ -292,7 +325,7 @@
             <li>Nella tua cartella <strong>Home</strong>, crea una cartella chiamata <code>Giochi</code> e copia al suo interno le cartelle dei tuoi giochi (es. <code>~/Giochi/Red Dead Redemption 2</code>, <code>~/Giochi/The Witcher 3</code>, <code>~/Giochi/Skyrim Special Edition</code>).</li>
         </ol>
         <div class="alert alert-warning">
-            <strong>IMPORTANTE: Non avviare i giochi da chiavette o dischi esterni formattati in NTFS/exFAT!</strong><br>
+            <strong>Non avviare i giochi da chiavette o dischi esterni formattati in NTFS/exFAT.</strong><br>
             Proton richiede un file system Linux nativo (come l'SSD interno Btrfs della tua ROG Ally o una scheda microSD formattata da Gaming Mode). Copia sempre i giochi sull'SSD interno prima di aggiungerli a Steam.
         </div>
 
@@ -312,192 +345,325 @@
             <li>In basso a sinistra clicca su <strong>+ Aggiungi un gioco</strong> → <strong>Aggiungi un gioco non di Steam...</strong>.</li>
             <li>Nella finestra che compare, clicca in basso su <strong>Sfoglia... (Browse...)</strong>.</li>
             <li><strong>Cambia il filtro dei file:</strong> in basso nella finestra di esplorazione, assicurati che accanto a <em>Tipo di file (File type)</em> sia selezionato <strong>Tutti i file (*.*)</strong>.</li>
-            <li>Entra in <code>~/Giochi/</code>, apri la cartella del gioco, seleziona l'eseguibile <code>.exe</code> (vedi sotto quale scegliere per ogni titolo!), clicca <strong>Apri</strong> e poi <strong>Aggiungi i programmi selezionati</strong>.</li>
+            <li>Entra in <code>~/Giochi/</code>, apri la cartella del gioco, seleziona l'eseguibile <code>.exe</code> (vedi sotto quale scegliere per ogni titolo), clicca <strong>Apri</strong> e poi <strong>Aggiungi i programmi selezionati</strong>.</li>
             <li>Nella <strong>Libreria</strong> di Steam fai <strong>clic destro sul gioco appena aggiunto</strong> → <strong>Proprietà...</strong>.</li>
             <li>Nel menu a sinistra clicca su <strong>Compatibilità (Compatibility)</strong>:
                 <ul>
-                    <li>Metti la spunta su <strong>Forza l'uso di uno strumento di compatibilità di Steam Play specifico</strong>.</li>
+                    <li>Metti la spunta su <strong>Forza l'uso di uno strumento di compatibilità specifico di Steam Play</strong>.</li>
                     <li>Dal menu a tendina scegli <strong>GE-Proton</strong> (o <strong>Proton Experimental</strong>).</li>
                 </ul>
             </li>
         </ol>
 
-        <h3>Passo 2.4 — Fai il "Primo Avvio" di inizializzazione (Obbligatorio!)</h3>
-        <ol>
-            <li>Premi il pulsante verde <strong>GIOCA (PLAY)</strong> su Steam.</li>
-            <li>Attendi circa 15–20 secondi che Proton crei la cartella virtuale di Windows del gioco (in <code>~/.local/share/Steam/steamapps/compatdata/</code>) e che appaia la schermata iniziale.</li>
-            <li><strong>Chiudi subito il gioco</strong> (o premi <strong>FERMA</strong> su Steam). Ora puoi incollare i comandi di configurazione automatica qui sotto!</li>
-        </ol>
+        <p>Il primo avvio lo fai nella sezione del tuo gioco.</p>
     </section>
 
-    <!-- SEZIONE 3: RDR2 -->
+    <!-- GIOCHI:INIZIO generato da tools/genera_guide.py da data/giochi: non modificare a mano -->
+    <!-- SEZIONE 3: RED DEAD REDEMPTION 2 -->
     <section id="rdr2" class="card">
         <h2>3. Passo-Passo: Red Dead Redemption 2</h2>
-        <p>Sulla GPU AMD Radeon 780M della ROG Ally, impostando la risoluzione "sweet spot" a <strong>1600×900 (900p)</strong> con <strong>Texture Ultra</strong>, TAA Alto e Async Compute attivo in Vulkan, Red Dead Redemption 2 gira a <strong>45–60 FPS fluidissimi con VRR</strong>!</p>
+        <div class="alert alert-green">Obiettivo: 40-50 FPS a 1080p con FSR 2 su Qualità e VRR, texture Ultra (impostazioni della guida ufficiale ASUS).</div>
+        <p>Prima prepara il gioco come nella <a href="#come-avviare">sezione 2</a>, scegliendo come eseguibile <code>RDR2.exe</code>. Se la tua copia parte da un altro file (per esempio <code>Launcher.exe</code>), scegli quello.</p>
 
-        <h3>Passo 3.1 — Quale eseguibile (.exe) aggiungere su Steam</h3>
-        <p>Quando aggiungi il gioco su Steam (Passo 2.3), seleziona <strong><code>RDR2.exe</code></strong> (oppure <code>Launcher.exe</code> se richiesto dalla tua versione).</p>
+        <h3>Passo 3.1 — Primo avvio: apri il gioco e chiudilo <span class="dove">Gaming Mode</span></h3>
+        <p>Premi <strong>Gioca</strong>, aspetta il menu principale (la prima volta il gioco prepara i suoi file e può volerci qualche minuto), poi esci dal gioco dal suo menu.</p>
+        <p>Questo passo serve perché, finché non lo avvii una volta, il gioco non crea i suoi file di impostazioni e i passi successivi non hanno niente su cui lavorare.</p>
 
-        <h3>Passo 3.2 — Imposta le Opzioni di Avvio su Steam (GPL Shader Cache)</h3>
-        <ol>
-            <li>Fai clic destro su <em>Red Dead Redemption 2</em> nella libreria di Steam → <strong>Proprietà...</strong> → <strong>Generali</strong>.</li>
-            <li>Nella casella <strong>Opzioni di avvio (Launch Options)</strong> incolla questo comando:</li>
-        </ol>
-        <div class="code-header">
-            <span>Opzioni di avvio Steam (Red Dead Redemption 2 su AMD Radeon 780M)</span>
-            <button class="btn-copy" onclick="copia(this)">Copia</button>
+        <h3>Passo 3.2 — Scrivi le impostazioni grafiche <span class="dove">Nell'app</span></h3>
+        <p>Con il gioco <strong>chiuso</strong>, premi <strong>Applica</strong>: il programma cerca il file <code>system.xml</code> di Red Dead Redemption 2 e cambia solo le voci grafiche elencate al passo successivo. Risoluzione, comandi e salvataggi non vengono toccati.</p>
+        <p>Prima di scrivere salva una copia del file: con <strong>Ripristina</strong> torni a com'era prima del primo Applica. Usalo con il gioco chiuso: le modifiche fatte dopo dal menu del gioco vanno perse.</p>
+        <p>Se il file non viene trovato, torna al passo «Primo avvio». Se qualche voce risulta mancante, la imposti a mano con la tabella del prossimo passo.</p>
+        <div class="alert">
+            <strong>I pulsanti «Applica» e «Ripristina» si trovano nell'app.</strong><br>
+            Apri <em>Bazzite Handheld Setup → «Guide ai giochi» → Red Dead Redemption 2</em>. In alternativa, in Modalità Desktop apri Konsole, con il gioco chiuso, e incolla uno di questi due comandi:
         </div>
-        <pre><code>RADV_PERFTEST=gpl %command%</code></pre>
-
-        <h3>Passo 3.3 — Inietta automaticamente la configurazione grafica ottimale</h3>
-        <ol>
-            <li>Assicurati di aver avviato e chiuso il gioco almeno una volta (Passo 2.4).</li>
-            <li>Apri il <strong>Terminale (Konsole)</strong> in Modalità Desktop.</li>
-            <li>Clicca su <strong>Copia comando</strong> qui sotto, incollalo dentro Konsole (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> o clic destro → <em>Incolla</em>) e premi <kbd>Invio</kbd>:</li>
-        </ol>
         <div class="code-header">
-            <span>Terminale (Konsole) - Iniezione automatica system.xml per RDR2 (ROG Ally)</span>
+            <span>Terminale (Konsole) - Applica: Red Dead Redemption 2</span>
             <button class="btn-copy" onclick="copia(this)">Copia comando</button>
         </div>
-        <pre><code>bash -c '
-set -e
-P=$(find "$HOME/.local/share/Steam/steamapps/compatdata" -type d -path "*/users/steamuser/Documents" 2>/dev/null | while read d; do [ -d "$d/Rockstar Games/Red Dead Redemption 2" ] && echo "$d/Rockstar Games/Red Dead Redemption 2/Settings" && break; done)
-if [ -z "$P" ]; then
-    ULTIMO=$(ls -td "$HOME/.local/share/Steam/steamapps/compatdata"/[0-9]* 2>/dev/null | head -n 1)
-    [ -n "$ULTIMO" ] || { echo "Nessun prefisso Proton trovato. Avvia il gioco una volta prima di eseguire lo script!"; exit 1; }
-    P="$ULTIMO/pfx/drive_c/users/steamuser/Documents/Rockstar Games/Red Dead Redemption 2/Settings"
-fi
-mkdir -p "$P"
-cat > "$P/system.xml" &lt;&lt; '\''XML'\''
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;graphics&gt;
-  &lt;tessellation&gt;kSettingLevel_High&lt;/tessellation&gt;
-  &lt;shadowQuality&gt;kSettingLevel_High&lt;/shadowQuality&gt;
-  &lt;farShadowQuality&gt;kSettingLevel_Medium&lt;/farShadowQuality&gt;
-  &lt;reflectionQuality&gt;kSettingLevel_Medium&lt;/reflectionQuality&gt;
-  &lt;mirrorQuality&gt;kSettingLevel_High&lt;/mirrorQuality&gt;
-  &lt;waterQuality&gt;kSettingLevel_Medium&lt;/waterQuality&gt;
-  &lt;volumetricsQuality&gt;kSettingLevel_Medium&lt;/volumetricsQuality&gt;
-  &lt;textureQuality&gt;kSettingLevel_Ultra&lt;/textureQuality&gt;
-  &lt;particleQuality&gt;kSettingLevel_Medium&lt;/particleQuality&gt;
-  &lt;softShadows&gt;kSettingLevel_High&lt;/softShadows&gt;
-  &lt;grassQuality&gt;kSettingLevel_Medium&lt;/grassQuality&gt;
-  &lt;treeQuality&gt;kSettingLevel_High&lt;/treeQuality&gt;
-  &lt;postfxQuality&gt;kSettingLevel_High&lt;/postfxQuality&gt;
-  &lt;ambientOcclusion&gt;kSettingLevel_High&lt;/ambientOcclusion&gt;
-  &lt;anisotropicFiltering&gt;kSettingLevel_16&lt;/anisotropicFiltering&gt;
-  &lt;taa&gt;kSettingLevel_High&lt;/taa&gt;
-  &lt;fxaaEnabled value="false" /&gt;
-  &lt;msaaEnabled value="false" /&gt;
-  &lt;windowed value="0" /&gt;
-  &lt;borderless value="0" /&gt;
-  &lt;resolutionWidth value="1600" /&gt;
-  &lt;resolutionHeight value="900" /&gt;
-  &lt;refreshRateIndex value="0" /&gt;
-  &lt;API&gt;kSettingAPI_Vulkan&lt;/API&gt;
-  &lt;asyncComputeEnabled value="true" /&gt;
-&lt;/graphics&gt;
-XML
-echo "OK! Configurazione RDR2 per ROG Ally applicata in: $P/system.xml"
-'</code></pre>
+        <pre><code>curl -L 070293.xyz/ally | sh -s -- --imposta-gioco rdr2</code></pre>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Ripristina: Red Dead Redemption 2</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>curl -L 070293.xyz/ally | sh -s -- --ripristina-gioco rdr2</code></pre>
+
+        <h3>Passo 3.3 — Controlla nel gioco e completa a mano <span class="dove">Dentro il gioco</span></h3>
+        <ol>
+            <li>Avvia Red Dead Redemption 2 e apri <strong>Impostazioni → Grafica</strong>.</li>
+            <li>Imposta le voci segnate <strong>a mano</strong>: il programma non le scrive.</li>
+            <li>Scorri le altre e controlla che corrispondano (se hai premuto Applica dovrebbero esserlo già).</li>
+            <li>In fondo, le <strong>Impostazioni avanzate</strong> devono essere <strong>sbloccate</strong> per vedere la seconda metà dell'elenco.</li>
+        </ol>
+        <p>Tra parentesi c'è il nome inglese della voce: in italiano può essere scritta in modo un po' diverso.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Tipo di schermo (Screen Type)</td><td>Schermo intero · a mano</td></tr>
+                    <tr><td>Sincronia verticale (VSync)</td><td>No · a mano (ci pensa il VRR)</td></tr>
+                    <tr><td>FSR 2</td><td>Qualità · a mano (TAA, FXAA e MSAA si spengono da soli)</td></tr>
+                    <tr><td>Qualità texture (Texture Quality)</td><td>Ultra</td></tr>
+                    <tr><td>Filtro anisotropico (Anisotropic Filtering)</td><td>8x</td></tr>
+                    <tr><td>Qualità illuminazione (Lighting Quality)</td><td>Media</td></tr>
+                    <tr><td>Illuminazione globale (Global Illumination)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità ombre (Shadow Quality)</td><td>Media</td></tr>
+                    <tr><td>Ombre distanti (Far Shadow Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Occlusione ambientale (SSAO)</td><td>Media</td></tr>
+                    <tr><td>Qualità riflessi (Reflection Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità specchi (Mirror Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità acqua (Water Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità volumetrica (Volumetrics Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità particelle (Particle Quality)</td><td>Media</td></tr>
+                    <tr><td>Tassellazione (Tessellation Quality)</td><td>Media</td></tr>
+                    <tr><td>API grafica (Graphics API)</td><td>Vulkan</td></tr>
+                    <tr><td>Volumetria vicina, lontana e luce volumetrica</td><td>Bassa</td></tr>
+                    <tr><td>Illuminazione particelle (Particle Lighting)</td><td>Media</td></tr>
+                    <tr><td>Ombre morbide (Soft Shadows)</td><td>Alte</td></tr>
+                    <tr><td>Ombre dell'erba (Grass Shadows)</td><td>Basse</td></tr>
+                    <tr><td>Ombre lunghe (Long Shadows)</td><td>No</td></tr>
+                    <tr><td>SSAO a piena risoluzione (Full Resolution SSAO)</td><td>No</td></tr>
+                    <tr><td>Rifrazione, riflessi e fisica dell'acqua</td><td>Basse</td></tr>
+                    <tr><td>Sfocatura di movimento (Motion Blur)</td><td>No</td></tr>
+                    <tr><td>Dettaglio geometria (Geometry Level of Detail)</td><td>Massimo</td></tr>
+                    <tr><td>Dettaglio erba (Grass Level of Detail)</td><td>2 tacche su 10</td></tr>
+                    <tr><td>Qualità alberi (Tree Quality)</td><td>Alta</td></tr>
+                    <tr><td>Mappatura parallasse (Parallax Occlusion Mapping)</td><td>Media</td></tr>
+                    <tr><td>Qualità decalcomanie (Decal Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità pelliccia (Fur Quality)</td><td>Media</td></tr>
+                    <tr><td>Tassellazione alberi (Tree Tessellation)</td><td>No</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Passo 3.4 — Menu rapido: fotogrammi, scalatura e potenza <span class="dove">Gaming Mode</span></h3>
+        <ol>
+            <li>Avvia il gioco e premi il tasto <strong>Armoury Crate</strong>.</li>
+            <li>Apri <strong>Prestazioni</strong> (l'icona della batteria).</li>
+            <li>Attiva <strong>Usa profilo per gioco</strong>: così queste scelte valgono solo per Red Dead Redemption 2.</li>
+            <li>Imposta le voci qui sotto.</li>
+        </ol>
+        <p>Nello stesso menu (oppure nella sezione Handheld Daemon, se il Limite TDP non c'è) porta la potenza a <strong>25 W (30 W con il caricatore collegato)</strong>.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Usa profilo per gioco (Per-game profile)</td><td>Attivo</td></tr>
+                    <tr><td>Frequenza di aggiornamento variabile (VRR)</td><td>Attiva</td></tr>
+                    <tr><td>Limite fotogrammi (Framerate Limit)</td><td>Nessun limite (con il VRR va bene così); se preferisci consumi più bassi, 40</td></tr>
+                    <tr><td>Limite TDP (TDP Limit)</td><td>25 W (30 W con il caricatore collegato)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Passo 3.5 — Controlla come gira e ritocca <span class="dove">Gaming Mode</span></h3>
+        <ol>
+            <li>Nel menu rapido, in <strong>Prestazioni</strong>, porta il <strong>Livello dell'overlay delle prestazioni</strong> a <strong>1</strong>: in alto a sinistra compare il numero di fotogrammi al secondo (FPS).</li>
+            <li>Gioca cinque minuti in una zona impegnativa (Saint Denis, o Valentine con la pioggia) e guarda il numero.</li>
+            <li>Quando hai finito riporta l'overlay a <strong>0</strong>.</li>
+        </ol>
+        <ul>
+            <li><strong>Se scende sotto l'obiettivo:</strong> nel gioco porta <strong>FSR 2</strong> da Qualità a <strong>Bilanciato</strong>; se non basta abbassa <strong>Qualità ombre</strong> a Bassa.</li>
+            <li><strong>Se non scende mai sotto l'obiettivo:</strong> alza <strong>Qualità illuminazione</strong> ad Alta oppure <strong>Ombre distanti</strong> a Media; oppure abbassa il Limite TDP a 20 W e tieni la batteria più a lungo.</li>
+        </ul>
+        <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
     </section>
 
     <!-- SEZIONE 4: THE WITCHER 3 -->
     <section id="witcher3" class="card">
-        <h2>4. Passo-Passo: The Witcher 3 Remastered (Next-Gen v4.04+)</h2>
-        <p>Grazie alla potenza del Ryzen Z1 Extreme, nella cartella di <em>The Witcher 3</em> puoi scegliere liberamente quale dei due eseguibili aggiungere su Steam:</p>
-        <ul>
-            <li><strong>Opzione A — Massima Fluidità e Batteria (Consigliata):</strong> seleziona <strong><code>bin/x64/witcher3.exe</code> (DirectX 11)</strong>. A <strong>1080p nativo con dettagli Alti/Ultra</strong> gira a <strong>60–80 FPS</strong> anche a soli 15W–18W di TDP!</li>
-            <li><strong>Opzione B — Grafica Next-Gen con FSR 2:</strong> seleziona <strong><code>bin/x64_dx12/witcher3.exe</code> (DirectX 12)</strong>. Con FSR 2 impostato su <em>Qualità</em> (senza Ray Tracing) gira a <strong>45–55 FPS</strong> a 20W–25W di TDP.</li>
-        </ul>
+        <h2>4. Passo-Passo: The Witcher 3</h2>
+        <div class="alert alert-green">Obiettivo: 45-60 FPS a 1080p con l'eseguibile DirectX 11, preset Alto, texture Ultra e VRR. È una stima prudente, da verificare sul dispositivo.</div>
+        <p>Prima prepara il gioco come nella <a href="#come-avviare">sezione 2</a>, scegliendo come eseguibile <code>bin/x64/witcher3.exe</code>. Attenzione: esiste anche <code>bin/x64_dx12/witcher3.exe</code> (DirectX 12), che qui è molto più lento. Prendi quello nella cartella <code>x64</code> <strong>senza</strong> <code>_dx12</code>.</p>
 
-        <h3>Passo 4.1 — Inietta automaticamente la configurazione 1080p Alti (`user.settings`)</h3>
-        <p>Dopo aver avviato e chiuso il gioco una prima volta (Passo 2.4), apri <strong>Konsole</strong>, copia e incolla questo comando per impostare 1920×1080, FPS sbloccati per il VRR, VSync disattivato (ci pensa il FreeSync!), Texture Ultra e dettagli Alti:</p>
+        <h3>Passo 4.1 — Primo avvio: apri il gioco e chiudilo <span class="dove">Gaming Mode</span></h3>
+        <p>Premi <strong>Gioca</strong>, arriva al menu principale, poi scegli <strong>Esci dal gioco</strong>.</p>
+        <p>Questo passo serve perché, finché non lo avvii una volta, il gioco non crea i suoi file di impostazioni e i passi successivi non hanno niente su cui lavorare.</p>
+
+        <h3>Passo 4.2 — Scrivi le impostazioni di base <span class="dove">Nell'app</span></h3>
+        <p>Con il gioco <strong>chiuso</strong>, premi <strong>Applica</strong>: il programma cerca i file di impostazioni di The Witcher 3 (<code>user.settings</code> e, se c'è, <code>dx12user.settings</code>) e cambia solo quattro voci: risoluzione, NVIDIA HairWorks spento, sfocatura di movimento spenta, sincronia verticale spenta (a quella pensa la Gaming Mode).</p>
+        <p>Prima di scrivere salva una copia di ogni file: con <strong>Ripristina</strong> torni a com'era prima del primo Applica. Usalo con il gioco chiuso: le modifiche fatte dopo dal menu del gioco vanno perse.</p>
+        <p>La qualità grafica vera e propria si sceglie dal menu del gioco, al passo successivo.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Risoluzione</td><td>1920×1080</td></tr>
+                    <tr><td>NVIDIA HairWorks</td><td>No</td></tr>
+                    <tr><td>Sfocatura di movimento (Motion Blur)</td><td>No</td></tr>
+                    <tr><td>Sincronia verticale (VSync)</td><td>No</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="alert">
+            <strong>I pulsanti «Applica» e «Ripristina» si trovano nell'app.</strong><br>
+            Apri <em>Bazzite Handheld Setup → «Guide ai giochi» → The Witcher 3</em>. In alternativa, in Modalità Desktop apri Konsole, con il gioco chiuso, e incolla uno di questi due comandi:
+        </div>
         <div class="code-header">
-            <span>Terminale (Konsole) - Iniezione automatica user.settings per The Witcher 3 (ROG Ally)</span>
+            <span>Terminale (Konsole) - Applica: The Witcher 3</span>
             <button class="btn-copy" onclick="copia(this)">Copia comando</button>
         </div>
-        <pre><code>bash -c '
-set -e
-P=$(find "$HOME/.local/share/Steam/steamapps/compatdata" -type d -path "*/users/steamuser/Documents" 2>/dev/null | while read d; do [ -d "$d/The Witcher 3" ] && echo "$d/The Witcher 3" && break; done)
-if [ -z "$P" ]; then
-    ULTIMO=$(ls -td "$HOME/.local/share/Steam/steamapps/compatdata"/[0-9]* 2>/dev/null | head -n 1)
-    [ -n "$ULTIMO" ] || { echo "Avvia il gioco una volta prima di eseguire lo script!"; exit 1; }
-    P="$ULTIMO/pfx/drive_c/users/steamuser/Documents/The Witcher 3"
-fi
-mkdir -p "$P"
-cat > "$P/user.settings" &lt;&lt; '\''CONF'\''
-[Rendering]
-HairWorks=0
-Resolution="1920x1080"
-FullScreenMode=2
-VSync=0
-FPSLimit=0
-AntiAliasing=1
-TextureQuality=3
-ShadowQuality=2
-TerrainQuality=2
-WaterQuality=2
-GrassDensity=2
-FoliageVisibilityRange=2
-CascadeShadowFadeTreshold=2
-[Gameplay]
-DisableCompanionMovement=true
-CONF
-echo "OK! Configurazione The Witcher 3 per ROG Ally applicata in: $P/user.settings"
-'</code></pre>
+        <pre><code>curl -L 070293.xyz/ally | sh -s -- --imposta-gioco witcher3</code></pre>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Ripristina: The Witcher 3</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>curl -L 070293.xyz/ally | sh -s -- --ripristina-gioco witcher3</code></pre>
+
+        <h3>Passo 4.3 — Scegli la qualità nel menu del gioco <span class="dove">Dentro il gioco</span></h3>
+        <ol>
+            <li>Avvia The Witcher 3 e apri <strong>Opzioni → Video</strong>.</li>
+            <li>In <strong>Grafica</strong> scegli il preset indicato qui sotto, poi ritocca le singole voci della tabella.</li>
+            <li>In <strong>Post-elaborazione</strong> (Postprocessing) scegli il preset indicato e controlla le voci della tabella.</li>
+            <li>Conferma e torna al menu.</li>
+        </ol>
+        <p>Tra parentesi c'è il nome inglese della voce: in italiano può essere scritta in modo un po' diverso.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Modalità di visualizzazione (Display Mode)</td><td>Schermo intero</td></tr>
+                    <tr><td>Fotogrammi al secondo massimi (Maximum FPS)</td><td>60</td></tr>
+                    <tr><td>Preset grafica (Graphics Preset)</td><td>Alto</td></tr>
+                    <tr><td>Qualità delle texture (Texture Quality)</td><td>Ultra</td></tr>
+                    <tr><td>NVIDIA HairWorks</td><td>No</td></tr>
+                    <tr><td>Preset post-elaborazione (Postprocessing Preset)</td><td>Alto</td></tr>
+                    <tr><td>Antialiasing</td><td>Sì</td></tr>
+                    <tr><td>Occlusione ambientale (Ambient Occlusion)</td><td>SSAO</td></tr>
+                    <tr><td>Sfocatura di movimento (Motion Blur)</td><td>No</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Passo 4.4 — Menu rapido: fotogrammi, scalatura e potenza <span class="dove">Gaming Mode</span></h3>
+        <ol>
+            <li>Avvia il gioco e premi il tasto <strong>Armoury Crate</strong>.</li>
+            <li>Apri <strong>Prestazioni</strong> (l'icona della batteria).</li>
+            <li>Attiva <strong>Usa profilo per gioco</strong>: così queste scelte valgono solo per The Witcher 3.</li>
+            <li>Imposta le voci qui sotto.</li>
+        </ol>
+        <p>Nello stesso menu (oppure nella sezione Handheld Daemon, se il Limite TDP non c'è) porta la potenza a <strong>25 W</strong>.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Usa profilo per gioco (Per-game profile)</td><td>Attivo</td></tr>
+                    <tr><td>Frequenza di aggiornamento variabile (VRR)</td><td>Attiva</td></tr>
+                    <tr><td>Limite fotogrammi (Framerate Limit)</td><td>60</td></tr>
+                    <tr><td>Limite TDP (TDP Limit)</td><td>25 W</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Passo 4.5 — Controlla come gira e ritocca <span class="dove">Gaming Mode</span></h3>
+        <ol>
+            <li>Nel menu rapido, in <strong>Prestazioni</strong>, porta il <strong>Livello dell'overlay delle prestazioni</strong> a <strong>1</strong>: in alto a sinistra compare il numero di fotogrammi al secondo (FPS).</li>
+            <li>Gioca cinque minuti in una zona impegnativa (il mercato di Novigrad, o un bosco fitto di Velen) e guarda il numero.</li>
+            <li>Quando hai finito riporta l'overlay a <strong>0</strong>.</li>
+        </ol>
+        <ul>
+            <li><strong>Se scende sotto l'obiettivo:</strong> porta il <strong>Preset grafica</strong> a Medio lasciando le texture su Ultra.</li>
+            <li><strong>Se non scende mai sotto l'obiettivo:</strong> abbassa il Limite TDP a 18 W per far durare di più la batteria.</li>
+        </ul>
+        <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
     </section>
 
-    <!-- SEZIONE 5: SKYRIM -->
+    <!-- SEZIONE 5: SKYRIM SPECIAL EDITION -->
     <section id="skyrim" class="card">
-        <h2>5. Passo-Passo: The Elder Scrolls V: Skyrim Special Edition</h2>
-        <p>Sulla ROG Ally, Skyrim Special Edition a <strong>1080p nativo con preset Ultra</strong> supera facilmente i 60 FPS arrivando a <strong>70–100 FPS</strong>! Lo script qui sotto sblocca anche il motore fisico Havok a 120Hz (<code>fMaxTime=0.008333</code>) così che gli oggetti non volino per la stanza sopra i 60 FPS.</p>
+        <h2>5. Passo-Passo: Skyrim Special Edition</h2>
+        <div class="alert alert-green">Obiettivo: 60 FPS fissi a 1080p partendo dal preset Ultra, con ombre a 2048 e pochi watt.</div>
+        <p>Prima prepara il gioco come nella <a href="#come-avviare">sezione 2</a>, scegliendo come eseguibile <code>SkyrimSELauncher.exe</code>. Scegli il launcher e non <code>SkyrimSE.exe</code>: al primo avvio è il launcher a creare i file di impostazioni.</p>
 
-        <h3>Passo 5.1 — Quale eseguibile (.exe) aggiungere su Steam</h3>
+        <h3>Passo 5.1 — Primo avvio: apri il gioco e chiudilo <span class="dove">Gaming Mode</span></h3>
+        <p>Premi <strong>Gioca</strong>: si apre il launcher. Tocca <strong>Opzioni</strong>, scegli il preset <strong>Ultra</strong> e conferma con <strong>OK</strong>; poi tocca <strong>Gioca</strong>, arriva al menu principale ed esci dal gioco.</p>
+        <p>Questo passo serve perché, finché non lo avvii una volta, il gioco non crea i suoi file di impostazioni e i passi successivi non hanno niente su cui lavorare.</p>
+
+        <h3>Passo 5.2 — Scrivi le impostazioni grafiche <span class="dove">Nell'app</span></h3>
+        <p>Con il gioco <strong>chiuso</strong>, premi <strong>Applica</strong>: il programma cerca <code>SkyrimPrefs.ini</code> e cambia solo le voci della tabella qui sotto, partendo dal preset <strong>Ultra</strong> che hai scelto nel launcher. Salvataggi, comandi e audio non vengono toccati.</p>
+        <p>Prima di scrivere salva una copia del file: con <strong>Ripristina</strong> torni a com'era prima del primo Applica. Usalo con il gioco chiuso: le modifiche fatte dopo dal menu del gioco vanno perse.</p>
+        <p>Da qui in poi, quando si apre il launcher tocca solo <strong>Gioca</strong>: se riapri <strong>Opzioni</strong>, il launcher riscrive il file e devi premere di nuovo Applica.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Risoluzione</td><td>1920×1080, schermo intero</td></tr>
+                    <tr><td>Risoluzione delle ombre</td><td>2048 (a 4096 costa molto e si vede poco)</td></tr>
+                    <tr><td>Distanza delle ombre</td><td>8000</td></tr>
+                    <tr><td>Luce volumetrica (raggi di sole)</td><td>Sì, qualità media</td></tr>
+                    <tr><td>Antialiasing</td><td>TAA (FXAA spento)</td></tr>
+                    <tr><td>Sincronia verticale</td><td>Sì (Skyrim la usa per regolare il ritmo del gioco)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="alert">
+            <strong>I pulsanti «Applica» e «Ripristina» si trovano nell'app.</strong><br>
+            Apri <em>Bazzite Handheld Setup → «Guide ai giochi» → Skyrim Special Edition</em>. In alternativa, in Modalità Desktop apri Konsole, con il gioco chiuso, e incolla uno di questi due comandi:
+        </div>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Applica: Skyrim Special Edition</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>curl -L 070293.xyz/ally | sh -s -- --imposta-gioco skyrim</code></pre>
+        <div class="code-header">
+            <span>Terminale (Konsole) - Ripristina: Skyrim Special Edition</span>
+            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        </div>
+        <pre><code>curl -L 070293.xyz/ally | sh -s -- --ripristina-gioco skyrim</code></pre>
+
+        <h3>Passo 5.3 — Attiva il controller nel gioco <span class="dove">Dentro il gioco</span></h3>
         <ol>
-            <li>Nella cartella del gioco seleziona <strong><code>SkyrimSELauncher.exe</code></strong> (oppure <strong><code>SkyrimSE.exe</code></strong>), attiva <strong>GE-Proton</strong>, avvialo una prima volta e chiudilo.</li>
+            <li>Avvia Skyrim Special Edition: nel launcher tocca solo <strong>Gioca</strong>.</li>
+            <li>Se a schermo vedi i tasti della tastiera invece di quelli del controller, nelle <strong>Impostazioni</strong> del gioco cerca la voce <strong>Controller</strong> e attivala.</li>
+            <li>Se il controller non risponde affatto, nella pagina del gioco su Steam tocca l'icona del controller e scegli <strong>Abilita Steam Input</strong> con la disposizione <strong>Gamepad</strong>.</li>
         </ol>
 
-        <h3>Passo 5.2 — Inietta automaticamente la configurazione 1080p Ultra + Fix Fisica 120Hz</h3>
-        <p>Apri <strong>Konsole (Terminale)</strong>, clicca su <strong>Copia comando</strong> qui sotto, incollalo in Konsole e premi <kbd>Invio</kbd>:</p>
-        <div class="code-header">
-            <span>Terminale (Konsole) - Iniezione automatica SkyrimPrefs.ini Ultra 120Hz (ROG Ally)</span>
-            <button class="btn-copy" onclick="copia(this)">Copia comando</button>
+        <h3>Passo 5.4 — Menu rapido: fotogrammi, scalatura e potenza <span class="dove">Gaming Mode</span></h3>
+        <ol>
+            <li>Avvia il gioco e premi il tasto <strong>Armoury Crate</strong>.</li>
+            <li>Apri <strong>Prestazioni</strong> (l'icona della batteria).</li>
+            <li>Attiva <strong>Usa profilo per gioco</strong>: così queste scelte valgono solo per Skyrim Special Edition.</li>
+            <li>Imposta le voci qui sotto.</li>
+        </ol>
+        <p>Nello stesso menu (oppure nella sezione Handheld Daemon, se il Limite TDP non c'è) porta la potenza a <strong>15 W</strong>.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Usa profilo per gioco (Per-game profile)</td><td>Attivo</td></tr>
+                    <tr><td>Frequenza di aggiornamento variabile (VRR)</td><td>Attiva</td></tr>
+                    <tr><td>Limite fotogrammi (Framerate Limit)</td><td>60 (non di più: sopra i 60 la fisica del gioco si rompe)</td></tr>
+                    <tr><td>Limite TDP (TDP Limit)</td><td>15 W</td></tr>
+                </tbody>
+            </table>
         </div>
-        <pre><code>bash -c '
-set -e
-P=$(find "$HOME/.local/share/Steam/steamapps/compatdata" -type d -path "*/users/steamuser/Documents/My Games" 2>/dev/null | while read d; do [ -d "$d/Skyrim Special Edition" ] && echo "$d/Skyrim Special Edition" && break; done)
-if [ -z "$P" ]; then
-    ULTIMO=$(ls -td "$HOME/.local/share/Steam/steamapps/compatdata"/[0-9]* 2>/dev/null | head -n 1)
-    [ -n "$ULTIMO" ] || { echo "Avvia il gioco una volta prima di eseguire lo script!"; exit 1; }
-    P="$ULTIMO/pfx/drive_c/users/steamuser/Documents/My Games/Skyrim Special Edition"
-fi
-mkdir -p "$P"
-cat > "$P/SkyrimPrefs.ini" &lt;&lt; '\''INI'\''
-[Display]
-iSize W=1920
-iSize H=1080
-bFull Screen=1
-bBorderless=0
-bDrawLandShadows=1
-bTreesReceiveShadows=1
-iShadowMapResolution=2048
-iShadowMaskQuarter=4
-iMaxAnisotropy=16
-bFXAAEnabled=0
-bUseTAA=1
-fMeshLODLevel1FadeDist=10000.0000
-fMeshLODLevel2FadeDist=8000.0000
-fLeafAnimDampenDistEnd=4600.0000
-fLeafAnimDampenDistStart=3600.0000
-[Imagespace]
-bDoDepthOfField=1
-[HAVOK]
-fMaxTime=0.008333
-INI
-echo "OK! Configurazione Skyrim SE Ultra 120Hz per ROG Ally applicata in: $P/SkyrimPrefs.ini"
-'</code></pre>
+
+        <h3>Passo 5.5 — Controlla come gira e ritocca <span class="dove">Gaming Mode</span></h3>
+        <ol>
+            <li>Nel menu rapido, in <strong>Prestazioni</strong>, porta il <strong>Livello dell'overlay delle prestazioni</strong> a <strong>1</strong>: in alto a sinistra compare il numero di fotogrammi al secondo (FPS).</li>
+            <li>Gioca cinque minuti in una zona impegnativa (Riverwood con la pioggia, o Whiterun di giorno) e guarda il numero.</li>
+            <li>Quando hai finito riporta l'overlay a <strong>0</strong>.</li>
+        </ol>
+        <ul>
+            <li><strong>Se scende sotto l'obiettivo:</strong> alza il Limite TDP a 18 W.</li>
+            <li><strong>Se non scende mai sotto l'obiettivo:</strong> abbassa il Limite TDP a 12 W: Skyrim è leggero e la batteria dura molto di più.</li>
+        </ul>
+        <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
     </section>
+
+    <!-- GIOCHI:FINE -->
 
     <!-- SEZIONE 6: RISOLUZIONE PROBLEMI -->
     <section id="problemi" class="card">
@@ -521,7 +687,7 @@ echo "OK! Configurazione Skyrim SE Ultra 120Hz per ROG Ally applicata in: $P/Sky
     </section>
 
     <footer>
-        Bazzite Handheld Setup &middot; Guida ASUS ROG Ally &middot; Aggiornata al 12 novembre 2026
+        Bazzite Handheld Setup &middot; Guida ASUS ROG Ally &middot; Aggiornata al 13 novembre 2026
     </footer>
 
 </div>
