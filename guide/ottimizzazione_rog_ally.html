@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-sistema="bazzite">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -248,7 +248,74 @@
             border-top: 1px solid var(--border);
             padding-top: 24px;
         }
+
+        /* Scelta del sistema: Bazzite o Windows (Winhanced) */
+        [data-sistema="bazzite"] .solo-windows { display: none !important; }
+        [data-sistema="windows"] .solo-bazzite { display: none !important; }
+        .selettore {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 32px;
+        }
+        .selettore-titolo {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .selettore-nota {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .selettore-pulsanti {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .selettore-pulsanti button {
+            flex: 1 1 160px;
+            min-height: 44px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: #121720;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .selettore-pulsanti button:hover { border-color: var(--accent-purple); }
+        .selettore-pulsanti button:focus-visible { outline: 2px solid var(--accent-purple); outline-offset: 2px; }
+        .selettore-pulsanti button[aria-pressed="true"] {
+            background: #2b1f48;
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
     </style>
+    <script>
+    /* Sceglie il sistema prima del disegno: ?sistema=, àncora che finisce per -windows, scelta salvata, sistema del dispositivo. */
+    (function () {
+        var sistema = "";
+        try {
+            var q = new URLSearchParams(location.search).get("sistema");
+            if (q === "windows" || q === "bazzite") sistema = q;
+        } catch (e) {}
+        if (!sistema && /-windows$/.test(location.hash)) sistema = "windows";
+        if (!sistema) {
+            try {
+                var s = localStorage.getItem("guida-sistema");
+                if (s === "windows" || s === "bazzite") sistema = s;
+            } catch (e) {}
+        }
+        if (!sistema) sistema = /Windows/.test(navigator.userAgent) ? "windows" : "bazzite";
+        document.documentElement.dataset.sistema = sistema;
+    })();
+    </script>
 </head>
 <body>
 
@@ -256,19 +323,31 @@
 
     <nav class="top-nav">
         <a href="index.html">&#8592; Tutte le Guide</a>
-        <a href="installazione_rog_ally.html">&#8592; Parte 1: Installazione Bazzite KDE (Rufus &amp; BIOS)</a>
+        <a href="installazione_rog_ally.html" class="solo-bazzite">&#8592; Parte 1: Installazione Bazzite KDE (Rufus &amp; BIOS)</a>
         <a href="ottimizzazione_rog_ally.html" class="active">Parte 2: Ottimizzazione Giochi .exe Locali</a>
     </nav>
 
     <header>
         <span class="badge">ASUS ROG Ally (7" 1080p 120Hz VRR · AMD Ryzen Z1 Extreme · Radeon 780M)</span>
         <h1>Guida Passo-Passo: Ottimizzazione Giochi .exe Locali</h1>
-        <div class="meta">Bazzite KDE Plasma 6 · Configurazione passo dopo passo · Aggiornato al 13 novembre 2026</div>
+        <div class="meta">
+            <span class="solo-bazzite">Bazzite KDE Plasma 6 · Configurazione passo dopo passo · Aggiornato al 13 novembre 2026</span>
+            <span class="solo-windows">Windows con Winhanced · Configurazione passo dopo passo · Aggiornato al 14 novembre 2026</span>
+        </div>
     </header>
+
+    <div class="selettore" role="group" aria-labelledby="selettore-titolo">
+        <p class="selettore-titolo" id="selettore-titolo">Che sistema usi?</p>
+        <p class="selettore-nota">La guida mostra solo i passaggi del sistema che scegli. La scelta resta salvata su questo dispositivo.</p>
+        <div class="selettore-pulsanti">
+            <button type="button" data-sistema="bazzite" aria-pressed="true">Bazzite</button>
+            <button type="button" data-sistema="windows" aria-pressed="false">Windows (Winhanced)</button>
+        </div>
+    </div>
 
     <div class="nav-summary">
         <h3>Indice dei passaggi</h3>
-        <ul>
+        <ul class="solo-bazzite">
             <li><a href="#intro">1. ROG Ally: schermo a 120 Hz con VRR e 1080p</a></li>
             <li><a href="#come-avviare">2. Passo-Passo: Preparare GE-Proton e aggiungere i tuoi .exe su Steam</a></li>
             <li><a href="#rdr2">3. Passo-Passo: Red Dead Redemption 2</a></li>
@@ -276,10 +355,18 @@
             <li><a href="#skyrim">5. Passo-Passo: Skyrim Special Edition</a></li>
             <li><a href="#problemi">6. Risoluzione dei problemi comuni sulla ROG Ally</a></li>
         </ul>
+        <ul class="solo-windows">
+            <li><a href="#intro-windows">1. Winhanced sulla ROG Ally: 120 Hz, 1080p, limite dei fotogrammi e potenza</a></li>
+            <li><a href="#come-avviare-windows">2. Preparare i tuoi .exe su Windows con Winhanced</a></li>
+            <li><a href="#rdr2-windows">3. Passo-Passo: Red Dead Redemption 2</a></li>
+            <li><a href="#witcher3-windows">4. Passo-Passo: The Witcher 3</a></li>
+            <li><a href="#skyrim-windows">5. Passo-Passo: Skyrim Special Edition</a></li>
+            <li><a href="#problemi-windows">6. Risoluzione dei problemi comuni su Windows</a></li>
+        </ul>
     </div>
 
     <!-- SEZIONE 1: VRR E 1080P -->
-    <section id="intro" class="card">
+    <section id="intro" class="card solo-bazzite">
         <h2>1. ROG Ally: schermo a 120 Hz con VRR e 1080p</h2>
         <p>L'ASUS ROG Ally (Z1 Extreme) dispone di due punti di forza: l'architettura grafica <strong>AMD Radeon 780M (RDNA 3)</strong> e lo schermo da 7" <strong>1080p a 120 Hz con FreeSync Premium / VRR (Variable Refresh Rate)</strong>.</p>
 
@@ -305,8 +392,50 @@
         </ol>
     </section>
 
+    <!-- SEZIONE 1 (WINDOWS): WINHANCED -->
+    <section id="intro-windows" class="card solo-windows">
+        <h2>1. Winhanced sulla ROG Ally: 120 Hz, 1080p, limite dei fotogrammi e potenza</h2>
+        <p>Su Windows avvii i giochi con <strong>Winhanced</strong>. Durante il gioco ha un pannello (un widget della Xbox Game Bar) con queste voci: potenza (TDP), risoluzione, frequenza di aggiornamento e limite dei fotogrammi. Ogni gioco ha il suo profilo, che salva queste scelte solo per quel gioco.</p>
+
+        <div class="alert alert-green">
+            <strong>Schermo a 120 Hz e 1080p:</strong><br>
+            Lo schermo della ROG Ally è a <strong>120 Hz</strong> e <strong>1080p</strong>. Su Windows il VRR di norma è già attivo: basta controllare, nelle impostazioni dello schermo di Windows (<em>Impostazioni → Sistema → Schermo → Schermo avanzato</em>), che la frequenza di aggiornamento sia <strong>120 Hz</strong>.
+        </div>
+
+        <h3>Passo 1.1 — Apri il pannello di Winhanced durante il gioco</h3>
+        <ol>
+            <li>Avvia un gioco da Winhanced.</li>
+            <li>Apri il pannello di Winhanced: è un widget della Xbox Game Bar, quindi si apre durante il gioco con la Game Bar (di solito con <kbd>Win</kbd>+<kbd>G</kbd>).</li>
+            <li>Nel pannello cerca le voci della potenza (TDP), della risoluzione, della frequenza di aggiornamento e del limite dei fotogrammi.</li>
+            <li>Salva le scelte nel profilo del gioco: così valgono solo per quel gioco.</li>
+        </ol>
+        <p>Le etichette possono cambiare con la versione di Winhanced: se un nome è un po' diverso, cerca la voce che significa la stessa cosa.</p>
+
+        <h3>Passo 1.2 — Risoluzione, frequenza e limite dei fotogrammi</h3>
+        <ol>
+            <li>Nel pannello imposta la risoluzione <strong>1920×1080</strong> e la frequenza di aggiornamento <strong>120 Hz</strong>.</li>
+            <li>Imposta il limite dei fotogrammi:
+                <ul>
+                    <li><strong>Nessun limite</strong> per <em>Red Dead Redemption 2</em> (con il VRR va bene così; in questo gioco si usa <strong>FSR 2 su Qualità</strong>, da impostare nel gioco).</li>
+                    <li><strong>The Witcher 3</strong>: nessun limite nel pannello, perché il limite a 60 si mette direttamente nel menu del gioco.</li>
+                    <li><strong>60</strong> per <em>Skyrim Special Edition</em> (qui è obbligatorio: sopra i 60 la fisica del gioco si rompe).</li>
+                </ul>
+            </li>
+        </ol>
+
+        <h3>Passo 1.3 — Potenza</h3>
+        <ol>
+            <li>Nel pannello imposta la potenza (TDP): <strong>25 W</strong> per <em>Red Dead Redemption 2</em> (30 W con il caricatore collegato); <strong>25 W</strong> per <em>The Witcher 3</em>; <strong>15 W</strong> per <em>Skyrim Special Edition</em>.</li>
+            <li>Su questo dispositivo Winhanced regola la potenza.</li>
+        </ol>
+        <div class="alert alert-warning">
+            <strong>Potenza e limite dei fotogrammi da un solo programma.</strong><br>
+            Se usi Winhanced, non toccare le stesse voci in Armoury Crate. Se il limite dei fotogrammi di Winhanced non c'è o non ha effetto, usa <strong>RivaTuner Statistics Server</strong> e lascia il limite di Winhanced spento.
+        </div>
+    </section>
+
     <!-- SEZIONE 2: AGGIUNTA EXE PASSO-PASSO -->
-    <section id="come-avviare" class="card">
+    <section id="come-avviare" class="card solo-bazzite">
         <h2>2. Passo-Passo: Preparare GE-Proton e aggiungere i tuoi .exe su Steam</h2>
         <div class="alert">
             <strong>Da dove viene il gioco</strong>
@@ -358,9 +487,48 @@
         <p>Il primo avvio lo fai nella sezione del tuo gioco.</p>
     </section>
 
+    <!-- SEZIONE 2 (WINDOWS): PREPARARE GLI EXE -->
+    <section id="come-avviare-windows" class="card solo-windows">
+        <h2>2. Preparare i tuoi .exe su Windows con Winhanced</h2>
+        <div class="alert">
+            <strong>Da dove viene il gioco</strong>
+            <ul>
+                <li><strong>Giochi di un negozio (Steam, Epic, Xbox, GOG Galaxy):</strong> installali dal negozio e avviali da lì. Questa sezione serve per le copie <code>.exe</code> che tieni sul disco.</li>
+                <li><strong>Copie senza protezioni (per esempio gli installer offline di GOG):</strong> segui i passi nell'ordine.</li>
+            </ul>
+        </div>
+        <div class="alert alert-green">
+            Su Windows non devi installare nessuno strumento di compatibilità e non serve aggiungere il gioco a Steam: il gioco è già un programma per Windows.
+        </div>
+        <p>Segui questi tre passaggi nell'ordine per qualsiasi gioco Windows (<code>.exe</code>) locale.</p>
+
+        <h3>Passo 2.1 — Dove tenere le cartelle dei tuoi giochi .exe</h3>
+        <ol>
+            <li>Apri <strong>Esplora file</strong> e crea una cartella semplice, per esempio <code>C:\Giochi</code>.</li>
+            <li>Copia dentro la cartella di ogni gioco: alla fine devi avere, per esempio, <code>C:\Giochi\Red Dead Redemption 2</code>, <code>C:\Giochi\The Witcher 3</code> e <code>C:\Giochi\Skyrim Special Edition</code>.</li>
+        </ol>
+        <div class="alert alert-warning">
+            <strong>Non tenere i giochi dentro OneDrive.</strong><br>
+            Le cartelle sincronizzate possono dare problemi ai giochi e spostare i file delle impostazioni. Usa una cartella semplice come <code>C:\Giochi\&lt;nome del gioco&gt;</code>.
+        </div>
+
+        <h3>Passo 2.2 — Installa le librerie che servono ai giochi (una sola volta)</h3>
+        <p>Se un gioco si lamenta di <code>VCRUNTIME140.dll</code> o di DirectX, servono <strong>Visual C++ 2015-2022</strong> (x64 e x86) e <strong>DirectX End-User Runtime</strong>. Sulla ROG Ally scaricali dal sito Microsoft e installali uno dopo l'altro.</p>
+
+        <h3>Passo 2.3 — Aggiungi il file .exe a Winhanced e avvialo</h3>
+        <ol>
+            <li>Apri <strong>Winhanced</strong> e aggiungi il gioco alla tua libreria, se non c'è già.</li>
+            <li>Apri le opzioni del gioco in libreria e indica il <strong>percorso dell'eseguibile</strong> (quello indicato nella sezione di ogni gioco, per esempio <code>C:\Giochi\Red Dead Redemption 2\RDR2.exe</code>) e, solo se servono, gli <strong>argomenti di avvio</strong>.</li>
+            <li>Per avviare i tuoi <code>.exe</code> scegli <strong>Gioca in locale</strong>. Se compaiono sia «Gioca» sia «Gioca in locale», quella giusta è «Gioca in locale».</li>
+        </ol>
+        <p>Le etichette possono cambiare con la versione di Winhanced.</p>
+
+        <p>Il primo avvio lo fai nella sezione del tuo gioco.</p>
+    </section>
+
     <!-- GIOCHI:INIZIO generato da tools/genera_guide.py da data/giochi: non modificare a mano -->
     <!-- SEZIONE 3: RED DEAD REDEMPTION 2 -->
-    <section id="rdr2" class="card">
+    <section id="rdr2" class="card solo-bazzite">
         <h2>3. Passo-Passo: Red Dead Redemption 2</h2>
         <div class="alert alert-green">Obiettivo: 40-50 FPS a 1080p con FSR 2 su Qualità e VRR, texture Ultra (impostazioni della guida ufficiale ASUS).</div>
         <p>Prima prepara il gioco come nella <a href="#come-avviare">sezione 2</a>, scegliendo come eseguibile <code>RDR2.exe</code>. Se la tua copia parte da un altro file (per esempio <code>Launcher.exe</code>), scegli quello.</p>
@@ -473,8 +641,107 @@
         <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
     </section>
 
+    <!-- SEZIONE 3: RED DEAD REDEMPTION 2 (WINDOWS) -->
+    <section id="rdr2-windows" class="card solo-windows">
+        <h2>3. Passo-Passo: Red Dead Redemption 2</h2>
+        <div class="alert alert-green">Obiettivo: 40-50 FPS a 1080p con FSR 2 su Qualità e VRR, texture Ultra (impostazioni della guida ufficiale ASUS).</div>
+        <p>Prima prepara il gioco come nella <a href="#come-avviare-windows">sezione 2</a>, indicando come eseguibile <code>RDR2.exe</code>. Se la tua copia parte da un altro file (per esempio <code>Launcher.exe</code>), scegli quello.</p>
+
+        <h3>Passo 3.1 — Primo avvio: apri il gioco e chiudilo <span class="dove">In Winhanced</span></h3>
+        <p>Avvia il gioco con <strong>Gioca in locale</strong>, aspetta il menu principale (la prima volta il gioco prepara i suoi file e può volerci qualche minuto), poi esci dal gioco dal suo menu.</p>
+        <p>Questo passo serve perché, finché non lo avvii una volta, il gioco non crea i suoi file di impostazioni (compaiono nei Documenti di Windows) e i passi successivi non hanno niente da controllare.</p>
+
+        <h3>Passo 3.2 — Dove stanno le impostazioni grafiche <span class="dove">Su Windows</span></h3>
+        <p>Su Windows non c'è l'app che scrive le impostazioni al posto tuo: le voci grafiche le imposti a mano dal menu del gioco, con la tabella del passo successivo.</p>
+        <p>Il file delle impostazioni si chiama <code>system.xml</code> e sta nei Documenti di Windows, in <code>Documenti\Rockstar Games\Red Dead Redemption 2\Settings</code>. Compare dopo il primo avvio. Se i Documenti sono sincronizzati con OneDrive, la cartella è <code>OneDrive\Documenti\Rockstar Games\Red Dead Redemption 2\Settings</code>.</p>
+        <p>Se non lo trovi, torna al passo «Primo avvio».</p>
+
+        <h3>Passo 3.3 — Imposta la grafica nel gioco <span class="dove">Dentro il gioco</span></h3>
+        <ol>
+            <li>Avvia Red Dead Redemption 2 con <strong>Gioca in locale</strong> e apri <strong>Impostazioni → Grafica</strong>.</li>
+            <li>Imposta le voci della tabella qui sotto: su Windows sono tutte da fare a mano.</li>
+            <li>In fondo, le <strong>Impostazioni avanzate</strong> devono essere <strong>sbloccate</strong> per vedere la seconda metà dell'elenco.</li>
+        </ol>
+        <p>Tra parentesi c'è il nome inglese della voce: in italiano può essere scritta in modo un po' diverso.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Tipo di schermo (Screen Type)</td><td>Schermo intero</td></tr>
+                    <tr><td>Sincronia verticale (VSync)</td><td>No (ci pensa il VRR)</td></tr>
+                    <tr><td>FSR 2</td><td>Qualità (TAA, FXAA e MSAA si spengono da soli)</td></tr>
+                    <tr><td>Qualità texture (Texture Quality)</td><td>Ultra</td></tr>
+                    <tr><td>Filtro anisotropico (Anisotropic Filtering)</td><td>8x</td></tr>
+                    <tr><td>Qualità illuminazione (Lighting Quality)</td><td>Media</td></tr>
+                    <tr><td>Illuminazione globale (Global Illumination)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità ombre (Shadow Quality)</td><td>Media</td></tr>
+                    <tr><td>Ombre distanti (Far Shadow Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Occlusione ambientale (SSAO)</td><td>Media</td></tr>
+                    <tr><td>Qualità riflessi (Reflection Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità specchi (Mirror Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità acqua (Water Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità volumetrica (Volumetrics Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità particelle (Particle Quality)</td><td>Media</td></tr>
+                    <tr><td>Tassellazione (Tessellation Quality)</td><td>Media</td></tr>
+                    <tr><td>API grafica (Graphics API)</td><td>Vulkan</td></tr>
+                    <tr><td>Volumetria vicina, lontana e luce volumetrica</td><td>Bassa</td></tr>
+                    <tr><td>Illuminazione particelle (Particle Lighting)</td><td>Media</td></tr>
+                    <tr><td>Ombre morbide (Soft Shadows)</td><td>Alte</td></tr>
+                    <tr><td>Ombre dell'erba (Grass Shadows)</td><td>Basse</td></tr>
+                    <tr><td>Ombre lunghe (Long Shadows)</td><td>No</td></tr>
+                    <tr><td>SSAO a piena risoluzione (Full Resolution SSAO)</td><td>No</td></tr>
+                    <tr><td>Rifrazione, riflessi e fisica dell'acqua</td><td>Basse</td></tr>
+                    <tr><td>Sfocatura di movimento (Motion Blur)</td><td>No</td></tr>
+                    <tr><td>Dettaglio geometria (Geometry Level of Detail)</td><td>Massimo</td></tr>
+                    <tr><td>Dettaglio erba (Grass Level of Detail)</td><td>2 tacche su 10</td></tr>
+                    <tr><td>Qualità alberi (Tree Quality)</td><td>Alta</td></tr>
+                    <tr><td>Mappatura parallasse (Parallax Occlusion Mapping)</td><td>Media</td></tr>
+                    <tr><td>Qualità decalcomanie (Decal Quality)</td><td>Bassa</td></tr>
+                    <tr><td>Qualità pelliccia (Fur Quality)</td><td>Media</td></tr>
+                    <tr><td>Tassellazione alberi (Tree Tessellation)</td><td>No</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Passo 3.4 — Pannello di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
+        <ol>
+            <li>Avvia il gioco con <strong>Gioca in locale</strong>.</li>
+            <li>Apri il pannello di Winhanced (è un widget della Xbox Game Bar).</li>
+            <li>Salva le scelte nel profilo del gioco: così valgono solo per Red Dead Redemption 2.</li>
+            <li>Imposta le voci qui sotto. Le etichette possono cambiare con la versione di Winhanced.</li>
+        </ol>
+        <p>Nello stesso pannello porta la potenza a <strong>25 W (30 W con il caricatore collegato)</strong>. Se usi Winhanced, non toccare le stesse voci in Armoury Crate: la potenza e il limite dei fotogrammi si regolano da un solo programma.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Profilo del gioco</td><td>Salva le scelte per questo gioco</td></tr>
+                    <tr><td>Risoluzione</td><td>1920×1080</td></tr>
+                    <tr><td>Frequenza di aggiornamento</td><td>120 Hz</td></tr>
+                    <tr><td>Limite dei fotogrammi</td><td>Nessun limite (con il VRR va bene così); se preferisci consumi più bassi, 40</td></tr>
+                    <tr><td>Potenza (TDP)</td><td>25 W (30 W con il caricatore collegato)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Passo 3.5 — Controlla come gira e ritocca <span class="dove">Dentro il gioco</span></h3>
+        <ol>
+            <li>Gioca cinque minuti in una zona impegnativa (Saint Denis, o Valentine con la pioggia) e guarda come va. Se vuoi vedere il numero esatto dei fotogrammi al secondo (FPS), usa un contatore di FPS a tua scelta.</li>
+            <li>Quando hai finito, spegni il contatore.</li>
+        </ol>
+        <ul>
+            <li><strong>Se scende sotto l'obiettivo:</strong> nel gioco porta <strong>FSR 2</strong> da Qualità a <strong>Bilanciato</strong>; se non basta abbassa <strong>Qualità ombre</strong> a Bassa.</li>
+            <li><strong>Se non scende mai sotto l'obiettivo:</strong> alza <strong>Qualità illuminazione</strong> ad Alta oppure <strong>Ombre distanti</strong> a Media; oppure abbassa la potenza a 20 W e tieni la batteria più a lungo.</li>
+        </ul>
+        <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
+    </section>
+
     <!-- SEZIONE 4: THE WITCHER 3 -->
-    <section id="witcher3" class="card">
+    <section id="witcher3" class="card solo-bazzite">
         <h2>4. Passo-Passo: The Witcher 3</h2>
         <div class="alert alert-green">Obiettivo: 45-60 FPS a 1080p con l'eseguibile DirectX 11, preset Alto, texture Ultra e VRR. È una stima prudente, da verificare sul dispositivo.</div>
         <p>Prima prepara il gioco come nella <a href="#come-avviare">sezione 2</a>, scegliendo come eseguibile <code>bin/x64/witcher3.exe</code>. Attenzione: esiste anche <code>bin/x64_dx12/witcher3.exe</code> (DirectX 12), che qui è molto più lento. Prendi quello nella cartella <code>x64</code> <strong>senza</strong> <code>_dx12</code>.</p>
@@ -577,8 +844,98 @@
         <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
     </section>
 
+    <!-- SEZIONE 4: THE WITCHER 3 (WINDOWS) -->
+    <section id="witcher3-windows" class="card solo-windows">
+        <h2>4. Passo-Passo: The Witcher 3</h2>
+        <div class="alert alert-green">Obiettivo: 45-60 FPS a 1080p con l'eseguibile DirectX 11, preset Alto, texture Ultra e VRR. È una stima prudente, da verificare sul dispositivo.</div>
+        <p>Prima prepara il gioco come nella <a href="#come-avviare-windows">sezione 2</a>, indicando come eseguibile <code>bin\x64\witcher3.exe</code>. Esiste anche <code>bin\x64_dx12\witcher3.exe</code> (DirectX 12): per questa guida prendi quello nella cartella <code>x64</code> <strong>senza</strong> <code>_dx12</code> (DirectX 11).</p>
+
+        <h3>Passo 4.1 — Primo avvio: apri il gioco e chiudilo <span class="dove">In Winhanced</span></h3>
+        <p>Avvia il gioco con <strong>Gioca in locale</strong>, arriva al menu principale, poi scegli <strong>Esci dal gioco</strong>.</p>
+        <p>Questo passo serve perché, finché non lo avvii una volta, il gioco non crea i suoi file di impostazioni (compaiono nei Documenti di Windows) e i passi successivi non hanno niente da controllare.</p>
+
+        <h3>Passo 4.2 — Imposta le voci di base <span class="dove">Su Windows</span></h3>
+        <p>Su Windows non c'è l'app che scrive le impostazioni al posto tuo: le imposti a mano da <strong>Opzioni → Video</strong>, con la tabella qui sotto (quattro voci: risoluzione, NVIDIA HairWorks spento, sfocatura di movimento spenta, sincronia verticale spenta).</p>
+        <p>I file delle impostazioni si chiamano <code>user.settings</code> e, se c'è, <code>dx12user.settings</code>; stanno nei Documenti di Windows, in <code>Documenti\The Witcher 3</code>. Compaiono dopo il primo avvio. Se i Documenti sono sincronizzati con OneDrive, la cartella è <code>OneDrive\Documenti\The Witcher 3</code>.</p>
+        <p>La qualità grafica vera e propria si sceglie dal menu del gioco, al passo successivo.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Risoluzione</td><td>1920×1080</td></tr>
+                    <tr><td>NVIDIA HairWorks</td><td>No</td></tr>
+                    <tr><td>Sfocatura di movimento (Motion Blur)</td><td>No</td></tr>
+                    <tr><td>Sincronia verticale (VSync)</td><td>No</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Passo 4.3 — Scegli la qualità nel menu del gioco <span class="dove">Dentro il gioco</span></h3>
+        <ol>
+            <li>Avvia The Witcher 3 con <strong>Gioca in locale</strong> e apri <strong>Opzioni → Video</strong>.</li>
+            <li>In <strong>Grafica</strong> scegli il preset indicato qui sotto, poi ritocca le singole voci della tabella.</li>
+            <li>In <strong>Post-elaborazione</strong> (Postprocessing) scegli il preset indicato e controlla le voci della tabella.</li>
+            <li>Conferma e torna al menu.</li>
+        </ol>
+        <p>Tra parentesi c'è il nome inglese della voce: in italiano può essere scritta in modo un po' diverso.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Modalità di visualizzazione (Display Mode)</td><td>Schermo intero</td></tr>
+                    <tr><td>Fotogrammi al secondo massimi (Maximum FPS)</td><td>60</td></tr>
+                    <tr><td>Preset grafica (Graphics Preset)</td><td>Alto</td></tr>
+                    <tr><td>Qualità delle texture (Texture Quality)</td><td>Ultra</td></tr>
+                    <tr><td>NVIDIA HairWorks</td><td>No</td></tr>
+                    <tr><td>Preset post-elaborazione (Postprocessing Preset)</td><td>Alto</td></tr>
+                    <tr><td>Antialiasing</td><td>Sì</td></tr>
+                    <tr><td>Occlusione ambientale (Ambient Occlusion)</td><td>SSAO</td></tr>
+                    <tr><td>Sfocatura di movimento (Motion Blur)</td><td>No</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Passo 4.4 — Pannello di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
+        <ol>
+            <li>Avvia il gioco con <strong>Gioca in locale</strong>.</li>
+            <li>Apri il pannello di Winhanced (è un widget della Xbox Game Bar).</li>
+            <li>Salva le scelte nel profilo del gioco: così valgono solo per The Witcher 3.</li>
+            <li>Imposta le voci qui sotto. Le etichette possono cambiare con la versione di Winhanced.</li>
+        </ol>
+        <p>Nello stesso pannello porta la potenza a <strong>25 W</strong>. Se usi Winhanced, non toccare le stesse voci in Armoury Crate: la potenza e il limite dei fotogrammi si regolano da un solo programma.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Profilo del gioco</td><td>Salva le scelte per questo gioco</td></tr>
+                    <tr><td>Risoluzione</td><td>1920×1080</td></tr>
+                    <tr><td>Frequenza di aggiornamento</td><td>120 Hz</td></tr>
+                    <tr><td>Limite dei fotogrammi</td><td>Nessuno (il limite è già nel menu del gioco)</td></tr>
+                    <tr><td>Potenza (TDP)</td><td>25 W</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Passo 4.5 — Controlla come gira e ritocca <span class="dove">Dentro il gioco</span></h3>
+        <ol>
+            <li>Gioca cinque minuti in una zona impegnativa (il mercato di Novigrad, o un bosco fitto di Velen) e guarda come va. Se vuoi vedere il numero esatto dei fotogrammi al secondo (FPS), usa un contatore di FPS a tua scelta.</li>
+            <li>Quando hai finito, spegni il contatore.</li>
+        </ol>
+        <ul>
+            <li><strong>Se scende sotto l'obiettivo:</strong> porta il <strong>Preset grafica</strong> a Medio lasciando le texture su Ultra.</li>
+            <li><strong>Se non scende mai sotto l'obiettivo:</strong> abbassa la potenza a 18 W per far durare di più la batteria.</li>
+        </ul>
+        <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
+    </section>
+
     <!-- SEZIONE 5: SKYRIM SPECIAL EDITION -->
-    <section id="skyrim" class="card">
+    <section id="skyrim" class="card solo-bazzite">
         <h2>5. Passo-Passo: Skyrim Special Edition</h2>
         <div class="alert alert-green">Obiettivo: 60 FPS fissi a 1080p partendo dal preset Ultra, con ombre a 2048 e pochi watt.</div>
         <p>Prima prepara il gioco come nella <a href="#come-avviare">sezione 2</a>, scegliendo come eseguibile <code>SkyrimSELauncher.exe</code>. Scegli il launcher e non <code>SkyrimSE.exe</code>: al primo avvio è il launcher a creare i file di impostazioni.</p>
@@ -663,10 +1020,80 @@
         <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
     </section>
 
+    <!-- SEZIONE 5: SKYRIM SPECIAL EDITION (WINDOWS) -->
+    <section id="skyrim-windows" class="card solo-windows">
+        <h2>5. Passo-Passo: Skyrim Special Edition</h2>
+        <div class="alert alert-green">Obiettivo: 60 FPS fissi a 1080p partendo dal preset Ultra, con ombre a 2048 e pochi watt.</div>
+        <p>Prima prepara il gioco come nella <a href="#come-avviare-windows">sezione 2</a>, indicando come eseguibile <code>SkyrimSELauncher.exe</code>. Scegli il launcher e non <code>SkyrimSE.exe</code>: al primo avvio è il launcher a creare i file di impostazioni.</p>
+
+        <h3>Passo 5.1 — Primo avvio: apri il gioco e chiudilo <span class="dove">In Winhanced</span></h3>
+        <p>Avvia il gioco con <strong>Gioca in locale</strong>: si apre il launcher. Scegli <strong>Opzioni</strong>, il preset <strong>Ultra</strong> e conferma con <strong>OK</strong>; poi scegli <strong>Gioca</strong>, arriva al menu principale ed esci dal gioco.</p>
+        <p>Questo passo serve perché, finché non lo avvii una volta, il gioco non crea i suoi file di impostazioni (compaiono nei Documenti di Windows) e i passi successivi non hanno niente da controllare.</p>
+
+        <h3>Passo 5.2 — Imposta la grafica dal launcher <span class="dove">Su Windows</span></h3>
+        <p>Su Windows non c'è l'app che scrive le impostazioni al posto tuo: le imposti a mano dal launcher (<strong>Opzioni</strong>) e, per le voci che il launcher non ha, dal menu delle impostazioni del gioco. Parti dal preset <strong>Ultra</strong> e ritocca le voci della tabella qui sotto; se una voce non compare in nessuno dei due, lasciala com'è.</p>
+        <p>Il file delle impostazioni si chiama <code>SkyrimPrefs.ini</code> e sta nei Documenti di Windows, in <code>Documenti\My Games\Skyrim Special Edition</code> (nella copia GOG: <code>Documenti\My Games\Skyrim Special Edition GOG</code>). Compare dopo il primo avvio. Se i Documenti sono sincronizzati con OneDrive, la cartella è <code>OneDrive\Documenti\My Games\Skyrim Special Edition</code>.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Risoluzione</td><td>1920×1080, schermo intero</td></tr>
+                    <tr><td>Risoluzione delle ombre</td><td>2048 (a 4096 costa molto e si vede poco)</td></tr>
+                    <tr><td>Distanza delle ombre</td><td>8000</td></tr>
+                    <tr><td>Luce volumetrica (raggi di sole)</td><td>Sì, qualità media</td></tr>
+                    <tr><td>Antialiasing</td><td>TAA (FXAA spento)</td></tr>
+                    <tr><td>Sincronia verticale</td><td>Sì (Skyrim la usa per regolare il ritmo del gioco)</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Passo 5.3 — Attiva il controller nel gioco <span class="dove">Dentro il gioco</span></h3>
+        <ol>
+            <li>Avvia Skyrim Special Edition con <strong>Gioca in locale</strong>: nel launcher scegli solo <strong>Gioca</strong>.</li>
+            <li>Se a schermo vedi i tasti della tastiera invece di quelli del controller, nelle <strong>Impostazioni</strong> del gioco cerca la voce <strong>Controller</strong> e attivala.</li>
+        </ol>
+
+        <h3>Passo 5.4 — Pannello di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
+        <ol>
+            <li>Avvia il gioco con <strong>Gioca in locale</strong>.</li>
+            <li>Apri il pannello di Winhanced (è un widget della Xbox Game Bar).</li>
+            <li>Salva le scelte nel profilo del gioco: così valgono solo per Skyrim Special Edition.</li>
+            <li>Imposta le voci qui sotto. Le etichette possono cambiare con la versione di Winhanced.</li>
+        </ol>
+        <p>Nello stesso pannello porta la potenza a <strong>15 W</strong>. Se usi Winhanced, non toccare le stesse voci in Armoury Crate: la potenza e il limite dei fotogrammi si regolano da un solo programma.</p>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr><th>Voce</th><th>Valore</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Profilo del gioco</td><td>Salva le scelte per questo gioco</td></tr>
+                    <tr><td>Risoluzione</td><td>1920×1080</td></tr>
+                    <tr><td>Frequenza di aggiornamento</td><td>120 Hz</td></tr>
+                    <tr><td>Limite dei fotogrammi</td><td>60 (non di più: sopra i 60 la fisica del gioco si rompe)</td></tr>
+                    <tr><td>Potenza (TDP)</td><td>15 W</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Passo 5.5 — Controlla come gira e ritocca <span class="dove">Dentro il gioco</span></h3>
+        <ol>
+            <li>Gioca cinque minuti in una zona impegnativa (Riverwood con la pioggia, o Whiterun di giorno) e guarda come va. Se vuoi vedere il numero esatto dei fotogrammi al secondo (FPS), usa un contatore di FPS a tua scelta.</li>
+            <li>Quando hai finito, spegni il contatore.</li>
+        </ol>
+        <ul>
+            <li><strong>Se scende sotto l'obiettivo:</strong> alza la potenza a 18 W.</li>
+            <li><strong>Se non scende mai sotto l'obiettivo:</strong> abbassa la potenza a 12 W: Skyrim è leggero e la batteria dura molto di più.</li>
+        </ul>
+        <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
+    </section>
+
     <!-- GIOCHI:FINE -->
 
     <!-- SEZIONE 6: RISOLUZIONE PROBLEMI -->
-    <section id="problemi" class="card">
+    <section id="problemi" class="card solo-bazzite">
         <h2>6. Risoluzione dei problemi comuni sulla ROG Ally</h2>
 
         <h3>1. Il controller non viene visto in un gioco non di Steam</h3>
@@ -683,6 +1110,29 @@
         <h3>3. Un gioco richiede Visual C++ (`VCRUNTIME140.dll`)</h3>
         <ul>
             <li>In Modalità Desktop apri <strong>Protontricks</strong>, seleziona il tuo gioco <em>Non-Steam</em>, scegli <em>Select the default wineprefix → Install a Windows DLL or component</em> e installa <strong><code>vcrun2022</code></strong>.</li>
+        </ul>
+    </section>
+
+    <!-- SEZIONE 6 (WINDOWS): PROBLEMI -->
+    <section id="problemi-windows" class="card solo-windows">
+        <h2>6. Risoluzione dei problemi comuni su Windows</h2>
+
+        <h3>1. Manca <code>VCRUNTIME140.dll</code> o DirectX</h3>
+        <ul>
+            <li>Scarica dal sito Microsoft <strong>Visual C++ 2015-2022</strong> (x64 e x86) e <strong>DirectX End-User Runtime</strong> e installali.</li>
+        </ul>
+
+        <h3>2. Le impostazioni sembrano ignorate</h3>
+        <ul>
+            <li>Controlla di aver avviato il gioco da Winhanced con <strong>Gioca in locale</strong>, come nel Passo 2.3, e di aver salvato le scelte nel profilo del gioco.</li>
+            <li>Controlla di cercare i file nella cartella giusta. Se i tuoi Documenti sono sincronizzati con OneDrive, i file delle impostazioni non stanno in <code>Documenti</code> ma in <code>OneDrive\Documenti</code> (per esempio <code>OneDrive\Documenti\Rockstar Games\Red Dead Redemption 2\Settings\system.xml</code>). I file compaiono dopo il primo avvio del gioco.</li>
+        </ul>
+
+        <h3>3. Il limite dei fotogrammi o la potenza non hanno effetto</h3>
+        <ul>
+            <li>Probabilmente due programmi regolano la stessa cosa. Scegli un solo programma per la potenza e uno solo per il limite dei fotogrammi.</li>
+            <li>Se il limite dei fotogrammi di Winhanced non c'è o non ha effetto, usa <strong>RivaTuner Statistics Server</strong> e lascia il limite di Winhanced spento.</li>
+            <li>Se usi Winhanced, non toccare le stesse voci in Armoury Crate.</li>
         </ul>
     </section>
 
@@ -710,6 +1160,34 @@ function copia(btn) {
         alert("Errore nella copia: " + err);
     });
 }
+</script>
+
+<script>
+(function () {
+    var radice = document.documentElement;
+    var pulsanti = document.querySelectorAll(".selettore-pulsanti button");
+    function mostra(sistema) {
+        radice.dataset.sistema = sistema;
+        for (var i = 0; i < pulsanti.length; i++) {
+            pulsanti[i].setAttribute("aria-pressed", pulsanti[i].dataset.sistema === sistema ? "true" : "false");
+        }
+    }
+    mostra(radice.dataset.sistema);
+    for (var i = 0; i < pulsanti.length; i++) {
+        pulsanti[i].addEventListener("click", function () {
+            var sistema = this.dataset.sistema;
+            mostra(sistema);
+            try { localStorage.setItem("guida-sistema", sistema); } catch (e) {}
+            try {
+                var indirizzo = new URL(location.href);
+                if (indirizzo.searchParams.has("sistema")) {
+                    indirizzo.searchParams.set("sistema", sistema);
+                    history.replaceState(null, "", indirizzo.toString());
+                }
+            } catch (e) {}
+        });
+    }
+})();
 </script>
 
 </body>
