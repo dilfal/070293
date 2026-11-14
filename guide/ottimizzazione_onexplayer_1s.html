@@ -358,7 +358,7 @@
             <li><a href="#problemi">6. Risoluzione dei problemi comuni</a></li>
         </ul>
         <ul class="solo-windows">
-            <li><a href="#intro-windows">1. Winhanced: risoluzione, limite dei fotogrammi e potenza sul OneXPlayer 1S</a></li>
+            <li><a href="#intro-windows">1. Winhanced: risoluzione, Limite FPS e potenza sul OneXPlayer 1S</a></li>
             <li><a href="#come-avviare-windows">2. Preparare i tuoi .exe su Windows con Winhanced</a></li>
             <li><a href="#rdr2-windows">3. Passo-Passo: Red Dead Redemption 2</a></li>
             <li><a href="#witcher3-windows">4. Passo-Passo: The Witcher 3</a></li>
@@ -405,30 +405,30 @@
 
     <!-- SEZIONE 1 (WINDOWS): WINHANCED -->
     <section id="intro-windows" class="card solo-windows">
-        <h2>1. Winhanced: risoluzione, limite dei fotogrammi e potenza sul OneXPlayer 1S</h2>
-        <p>Su Windows avvii i giochi con <strong>Winhanced</strong>. Durante il gioco ha un pannello (un widget della Xbox Game Bar) con queste voci: potenza (TDP), risoluzione, frequenza di aggiornamento e limite dei fotogrammi. Ogni gioco ha il suo profilo, che salva queste scelte solo per quel gioco.</p>
+        <h2>1. Winhanced: risoluzione, Limite FPS e potenza sul OneXPlayer 1S</h2>
+        <p>Su Windows avvii i giochi con <strong>Winhanced</strong>. Durante il gioco ha l'<strong>HUD di Winhanced</strong> (un widget della Xbox Game Bar) con queste voci: <strong>TDP (watt)</strong>, <strong>Risoluzione nel gioco</strong>, <strong>Frequenza di aggiornamento</strong> e <strong>Limite FPS</strong>. Winhanced tiene tre profili per ogni gioco, «Collegato», «Batteria» ed «eGPU», e passa dall'uno all'altro da solo.</p>
 
         <div class="alert alert-green">
             <strong>Perché 1280×800:</strong><br>
             Lo schermo del OneXPlayer 1S è 2560×1600. La risoluzione <strong>1280×800</strong> è la <strong>metà esatta</strong> sia in larghezza sia in altezza: ogni punto del gioco viene disegnato da un quadratino di <strong>2×2 punti dello schermo</strong> (scalatura intera), senza sfocature, e la scheda video lavora su <strong>un quarto dei punti</strong>.
         </div>
 
-        <h3>Passo 1.1 — Apri il pannello di Winhanced durante il gioco</h3>
+        <h3>Passo 1.1 — Apri l'HUD di Winhanced durante il gioco</h3>
         <ol>
             <li>Avvia un gioco da Winhanced.</li>
-            <li>Apri il pannello di Winhanced: è un widget della Xbox Game Bar, quindi si apre durante il gioco con la Game Bar (di solito con <kbd>Win</kbd>+<kbd>G</kbd>).</li>
-            <li>Nel pannello cerca le voci della potenza (TDP), della risoluzione, della frequenza di aggiornamento e del limite dei fotogrammi.</li>
-            <li>Salva le scelte nel profilo del gioco: così valgono solo per quel gioco.</li>
+            <li>Apri l'HUD di Winhanced premendo insieme <kbd>Select</kbd> + <kbd>Start</kbd>. In alternativa, da tastiera, <kbd>Win</kbd>+<kbd>G</kbd> apre la Xbox Game Bar, dove l'HUD è un widget.</li>
+            <li>Nell'HUD cerca le voci <strong>TDP (watt)</strong>, <strong>Risoluzione nel gioco</strong>, <strong>Frequenza di aggiornamento</strong> e <strong>Limite FPS</strong>.</li>
+            <li>Attiva l'interruttore <strong>Usa profilo per gioco</strong>: così le scelte valgono solo per quel gioco.</li>
         </ol>
         <p>Le etichette possono cambiare con la versione di Winhanced: se un nome è un po' diverso, cerca la voce che significa la stessa cosa.</p>
 
-        <h3>Passo 1.2 — Risoluzione e limite dei fotogrammi</h3>
+        <h3>Passo 1.2 — Risoluzione e Limite FPS</h3>
         <ol>
-            <li>Nel pannello, alla voce della risoluzione, scegli <strong>1280×800</strong>.</li>
-            <li>Imposta il limite dei fotogrammi:
+            <li>Nell'HUD, alla voce <strong>Risoluzione nel gioco</strong>, scegli <strong>1280×800</strong>.</li>
+            <li>Imposta il <strong>Limite FPS</strong>:
                 <ul>
                     <li><strong>30</strong> per <em>Red Dead Redemption 2</em>.</li>
-                    <li><strong>The Witcher 3</strong>: nessun limite nel pannello, perché il limite a 30 si mette direttamente nel menu del gioco.</li>
+                    <li><strong>The Witcher 3</strong>: lascia <strong>FPS illimitati</strong> nell'HUD, perché il limite a 30 si mette direttamente nel menu del gioco.</li>
                     <li><strong>60</strong> per <em>Skyrim Special Edition</em>.</li>
                 </ul>
             </li>
@@ -436,12 +436,13 @@
 
         <h3>Passo 1.3 — Potenza</h3>
         <ol>
-            <li>Se nel pannello trovi la voce della potenza (TDP), imposta <strong>28 W</strong> con il caricatore collegato e <strong>20 W</strong> a batteria.</li>
+            <li>Prima attiva l'opzione <strong>Attiva il controllo del dispositivo di Winhanced</strong>, nelle impostazioni di Winhanced: senza questa opzione TDP e ventola non si regolano.</li>
+            <li>Se nell'HUD trovi la voce <strong>TDP (watt)</strong>, imposta <strong>28 W</strong> nel profilo «Collegato» e <strong>20 W</strong> nel profilo «Batteria».</li>
             <li>Winhanced regola la potenza solo sui dispositivi che supporta, e sul OneXPlayer 1S non è provato: se la voce non c'è, usa lo strumento del produttore.</li>
         </ol>
         <div class="alert alert-warning">
-            <strong>Potenza e limite dei fotogrammi da un solo programma.</strong><br>
-            Non regolare mai la stessa cosa da due programmi insieme. Se il limite dei fotogrammi di Winhanced non c'è o non ha effetto, usa <strong>RivaTuner Statistics Server</strong> e lascia il limite di Winhanced spento.
+            <strong>Potenza e Limite FPS da un solo programma.</strong><br>
+            Non regolare mai la stessa cosa da due programmi insieme. Winhanced installa e usa da sé <strong>RivaTuner Statistics Server (RTSS)</strong>: non chiuderlo e non disinstallarlo. Senza RTSS, avvisa Winhanced, il controllo del TDP e le funzioni dell'overlay non funzionano. Se il <strong>Limite FPS</strong> non ha effetto, usa il limite di fotogrammi nelle opzioni del gioco, dove c'è.
         </div>
 
         <h3>Passo 1.4 — Facoltativo: scalatura intera più nitida</h3>
@@ -747,24 +748,24 @@
             </table>
         </div>
 
-        <h3>Passo 3.4 — Pannello di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
+        <h3>Passo 3.4 — HUD di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
         <ol>
             <li>Avvia il gioco con <strong>Gioca in locale</strong>.</li>
-            <li>Apri il pannello di Winhanced (è un widget della Xbox Game Bar).</li>
-            <li>Salva le scelte nel profilo del gioco: così valgono solo per Red Dead Redemption 2.</li>
+            <li>Apri l'HUD di Winhanced premendo insieme <strong>Select + Start</strong>.</li>
+            <li>Nell'HUD attiva l'interruttore <strong>Usa profilo per gioco</strong>: così le scelte valgono solo per Red Dead Redemption 2.</li>
             <li>Imposta le voci qui sotto. Le etichette possono cambiare con la versione di Winhanced.</li>
         </ol>
-        <p>Winhanced regola la potenza solo sui dispositivi che supporta e sul OneXPlayer 1S non è provato: se nel pannello trovi la voce della potenza, imposta <strong>28 W (con il caricatore collegato; a batteria 20 W)</strong>; se non c'è, usa lo strumento del produttore. Non regolare mai la potenza da due programmi insieme.</p>
+        <p>Sul OneXPlayer 1S la regolazione della potenza da Winhanced non è provata: se nell'HUD trovi la voce <strong>TDP (watt)</strong>, imposta <strong>28 W nel profilo «Collegato»; 20 W nel profilo «Batteria»</strong>; se non c'è, usa lo strumento del produttore. Non regolare mai la potenza da due programmi insieme.</p>
         <div class="table-responsive">
             <table>
                 <thead>
                     <tr><th>Voce</th><th>Valore</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>Profilo del gioco</td><td>Salva le scelte per questo gioco</td></tr>
-                    <tr><td>Risoluzione</td><td>1280×800</td></tr>
-                    <tr><td>Limite dei fotogrammi</td><td>30</td></tr>
-                    <tr><td>Potenza (TDP)</td><td>28 W (con il caricatore collegato; a batteria 20 W)</td></tr>
+                    <tr><td>Usa profilo per gioco</td><td>Attivo</td></tr>
+                    <tr><td>Risoluzione nel gioco</td><td>1280×800</td></tr>
+                    <tr><td>Limite FPS</td><td>30</td></tr>
+                    <tr><td>TDP (watt)</td><td>28 W nel profilo «Collegato»; 20 W nel profilo «Batteria»</td></tr>
                 </tbody>
             </table>
         </div>
@@ -775,7 +776,7 @@
             <li>Quando hai finito, spegni il contatore.</li>
         </ol>
         <ul>
-            <li><strong>Se scende sotto l'obiettivo:</strong> controlla di avere impostato 28 W; se non basta, nel gioco attiva <strong>FSR 2</strong> su <strong>Qualità</strong> (l'immagine diventa un po' meno nitida), poi <strong>Bilanciato</strong>.</li>
+            <li><strong>Se scende sotto l'obiettivo:</strong> controlla di avere impostato 28 W nel profilo «Collegato»; se non basta, nel gioco attiva <strong>FSR 2</strong> su <strong>Qualità</strong> (l'immagine diventa un po' meno nitida), poi <strong>Bilanciato</strong>.</li>
             <li><strong>Se non scende mai sotto l'obiettivo:</strong> alza una voce per volta, in quest'ordine: <strong>Qualità illuminazione</strong> su Media, poi <strong>Qualità ombre</strong> su Media.</li>
         </ul>
         <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
@@ -951,24 +952,24 @@
             </table>
         </div>
 
-        <h3>Passo 4.4 — Pannello di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
+        <h3>Passo 4.4 — HUD di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
         <ol>
             <li>Avvia il gioco con <strong>Gioca in locale</strong>.</li>
-            <li>Apri il pannello di Winhanced (è un widget della Xbox Game Bar).</li>
-            <li>Salva le scelte nel profilo del gioco: così valgono solo per The Witcher 3.</li>
+            <li>Apri l'HUD di Winhanced premendo insieme <strong>Select + Start</strong>.</li>
+            <li>Nell'HUD attiva l'interruttore <strong>Usa profilo per gioco</strong>: così le scelte valgono solo per The Witcher 3.</li>
             <li>Imposta le voci qui sotto. Le etichette possono cambiare con la versione di Winhanced.</li>
         </ol>
-        <p>Winhanced regola la potenza solo sui dispositivi che supporta e sul OneXPlayer 1S non è provato: se nel pannello trovi la voce della potenza, imposta <strong>28 W (con il caricatore collegato; a batteria 20 W)</strong>; se non c'è, usa lo strumento del produttore. Non regolare mai la potenza da due programmi insieme.</p>
+        <p>Sul OneXPlayer 1S la regolazione della potenza da Winhanced non è provata: se nell'HUD trovi la voce <strong>TDP (watt)</strong>, imposta <strong>28 W nel profilo «Collegato»; 20 W nel profilo «Batteria»</strong>; se non c'è, usa lo strumento del produttore. Non regolare mai la potenza da due programmi insieme.</p>
         <div class="table-responsive">
             <table>
                 <thead>
                     <tr><th>Voce</th><th>Valore</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>Profilo del gioco</td><td>Salva le scelte per questo gioco</td></tr>
-                    <tr><td>Risoluzione</td><td>1280×800</td></tr>
-                    <tr><td>Limite dei fotogrammi</td><td>Nessuno (il limite è già nel menu del gioco)</td></tr>
-                    <tr><td>Potenza (TDP)</td><td>28 W (con il caricatore collegato; a batteria 20 W)</td></tr>
+                    <tr><td>Usa profilo per gioco</td><td>Attivo</td></tr>
+                    <tr><td>Risoluzione nel gioco</td><td>1280×800</td></tr>
+                    <tr><td>Limite FPS</td><td>FPS illimitati (il limite è già nel menu del gioco)</td></tr>
+                    <tr><td>TDP (watt)</td><td>28 W nel profilo «Collegato»; 20 W nel profilo «Batteria»</td></tr>
                 </tbody>
             </table>
         </div>
@@ -979,7 +980,7 @@
             <li>Quando hai finito, spegni il contatore.</li>
         </ol>
         <ul>
-            <li><strong>Se scende sotto l'obiettivo:</strong> abbassa <strong>Raggio di visibilità della vegetazione</strong> e <strong>Densità dell'erba</strong> al minimo, poi spegni l'<strong>Occlusione ambientale</strong>. Controlla anche di avere impostato 28 W.</li>
+            <li><strong>Se scende sotto l'obiettivo:</strong> abbassa <strong>Raggio di visibilità della vegetazione</strong> e <strong>Densità dell'erba</strong> al minimo, poi spegni l'<strong>Occlusione ambientale</strong>. Controlla anche di avere impostato 28 W nel profilo «Collegato».</li>
             <li><strong>Se non scende mai sotto l'obiettivo:</strong> porta il <strong>Preset grafica</strong> a Medio.</li>
         </ul>
         <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
@@ -1119,24 +1120,24 @@
             <li>Se a schermo vedi i tasti della tastiera invece di quelli del controller, nelle <strong>Impostazioni</strong> del gioco cerca la voce <strong>Controller</strong> e attivala.</li>
         </ol>
 
-        <h3>Passo 5.4 — Pannello di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
+        <h3>Passo 5.4 — HUD di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
         <ol>
             <li>Avvia il gioco con <strong>Gioca in locale</strong>.</li>
-            <li>Apri il pannello di Winhanced (è un widget della Xbox Game Bar).</li>
-            <li>Salva le scelte nel profilo del gioco: così valgono solo per Skyrim Special Edition.</li>
+            <li>Apri l'HUD di Winhanced premendo insieme <strong>Select + Start</strong>.</li>
+            <li>Nell'HUD attiva l'interruttore <strong>Usa profilo per gioco</strong>: così le scelte valgono solo per Skyrim Special Edition.</li>
             <li>Imposta le voci qui sotto. Le etichette possono cambiare con la versione di Winhanced.</li>
         </ol>
-        <p>Winhanced regola la potenza solo sui dispositivi che supporta e sul OneXPlayer 1S non è provato: se nel pannello trovi la voce della potenza, imposta <strong>20 W (28 W con il caricatore collegato, se serve)</strong>; se non c'è, usa lo strumento del produttore. Non regolare mai la potenza da due programmi insieme.</p>
+        <p>Sul OneXPlayer 1S la regolazione della potenza da Winhanced non è provata: se nell'HUD trovi la voce <strong>TDP (watt)</strong>, imposta <strong>20 W nel profilo «Batteria»; 28 W nel profilo «Collegato», se serve</strong>; se non c'è, usa lo strumento del produttore. Non regolare mai la potenza da due programmi insieme.</p>
         <div class="table-responsive">
             <table>
                 <thead>
                     <tr><th>Voce</th><th>Valore</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>Profilo del gioco</td><td>Salva le scelte per questo gioco</td></tr>
-                    <tr><td>Risoluzione</td><td>1280×800</td></tr>
-                    <tr><td>Limite dei fotogrammi</td><td>60</td></tr>
-                    <tr><td>Potenza (TDP)</td><td>20 W (28 W con il caricatore collegato, se serve)</td></tr>
+                    <tr><td>Usa profilo per gioco</td><td>Attivo</td></tr>
+                    <tr><td>Risoluzione nel gioco</td><td>1280×800</td></tr>
+                    <tr><td>Limite FPS</td><td>60</td></tr>
+                    <tr><td>TDP (watt)</td><td>20 W nel profilo «Batteria»; 28 W nel profilo «Collegato», se serve</td></tr>
                 </tbody>
             </table>
         </div>
@@ -1147,7 +1148,7 @@
             <li>Quando hai finito, spegni il contatore.</li>
         </ol>
         <ul>
-            <li><strong>Se scende sotto l'obiettivo:</strong> porta il limite dei fotogrammi a 30 dal pannello di Winhanced oppure, nel launcher, scegli il preset <strong>Basso</strong> e imposta di nuovo le voci della tabella del passo «Imposta la grafica dal launcher».</li>
+            <li><strong>Se scende sotto l'obiettivo:</strong> porta il <strong>Limite FPS</strong> a 30 nell'HUD di Winhanced oppure, nel launcher, scegli il preset <strong>Basso</strong> e imposta di nuovo le voci della tabella del passo «Imposta la grafica dal launcher».</li>
             <li><strong>Se non scende mai sotto l'obiettivo:</strong> prova 15 W: meno calore, ventole più silenziose e batteria più lunga.</li>
         </ul>
         <p>Cambia una cosa per volta e riprova: è l'unico modo per capire che cosa ha fatto la differenza.</p>
@@ -1193,14 +1194,14 @@
 
         <h3>2. Le impostazioni sembrano ignorate</h3>
         <ul>
-            <li>Controlla di aver avviato il gioco da Winhanced con <strong>Gioca in locale</strong>, come nel Passo 2.3, e di aver salvato le scelte nel profilo del gioco.</li>
+            <li>Controlla di aver avviato il gioco da Winhanced con <strong>Gioca in locale</strong>, come nel Passo 2.3, e di aver attivato <strong>Usa profilo per gioco</strong> nell'HUD di Winhanced.</li>
             <li>Controlla di cercare i file nella cartella giusta. Se i tuoi Documenti sono sincronizzati con OneDrive, i file delle impostazioni non stanno in <code>Documenti</code> ma in <code>OneDrive\Documenti</code> (per esempio <code>OneDrive\Documenti\Rockstar Games\Red Dead Redemption 2\Settings\system.xml</code>). I file compaiono dopo il primo avvio del gioco.</li>
         </ul>
 
-        <h3>3. Il limite dei fotogrammi o la potenza non hanno effetto</h3>
+        <h3>3. Il Limite FPS o la potenza non hanno effetto</h3>
         <ul>
-            <li>Probabilmente due programmi regolano la stessa cosa. Scegli un solo programma per la potenza e uno solo per il limite dei fotogrammi.</li>
-            <li>Se il limite dei fotogrammi di Winhanced non c'è o non ha effetto, usa <strong>RivaTuner Statistics Server</strong> e lascia il limite di Winhanced spento.</li>
+            <li>Probabilmente due programmi regolano la stessa cosa. Scegli un solo programma per la potenza e uno solo per il Limite FPS.</li>
+            <li>Winhanced installa e usa da sé <strong>RivaTuner Statistics Server (RTSS)</strong>: non chiuderlo e non disinstallarlo. Se il <strong>Limite FPS</strong> non ha effetto, usa il limite di fotogrammi nelle opzioni del gioco, dove c'è.</li>
             <li>Sul OneXPlayer 1S la regolazione della potenza da Winhanced non è provata: se la voce non c'è, usa lo strumento del produttore.</li>
         </ul>
     </section>

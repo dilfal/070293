@@ -356,7 +356,7 @@
             <li><a href="#problemi">6. Risoluzione dei problemi comuni sulla ROG Ally</a></li>
         </ul>
         <ul class="solo-windows">
-            <li><a href="#intro-windows">1. Winhanced sulla ROG Ally: 120 Hz, 1080p, limite dei fotogrammi e potenza</a></li>
+            <li><a href="#intro-windows">1. Winhanced sulla ROG Ally: 120 Hz, 1080p, Limite FPS e potenza</a></li>
             <li><a href="#come-avviare-windows">2. Preparare i tuoi .exe su Windows con Winhanced</a></li>
             <li><a href="#rdr2-windows">3. Passo-Passo: Red Dead Redemption 2</a></li>
             <li><a href="#witcher3-windows">4. Passo-Passo: The Witcher 3</a></li>
@@ -394,30 +394,30 @@
 
     <!-- SEZIONE 1 (WINDOWS): WINHANCED -->
     <section id="intro-windows" class="card solo-windows">
-        <h2>1. Winhanced sulla ROG Ally: 120 Hz, 1080p, limite dei fotogrammi e potenza</h2>
-        <p>Su Windows avvii i giochi con <strong>Winhanced</strong>. Durante il gioco ha un pannello (un widget della Xbox Game Bar) con queste voci: potenza (TDP), risoluzione, frequenza di aggiornamento e limite dei fotogrammi. Ogni gioco ha il suo profilo, che salva queste scelte solo per quel gioco.</p>
+        <h2>1. Winhanced sulla ROG Ally: 120 Hz, 1080p, Limite FPS e potenza</h2>
+        <p>Su Windows avvii i giochi con <strong>Winhanced</strong>. Durante il gioco ha l'<strong>HUD di Winhanced</strong> (un widget della Xbox Game Bar) con queste voci: <strong>TDP (watt)</strong>, <strong>Risoluzione nel gioco</strong>, <strong>Frequenza di aggiornamento</strong> e <strong>Limite FPS</strong>. Winhanced tiene tre profili per ogni gioco, «Collegato», «Batteria» ed «eGPU», e passa dall'uno all'altro da solo.</p>
 
         <div class="alert alert-green">
             <strong>Schermo a 120 Hz e 1080p:</strong><br>
             Lo schermo della ROG Ally è a <strong>120 Hz</strong> e <strong>1080p</strong>. Su Windows il VRR di norma è già attivo: basta controllare, nelle impostazioni dello schermo di Windows (<em>Impostazioni → Sistema → Schermo → Schermo avanzato</em>), che la frequenza di aggiornamento sia <strong>120 Hz</strong>.
         </div>
 
-        <h3>Passo 1.1 — Apri il pannello di Winhanced durante il gioco</h3>
+        <h3>Passo 1.1 — Apri l'HUD di Winhanced durante il gioco</h3>
         <ol>
             <li>Avvia un gioco da Winhanced.</li>
-            <li>Apri il pannello di Winhanced: è un widget della Xbox Game Bar, quindi si apre durante il gioco con la Game Bar (di solito con <kbd>Win</kbd>+<kbd>G</kbd>).</li>
-            <li>Nel pannello cerca le voci della potenza (TDP), della risoluzione, della frequenza di aggiornamento e del limite dei fotogrammi.</li>
-            <li>Salva le scelte nel profilo del gioco: così valgono solo per quel gioco.</li>
+            <li>Apri l'HUD di Winhanced premendo insieme <kbd>Select</kbd> + <kbd>Start</kbd>. Lo apre anche il tasto Armoury Crate, se in Winhanced attivi la riassegnazione dei pulsanti hardware. In quel caso il tasto non apre più Armoury Crate SE. In alternativa, da tastiera, <kbd>Win</kbd>+<kbd>G</kbd> apre la Xbox Game Bar, dove l'HUD è un widget.</li>
+            <li>Nell'HUD cerca le voci <strong>TDP (watt)</strong>, <strong>Risoluzione nel gioco</strong>, <strong>Frequenza di aggiornamento</strong> e <strong>Limite FPS</strong>.</li>
+            <li>Attiva l'interruttore <strong>Usa profilo per gioco</strong>: così le scelte valgono solo per quel gioco.</li>
         </ol>
         <p>Le etichette possono cambiare con la versione di Winhanced: se un nome è un po' diverso, cerca la voce che significa la stessa cosa.</p>
 
-        <h3>Passo 1.2 — Risoluzione, frequenza e limite dei fotogrammi</h3>
+        <h3>Passo 1.2 — Risoluzione, frequenza e Limite FPS</h3>
         <ol>
-            <li>Nel pannello imposta la risoluzione <strong>1920×1080</strong> e la frequenza di aggiornamento <strong>120 Hz</strong>.</li>
-            <li>Imposta il limite dei fotogrammi:
+            <li>Nell'HUD imposta <strong>Risoluzione nel gioco</strong> a <strong>1920×1080</strong> e <strong>Frequenza di aggiornamento</strong> a <strong>120 Hz</strong>.</li>
+            <li>Imposta il <strong>Limite FPS</strong>:
                 <ul>
-                    <li><strong>Nessun limite</strong> per <em>Red Dead Redemption 2</em> (con il VRR va bene così; in questo gioco si usa <strong>FSR 2 su Qualità</strong>, da impostare nel gioco).</li>
-                    <li><strong>The Witcher 3</strong>: nessun limite nel pannello, perché il limite a 60 si mette direttamente nel menu del gioco.</li>
+                    <li><strong>FPS illimitati</strong> per <em>Red Dead Redemption 2</em> (con il VRR va bene così; in questo gioco si usa <strong>FSR 2 su Qualità</strong>, da impostare nel gioco).</li>
+                    <li><strong>The Witcher 3</strong>: lascia <strong>FPS illimitati</strong> nell'HUD, perché il limite a 60 si mette direttamente nel menu del gioco.</li>
                     <li><strong>60</strong> per <em>Skyrim Special Edition</em> (qui è obbligatorio: sopra i 60 la fisica del gioco si rompe).</li>
                 </ul>
             </li>
@@ -425,12 +425,13 @@
 
         <h3>Passo 1.3 — Potenza</h3>
         <ol>
-            <li>Nel pannello imposta la potenza (TDP): <strong>25 W</strong> per <em>Red Dead Redemption 2</em> (30 W con il caricatore collegato); <strong>25 W</strong> per <em>The Witcher 3</em>; <strong>15 W</strong> per <em>Skyrim Special Edition</em>.</li>
+            <li>Prima attiva l'opzione <strong>Attiva il controllo del dispositivo di Winhanced</strong>, nelle impostazioni di Winhanced: senza questa opzione TDP e ventola non si regolano.</li>
+            <li>Nell'HUD imposta <strong>TDP (watt)</strong>: <strong>25 W</strong> per <em>Red Dead Redemption 2</em> nel profilo «Batteria» (<strong>30 W</strong> nel profilo «Collegato»); <strong>25 W</strong> per <em>The Witcher 3</em>; <strong>15 W</strong> per <em>Skyrim Special Edition</em>.</li>
             <li>Su questo dispositivo Winhanced regola la potenza.</li>
         </ol>
         <div class="alert alert-warning">
-            <strong>Potenza e limite dei fotogrammi da un solo programma.</strong><br>
-            Se usi Winhanced, non toccare le stesse voci in Armoury Crate. Se il limite dei fotogrammi di Winhanced non c'è o non ha effetto, usa <strong>RivaTuner Statistics Server</strong> e lascia il limite di Winhanced spento.
+            <strong>Potenza e Limite FPS da un solo programma.</strong><br>
+            Se usi Winhanced, non toccare le stesse voci in Armoury Crate. Winhanced installa e usa da sé <strong>RivaTuner Statistics Server (RTSS)</strong>: non chiuderlo e non disinstallarlo. Senza RTSS, avvisa Winhanced, il controllo del TDP e le funzioni dell'overlay non funzionano. Se il <strong>Limite FPS</strong> non ha effetto, usa il limite di fotogrammi nelle opzioni del gioco, dove c'è.
         </div>
     </section>
 
@@ -705,25 +706,25 @@
             </table>
         </div>
 
-        <h3>Passo 3.4 — Pannello di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
+        <h3>Passo 3.4 — HUD di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
         <ol>
             <li>Avvia il gioco con <strong>Gioca in locale</strong>.</li>
-            <li>Apri il pannello di Winhanced (è un widget della Xbox Game Bar).</li>
-            <li>Salva le scelte nel profilo del gioco: così valgono solo per Red Dead Redemption 2.</li>
+            <li>Apri l'HUD di Winhanced premendo insieme <strong>Select + Start</strong>.</li>
+            <li>Nell'HUD attiva l'interruttore <strong>Usa profilo per gioco</strong>: così le scelte valgono solo per Red Dead Redemption 2.</li>
             <li>Imposta le voci qui sotto. Le etichette possono cambiare con la versione di Winhanced.</li>
         </ol>
-        <p>Nello stesso pannello porta la potenza a <strong>25 W (30 W con il caricatore collegato)</strong>. Se usi Winhanced, non toccare le stesse voci in Armoury Crate: la potenza e il limite dei fotogrammi si regolano da un solo programma.</p>
+        <p>Nello stesso HUD porta <strong>TDP (watt)</strong> a <strong>25 W nel profilo «Batteria»; 30 W nel profilo «Collegato»</strong>. Se usi Winhanced, non toccare le stesse voci in Armoury Crate: la potenza e il Limite FPS si regolano da un solo programma.</p>
         <div class="table-responsive">
             <table>
                 <thead>
                     <tr><th>Voce</th><th>Valore</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>Profilo del gioco</td><td>Salva le scelte per questo gioco</td></tr>
-                    <tr><td>Risoluzione</td><td>1920×1080</td></tr>
+                    <tr><td>Usa profilo per gioco</td><td>Attivo</td></tr>
+                    <tr><td>Risoluzione nel gioco</td><td>1920×1080</td></tr>
                     <tr><td>Frequenza di aggiornamento</td><td>120 Hz</td></tr>
-                    <tr><td>Limite dei fotogrammi</td><td>Nessun limite (con il VRR va bene così); se preferisci consumi più bassi, 40</td></tr>
-                    <tr><td>Potenza (TDP)</td><td>25 W (30 W con il caricatore collegato)</td></tr>
+                    <tr><td>Limite FPS</td><td>FPS illimitati (con il VRR va bene così); se preferisci consumi più bassi, 40</td></tr>
+                    <tr><td>TDP (watt)</td><td>25 W nel profilo «Batteria»; 30 W nel profilo «Collegato»</td></tr>
                 </tbody>
             </table>
         </div>
@@ -899,25 +900,25 @@
             </table>
         </div>
 
-        <h3>Passo 4.4 — Pannello di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
+        <h3>Passo 4.4 — HUD di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
         <ol>
             <li>Avvia il gioco con <strong>Gioca in locale</strong>.</li>
-            <li>Apri il pannello di Winhanced (è un widget della Xbox Game Bar).</li>
-            <li>Salva le scelte nel profilo del gioco: così valgono solo per The Witcher 3.</li>
+            <li>Apri l'HUD di Winhanced premendo insieme <strong>Select + Start</strong>.</li>
+            <li>Nell'HUD attiva l'interruttore <strong>Usa profilo per gioco</strong>: così le scelte valgono solo per The Witcher 3.</li>
             <li>Imposta le voci qui sotto. Le etichette possono cambiare con la versione di Winhanced.</li>
         </ol>
-        <p>Nello stesso pannello porta la potenza a <strong>25 W</strong>. Se usi Winhanced, non toccare le stesse voci in Armoury Crate: la potenza e il limite dei fotogrammi si regolano da un solo programma.</p>
+        <p>Nello stesso HUD porta <strong>TDP (watt)</strong> a <strong>25 W</strong>. Se usi Winhanced, non toccare le stesse voci in Armoury Crate: la potenza e il Limite FPS si regolano da un solo programma.</p>
         <div class="table-responsive">
             <table>
                 <thead>
                     <tr><th>Voce</th><th>Valore</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>Profilo del gioco</td><td>Salva le scelte per questo gioco</td></tr>
-                    <tr><td>Risoluzione</td><td>1920×1080</td></tr>
+                    <tr><td>Usa profilo per gioco</td><td>Attivo</td></tr>
+                    <tr><td>Risoluzione nel gioco</td><td>1920×1080</td></tr>
                     <tr><td>Frequenza di aggiornamento</td><td>120 Hz</td></tr>
-                    <tr><td>Limite dei fotogrammi</td><td>Nessuno (il limite è già nel menu del gioco)</td></tr>
-                    <tr><td>Potenza (TDP)</td><td>25 W</td></tr>
+                    <tr><td>Limite FPS</td><td>FPS illimitati (il limite è già nel menu del gioco)</td></tr>
+                    <tr><td>TDP (watt)</td><td>25 W</td></tr>
                 </tbody>
             </table>
         </div>
@@ -1055,25 +1056,25 @@
             <li>Se a schermo vedi i tasti della tastiera invece di quelli del controller, nelle <strong>Impostazioni</strong> del gioco cerca la voce <strong>Controller</strong> e attivala.</li>
         </ol>
 
-        <h3>Passo 5.4 — Pannello di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
+        <h3>Passo 5.4 — HUD di Winhanced: fotogrammi e potenza <span class="dove">In Winhanced</span></h3>
         <ol>
             <li>Avvia il gioco con <strong>Gioca in locale</strong>.</li>
-            <li>Apri il pannello di Winhanced (è un widget della Xbox Game Bar).</li>
-            <li>Salva le scelte nel profilo del gioco: così valgono solo per Skyrim Special Edition.</li>
+            <li>Apri l'HUD di Winhanced premendo insieme <strong>Select + Start</strong>.</li>
+            <li>Nell'HUD attiva l'interruttore <strong>Usa profilo per gioco</strong>: così le scelte valgono solo per Skyrim Special Edition.</li>
             <li>Imposta le voci qui sotto. Le etichette possono cambiare con la versione di Winhanced.</li>
         </ol>
-        <p>Nello stesso pannello porta la potenza a <strong>15 W</strong>. Se usi Winhanced, non toccare le stesse voci in Armoury Crate: la potenza e il limite dei fotogrammi si regolano da un solo programma.</p>
+        <p>Nello stesso HUD porta <strong>TDP (watt)</strong> a <strong>15 W</strong>. Se usi Winhanced, non toccare le stesse voci in Armoury Crate: la potenza e il Limite FPS si regolano da un solo programma.</p>
         <div class="table-responsive">
             <table>
                 <thead>
                     <tr><th>Voce</th><th>Valore</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>Profilo del gioco</td><td>Salva le scelte per questo gioco</td></tr>
-                    <tr><td>Risoluzione</td><td>1920×1080</td></tr>
+                    <tr><td>Usa profilo per gioco</td><td>Attivo</td></tr>
+                    <tr><td>Risoluzione nel gioco</td><td>1920×1080</td></tr>
                     <tr><td>Frequenza di aggiornamento</td><td>120 Hz</td></tr>
-                    <tr><td>Limite dei fotogrammi</td><td>60 (non di più: sopra i 60 la fisica del gioco si rompe)</td></tr>
-                    <tr><td>Potenza (TDP)</td><td>15 W</td></tr>
+                    <tr><td>Limite FPS</td><td>60 (non di più: sopra i 60 la fisica del gioco si rompe)</td></tr>
+                    <tr><td>TDP (watt)</td><td>15 W</td></tr>
                 </tbody>
             </table>
         </div>
@@ -1124,14 +1125,14 @@
 
         <h3>2. Le impostazioni sembrano ignorate</h3>
         <ul>
-            <li>Controlla di aver avviato il gioco da Winhanced con <strong>Gioca in locale</strong>, come nel Passo 2.3, e di aver salvato le scelte nel profilo del gioco.</li>
+            <li>Controlla di aver avviato il gioco da Winhanced con <strong>Gioca in locale</strong>, come nel Passo 2.3, e di aver attivato <strong>Usa profilo per gioco</strong> nell'HUD di Winhanced.</li>
             <li>Controlla di cercare i file nella cartella giusta. Se i tuoi Documenti sono sincronizzati con OneDrive, i file delle impostazioni non stanno in <code>Documenti</code> ma in <code>OneDrive\Documenti</code> (per esempio <code>OneDrive\Documenti\Rockstar Games\Red Dead Redemption 2\Settings\system.xml</code>). I file compaiono dopo il primo avvio del gioco.</li>
         </ul>
 
-        <h3>3. Il limite dei fotogrammi o la potenza non hanno effetto</h3>
+        <h3>3. Il Limite FPS o la potenza non hanno effetto</h3>
         <ul>
-            <li>Probabilmente due programmi regolano la stessa cosa. Scegli un solo programma per la potenza e uno solo per il limite dei fotogrammi.</li>
-            <li>Se il limite dei fotogrammi di Winhanced non c'è o non ha effetto, usa <strong>RivaTuner Statistics Server</strong> e lascia il limite di Winhanced spento.</li>
+            <li>Probabilmente due programmi regolano la stessa cosa. Scegli un solo programma per la potenza e uno solo per il Limite FPS.</li>
+            <li>Winhanced installa e usa da sé <strong>RivaTuner Statistics Server (RTSS)</strong>: non chiuderlo e non disinstallarlo. Se il <strong>Limite FPS</strong> non ha effetto, usa il limite di fotogrammi nelle opzioni del gioco, dove c'è.</li>
             <li>Se usi Winhanced, non toccare le stesse voci in Armoury Crate.</li>
         </ul>
     </section>
